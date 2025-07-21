@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Thread for Your Thoughts: Why We Built FolkLore AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7B3FF2;
+            --primary-dark: #5B2FD2;
+            --primary-light: #E9D5FF;
+            --accent: #9333EA;
+            --ink: #0a0a0a;
+            --gray: #64748b;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #7B3FF2 0%, #9333EA 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--light-gray);
+            padding: 5rem 0 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .blog-label {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Content */
+        .content {
+            padding: 4rem 0;
+        }
+
+        .lead {
+            font-size: 1.375rem;
+            line-height: 1.6;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 3rem 0 1.5rem;
+            color: var(--ink);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+            color: var(--ink);
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #2a2a2a;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--primary-light) 10%, var(--primary-light) 90%, transparent 100%);
+            padding: 0 4px;
+        }
+
+        /* Visual Elements */
+        .problem-visual {
+            background: var(--ink);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .app-box {
+            background: #2a2a2a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .app-box:hover {
+            background: #3a3a3a;
+            transform: translateY(-4px);
+        }
+
+        .app-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-name {
+            font-size: 0.875rem;
+            color: #94a3b8;
+        }
+
+        /* Story Section */
+        .story-box {
+            background: var(--light-gray);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .story-box p {
+            font-style: italic;
+            margin-bottom: 0;
+        }
+
+        /* Research Quote */
+        .research-block {
+            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .research-block h4 {
+            color: var(--primary);
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Solution Preview */
+        .solution-preview {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 1rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 0.2rem;
+        }
+
+        /* Visual Demo */
+        .demo-visual {
+            background: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .browser-mockup {
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .mock-tab {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px 6px 0 0;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .mock-tab.highlighted {
+            background: var(--primary-light);
+            border: 1px solid var(--primary);
+        }
+
+        .content-area {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            min-height: 150px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .highlight-text {
+            background: yellow;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 3rem 0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-light);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .timeline-content h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Coming Soon */
+        .coming-soon {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .coming-soon h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.375rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--purple-glow);
+        }
+
+        /* Adjust header for fixed nav */
+        .header {
+            background: var(--light-gray);
+            padding: 7rem 0 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .app-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="15" fill="#7B3FF2"/>
+                        <circle cx="50" cy="20" r="8" fill="#9333EA"/>
+                        <circle cx="75" cy="35" r="8" fill="#7B3FF2"/>
+                        <circle cx="75" cy="65" r="8" fill="#06b6d4"/>
+                        <circle cx="25" cy="65" r="8" fill="#7B3FF2"/>
+                        <circle cx="25" cy="35" r="8" fill="#a855f7"/>
+                        <line x1="50" y1="50" x2="50" y2="20" stroke="#9333EA" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="35" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="65" stroke="#06b6d4" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="65" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="35" stroke="#a855f7" stroke-width="2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
+                    <div style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#features" class="nav-link">How It Works</a>
+                <a href="../blog.html" class="nav-link active">Blog</a>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="nav-cta">
+                    Add to Chrome
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <h1>A Thread for Your Thoughts: Why We Built FolkLore AI</h1>
+            <div class="author-info">
+                <span>December 2024</span>
+                <span>•</span>
+                <span>5 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <p class="lead">
+                We've all been there. You're researching something important—maybe it's for work, 
+                maybe it's a personal project. You have 47 tabs open. You've highlighted key passages. 
+                You're finally connecting the dots. Then your browser crashes.
+            </p>
+
+            <div class="story-box">
+                <p>
+                    Last month, I spent three days researching privacy regulations for a new ML project. 
+                    I had tabs open on GDPR articles, research papers on differential privacy, GitHub 
+                    repos with implementation examples, and blog posts explaining the nuances. I was 
+                    building a mental model of how it all fit together. Then Chrome ran out of memory. 
+                    When I reopened my browser, I didn't just lose my tabs—I lost my train of thought.
+                </p>
+            </div>
+
+            <h2>The Scattered Mind Problem</h2>
+
+            <p>
+                It's not just about browser tabs anymore. Our knowledge lives everywhere—spread across 
+                a dozen different apps, each holding a piece of the puzzle.
+            </p>
+
+            <div class="problem-visual">
+                <h3 style="color: white; margin-bottom: 1rem;">Where Your Thoughts Live Today</h3>
+                <div class="app-grid">
+                    <div class="app-box">
+                        <div class="app-icon">📧</div>
+                        <div class="app-name">Email</div>
+                    </div>
+                    <div class="app-box">
+                        <div class="app-icon">💬</div>
+                        <div class="app-name">Slack</div>
+                    </div>
+                    <div class="app-box">
+                        <div class="app-icon">📝</div>
+                        <div class="app-name">Notion</div>
+                    </div>
+                    <div class="app-box">
+                        <div class="app-icon">🔖</div>
+                        <div class="app-name">Bookmarks</div>
+                    </div>
+                    <div class="app-box">
+                        <div class="app-icon">📄</div>
+                        <div class="app-name">Google Docs</div>
+                    </div>
+                    <div class="app-box">
+                        <div class="app-icon">🌐</div>
+                        <div class="app-name">Browser Tabs</div>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; color: #94a3b8;">
+                    Each app is a silo. Your thinking is fragmented. Connections are lost.
+                </p>
+            </div>
+
+            <p>
+                <span class="highlight">Our cognitive state has become sparse and distributed.</span> 
+                We're not getting more productive with more tools—we're getting more scattered. 
+                Every context switch, every attempt to reconstruct our previous thinking, is a 
+                leak in our intellectual potential.
+            </p>
+
+            <h2>We Need a Thread for Our Thoughts</h2>
+
+            <p>
+                What if we could build on our past work instead of constantly starting over? 
+                What if our research from last month could seamlessly connect to what we're 
+                exploring today? What if we had a way to thread our thoughts together across time?
+            </p>
+
+            <p>
+                This isn't about better bookmarking or more sophisticated note-taking. It's about 
+                preserving the actual journey of discovery—the context, the connections, the 
+                evolving understanding.
+            </p>
+
+            <div class="research-block">
+                <h4>What Research Tells Us</h4>
+                <div class="stat">90%</div>
+                <p>
+                    Recent studies from CHI show that knowledge workers lose important information weekly. 
+                    We highlight passages, save links, make mental notes—but without context, these 
+                    fragments become meaningless. <strong>The problem isn't capturing information. 
+                    It's preserving understanding.</strong>
+                </p>
+            </div>
+
+            <p>
+                Researchers at major conferences like CHI and ACL have been documenting this pattern: 
+                We're great at collecting information but terrible at building on it. Every time we 
+                can't find that crucial highlight or remember why we saved a particular link, we're 
+                not just losing data—we're losing the opportunity to compound our knowledge.
+            </p>
+
+            <h2>Enter FolkLore AI</h2>
+
+            <p>
+                This is why we built FolkLore AI. We're solving the scattered mind problem by creating 
+                a system that actually understands how research happens—not as discrete events but as 
+                continuous journeys of discovery.
+            </p>
+
+            <div class="solution-preview">
+                <h3>How It Works</h3>
+                <ul class="feature-list">
+                    <li>
+                        <span class="feature-icon">1</span>
+                        <div>
+                            <strong>Save Complete Sessions</strong><br>
+                            Not just URLs, but your entire research state—every tab, every highlight, 
+                            every connection you were making.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="feature-icon">2</span>
+                        <div>
+                            <strong>Resume Where You Left Off</strong><br>
+                            When you return, we restore everything—all your tabs open exactly as they were, 
+                            with all your highlights intact.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="feature-icon">3</span>
+                        <div>
+                            <strong>Build on Past Research</strong><br>
+                            Connect today's exploration with last month's discoveries. See patterns emerge 
+                            across sessions.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="demo-visual">
+                <h4 style="margin-bottom: 1rem;">Your Research, Preserved</h4>
+                <div class="browser-mockup">
+                    <div class="tab-row">
+                        <div class="mock-tab highlighted">Privacy Laws EU</div>
+                        <div class="mock-tab">Differential Privacy</div>
+                        <div class="mock-tab highlighted">ML Fairness Paper</div>
+                        <div class="mock-tab">Implementation Guide</div>
+                        <div class="mock-tab highlighted">GDPR Article 22</div>
+                    </div>
+                    <div class="content-area">
+                        <p style="font-size: 0.875rem; line-height: 1.6;">
+                            Article 22 states that <span class="highlight-text">individuals have the right 
+                            not to be subject to automated decision-making</span> that significantly affects them...
+                        </p>
+                    </div>
+                </div>
+                <p style="text-align: center; color: var(--gray); margin-top: 1rem; font-size: 0.875rem;">
+                    Everything preserved: tabs, highlights, and most importantly—context
+                </p>
+            </div>
+
+            <h2>Start Building on Your Past</h2>
+
+            <p>
+                Imagine returning to a research project after a week and picking up exactly where 
+                your thinking left off. Imagine your insights from six months ago automatically 
+                connecting to what you're exploring today. Imagine never losing a train of thought again.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Today</h4>
+                        <p>Start researching with FolkLore AI. Save your first session.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Next Week</h4>
+                        <p>Return to your exact mental state. Continue building understanding.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Next Month</h4>
+                        <p>See connections across sessions. Watch your knowledge compound.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Thread Your Thoughts?</h2>
+                <p>
+                    Stop losing your research. Start building on it. FolkLore AI is now available 
+                    as a Chrome extension—your first step toward continuous knowledge building.
+                </p>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="button">
+                    Install FolkLore AI Free
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="coming-soon">
+                <h4>Coming Next in This Series</h4>
+                <p>
+                    How FolkLore AI is reimagining the relationship between human memory and digital tools. 
+                    Subscribe to get notified when we publish.
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

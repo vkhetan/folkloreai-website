@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - FolkLore AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7B3FF2;
+            --primary-dark: #6B2FE2;
+            --secondary: #9333EA;
+            --accent: #06b6d4;
+            --light-purple: #F3E8FF;
+            --purple-glow: rgba(123, 63, 242, 0.2);
+            --ink: #0a0a0a;
+            --smoke: #64748b;
+            --whisper: #94a3b8;
+            --paper: #FFFFFF;
+            --dawn: #FAFBFC;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: white;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--ink);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px var(--purple-glow);
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--smoke);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--ink);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--purple-glow);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--purple-glow);
+        }
+
+        /* Main Content */
+        .privacy-hero {
+            background: linear-gradient(135deg, var(--light-purple) 0%, rgba(147, 51, 234, 0.1) 100%);
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+
+        .privacy-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .privacy-hero p {
+            font-size: 1.25rem;
+            color: var(--smoke);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .last-updated {
+            font-size: 0.875rem;
+            color: var(--whisper);
+            margin-top: 1rem;
+        }
+
+        /* Quick Summary */
+        .quick-summary {
+            max-width: 800px;
+            margin: -30px auto 60px;
+            padding: 0 2rem;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(123, 63, 242, 0.1);
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .summary-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-purple);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .summary-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--ink);
+        }
+
+        .summary-content p {
+            font-size: 0.875rem;
+            color: var(--smoke);
+            line-height: 1.5;
+        }
+
+        /* Content Container */
+        .privacy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+        }
+
+        /* Sections */
+        .privacy-section {
+            margin-bottom: 4rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-number {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .section-content {
+            margin-left: 64px;
+        }
+
+        .section-content p {
+            color: var(--smoke);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .section-content li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--smoke);
+        }
+
+        .section-content li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .section-content strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: var(--light-purple);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(123, 63, 242, 0.2);
+        }
+
+        .highlight-box-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box p {
+            color: var(--ink);
+            margin-bottom: 0;
+        }
+
+        /* Data Grid */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .data-card {
+            background: var(--dawn);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .data-card h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .data-card ul {
+            margin: 0;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .contact-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-button {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dawn);
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--smoke);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            color: var(--whisper);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .privacy-hero h1 {
+                font-size: 2rem;
+            }
+
+            .privacy-hero p {
+                font-size: 1rem;
+            }
+
+            .summary-card {
+                padding: 1.5rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-content {
+                margin-left: 0;
+            }
+
+            .section-header {
+                margin-bottom: 1.5rem;
+            }
+
+            .contact-section {
+                padding: 2rem;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 10 L80 30 L80 70 L50 90 L20 70 L20 30 Z" stroke="white" stroke-width="3" fill="none"/>
+                        <circle cx="50" cy="50" r="20" fill="white"/>
+                        <path d="M50 30 Q65 50 50 70 Q35 50 50 30" fill="white"/>
+                    </svg>
+                </div>
+                <div>
+                    <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
+                    <div style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#features" class="nav-link">How It Works</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="nav-cta">Add to Chrome</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="privacy-hero">
+        <h1>Privacy Policy</h1>
+        <p>We believe in complete transparency about your data.</p>
+        <p class="last-updated">Last updated: January 20, 2025</p>
+    </div>
+
+    <div class="quick-summary">
+        <div class="summary-card">
+            <h2 class="summary-title">
+                <span>🔒</span> Privacy at a Glance
+            </h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-icon">🚫</div>
+                    <div class="summary-content">
+                        <h3>No Data Collection</h3>
+                        <p>We don't collect or store your data on our servers</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon">💻</div>
+                    <div class="summary-content">
+                        <h3>Local-First</h3>
+                        <p>Everything stays in your browser or your chosen cloud</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon">🔑</div>
+                    <div class="summary-content">
+                        <h3>You Own Your Data</h3>
+                        <p>Export, delete, or modify your data anytime</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-icon">🛡️</div>
+                    <div class="summary-content">
+                        <h3>No Tracking</h3>
+                        <p>No analytics, no cookies, no user tracking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="privacy-container">
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">1</div>
+                <h2 class="section-title">Our Core Principle</h2>
+            </div>
+            <div class="section-content">
+                <p>
+                    FolkLore AI is built on a simple principle: <strong>your thoughts belong to you</strong>. We've designed our Chrome extension to work entirely within your browser, ensuring your data never touches our servers unless you explicitly choose to use optional features.
+                </p>
+                <div class="highlight-box">
+                    <div class="highlight-box-title">Zero Knowledge Architecture</div>
+                    <p>
+                        We literally cannot see your data. Everything is processed locally in your browser or stored in your personal cloud accounts. We have no access to your highlights, notes, or browsing activity.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">2</div>
+                <h2 class="section-title">What Happens Locally</h2>
+            </div>
+            <div class="section-content">
+                <p>When you highlight text, everything happens locally in your browser. FolkLore AI processes:</p>
+                
+                <div class="data-grid">
+                    <div class="data-card">
+                        <h4>📝 Your Browser Processes</h4>
+                        <ul>
+                            <li><strong>Selected text</strong> - The content you highlight</li>
+                            <li><strong>Page URL & title</strong> - To remember where you found it</li>
+                            <li><strong>Context</strong> - Surrounding text for better understanding</li>
+                            <li><strong>Timestamp</strong> - When you saved it</li>
+                            <li><strong>Your notes</strong> - Any annotations you add</li>
+                        </ul>
+                    </div>
+                    <div class="data-card">
+                        <h4>📍 Stays On Your Device</h4>
+                        <ul>
+                            <li><strong>Chrome Local Storage</strong> - Never leaves your device</li>
+                            <li><strong>Your Dropbox</strong> - If you enable sync (optional)</li>
+                            <li><strong>Zero server storage</strong> - We literally can't see your data</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">3</div>
+                <h2 class="section-title">Third-Party Services</h2>
+            </div>
+            <div class="section-content">
+                <p>FolkLore AI integrates with optional third-party services to enhance functionality:</p>
+                
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">OpenAI (Optional)</h3>
+                <ul>
+                    <li>Only activated when you click "Activate AI" and provide your API key</li>
+                    <li>Your browser communicates directly with OpenAI</li>
+                    <li>We never see or store your API key</li>
+                    <li>AI processing happens only on demand</li>
+                </ul>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Dropbox (Optional)</h3>
+                <ul>
+                    <li>Used for cross-device synchronization</li>
+                    <li>You authenticate directly with Dropbox</li>
+                    <li>Data stored in your personal Dropbox account</li>
+                    <li>We never access your Dropbox files</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <div class="highlight-box-title">Important Note</div>
+                    <p>
+                        Both services are completely optional. FolkLore AI works fully offline without them. When you do use them, your data goes directly from your browser to these services - it never passes through our servers.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">4</div>
+                <h2 class="section-title">Data Security</h2>
+            </div>
+            <div class="section-content">
+                <p>Your data security is ensured through:</p>
+                <ul>
+                    <li><strong>Browser Security</strong> - Chrome's secure storage APIs protect your local data</li>
+                    <li><strong>Encryption in Transit</strong> - All communications use HTTPS</li>
+                    <li><strong>No Central Database</strong> - We can't be hacked for data we don't have</li>
+                    <li><strong>OAuth 2.0</strong> - Secure authentication for optional services</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">5</div>
+                <h2 class="section-title">Your Rights & Control</h2>
+            </div>
+            <div class="section-content">
+                <p>You have complete control over your data:</p>
+                <ul>
+                    <li><strong>View Your Data</strong> - See everything stored locally anytime</li>
+                    <li><strong>Export Everything</strong> - Download all your sessions and annotations</li>
+                    <li><strong>Delete Selectively</strong> - Remove individual highlights or entire sessions</li>
+                    <li><strong>Disconnect Services</strong> - Revoke access to Dropbox or clear API keys</li>
+                    <li><strong>Complete Removal</strong> - Uninstall the extension to delete all local data</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">6</div>
+                <h2 class="section-title">What We Don't Do</h2>
+            </div>
+            <div class="section-content">
+                <p>Our commitments to your privacy:</p>
+                <ul>
+                    <li>❌ We don't track your browsing history</li>
+                    <li>❌ We don't collect analytics or usage data</li>
+                    <li>❌ We don't sell or share your information</li>
+                    <li>❌ We don't use your content to train AI models</li>
+                    <li>❌ We don't store your API keys or credentials</li>
+                    <li>❌ We don't have access to your saved content</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">7</div>
+                <h2 class="section-title">Children's Privacy</h2>
+            </div>
+            <div class="section-content">
+                <p>
+                    FolkLore AI is not intended for children under 13 years of age. We do not knowingly collect information from children under 13. If you are under 13, please do not use our service.
+                </p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">8</div>
+                <h2 class="section-title">Open Source Transparency</h2>
+            </div>
+            <div class="section-content">
+                <p>
+                    We believe in complete transparency. Our extension's code is open source, allowing anyone to verify our privacy claims. You can review exactly how we handle data by examining our source code on GitHub.
+                </p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <div class="section-header">
+                <div class="section-number">9</div>
+                <h2 class="section-title">Updates to This Policy</h2>
+            </div>
+            <div class="section-content">
+                <p>
+                    We may update this privacy policy to reflect changes in our practices or for legal reasons. Any changes will be posted on this page with an updated revision date. For significant changes, we'll notify users through the extension.
+                </p>
+            </div>
+        </section>
+
+        <div class="contact-section">
+            <h2>Privacy Questions?</h2>
+            <p>We're here to help with any privacy concerns or questions.</p>
+            <a href="mailto:privacy@folkloreai.com" class="contact-button">
+                Contact Privacy Team
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="mailto:hello@folkloreai.com">Contact</a>
+            </div>
+            <p class="copyright">© 2025 FolkLore AI. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

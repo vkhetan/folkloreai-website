@@ -1,0 +1,58 @@
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows System Files  
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Temporary Files
+*.tmp
+*.temp
+*.cache
+.temp/
+.cache/
+
+# Backup Files
+*.bak
+*.backup
+*_old
+*_backup
+
+# Node (if you add JS later)
+node_modules/
+npm-debug.log*
+
+# Python (if you add ML demos later)
+__pycache__/
+*.py[cod]
+.Python
+venv/
+env/
+
+# Environment Variables
+.env
+.env.local
+
+# Build Files
+dist/
+build/
+
+# Other
+.sass-cache/
+*.map
+
+

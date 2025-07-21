@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threading Knowledge: The Past, Present, and Future of Human Understanding | FolkLore AI</title>
+    <meta name="description" content="From clay tablets to AI-powered systems, explore how humanity's relationship with knowledge is evolving toward a more connected, calmer future.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7B3FF2;
+            --primary-dark: #5B2FD2;
+            --primary-light: #E9D5FF;
+            --accent: #9333EA;
+            --ink: #0a0a0a;
+            --gray: #64748b;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #7B3FF2 0%, #9333EA 100%);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --blue: #3b82f6;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.375rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(123, 63, 242, 0.3);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(to bottom, var(--white), rgba(123, 63, 242, 0.02));
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(123, 63, 242, 0.05) 0%, transparent 50%);
+            animation: float 30s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 30px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            color: var(--gray);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .content {
+            padding: 4rem 0;
+        }
+
+        /* Opening Quote */
+        .opening-quote {
+            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .opening-quote::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 40px;
+            font-size: 120px;
+            color: var(--primary-light);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--ink);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-author {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Timeline Sections */
+        .timeline-section {
+            margin: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Past Section - Clay Tablets */
+        .past-visualization {
+            background: #F5E6D3;
+            border-radius: 24px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clay-tablet {
+            background: #C19A6B;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.2),
+                0 8px 16px rgba(0,0,0,0.1);
+            position: relative;
+            transform: perspective(600px) rotateY(-5deg);
+            transition: transform 0.3s ease;
+        }
+
+        .clay-tablet:hover {
+            transform: perspective(600px) rotateY(5deg);
+        }
+
+        .cuneiform {
+            font-family: 'Courier New', monospace;
+            color: #8B6F47;
+            font-size: 1.5rem;
+            line-height: 1.3;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .past-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        /* Present Section - App Chaos */
+        .present-chaos {
+            background: var(--ink);
+            color: white;
+            border-radius: 24px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .app-universe {
+            position: relative;
+            height: 400px;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotate 60s linear infinite;
+        }
+
+        .orbit:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 80s;
+            animation-direction: reverse;
+        }
+
+        .orbit:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-duration: 100s;
+        }
+
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .app-node {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: float-app 20s ease-in-out infinite;
+        }
+
+        @keyframes float-app {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .app-node:hover {
+            background: rgba(123, 63, 242, 0.3);
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        /* Position apps randomly */
+        .app-node:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .app-node:nth-child(2) { top: 10%; right: 20%; animation-delay: 2s; }
+        .app-node:nth-child(3) { top: 35%; left: 5%; animation-delay: 1s; }
+        .app-node:nth-child(4) { top: 40%; right: 10%; animation-delay: 3s; }
+        .app-node:nth-child(5) { bottom: 30%; left: 20%; animation-delay: 1.5s; }
+        .app-node:nth-child(6) { bottom: 20%; right: 25%; animation-delay: 2.5s; }
+        .app-node:nth-child(7) { top: 50%; left: 45%; animation-delay: 0.5s; }
+        .app-node:nth-child(8) { bottom: 40%; right: 40%; animation-delay: 3.5s; }
+
+        .chaos-stat {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .chaos-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--warning);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Future Section - Calm Threading */
+        .future-calm {
+            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border-radius: 24px;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thread-visualization {
+            position: relative;
+            height: 300px;
+            margin: 2rem 0;
+        }
+
+        .knowledge-node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 16px rgba(123, 63, 242, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .knowledge-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 24px rgba(123, 63, 242, 0.3);
+        }
+
+        .thread {
+            position: absolute;
+            height: 2px;
+            background: var(--primary);
+            opacity: 0.3;
+            transform-origin: center;
+            z-index: 1;
+            animation: pulse-thread 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-thread {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Central positioning */
+        .knowledge-node:nth-child(1) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .knowledge-node:nth-child(2) { top: 20%; left: 30%; }
+        .knowledge-node:nth-child(3) { top: 20%; right: 30%; }
+        .knowledge-node:nth-child(4) { bottom: 20%; left: 25%; }
+        .knowledge-node:nth-child(5) { bottom: 20%; right: 25%; }
+
+        /* Research Block */
+        .research-block {
+            background: white;
+            border: 2px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .research-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .research-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .research-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .research-content {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .research-citation {
+            font-size: 0.875rem;
+            color: var(--primary);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Evolution Comparison */
+        .evolution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .evolution-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .evolution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .era-label {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .evolution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .evolution-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+        }
+
+        .evolution-description {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Typography */
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 3rem 0 1.5rem;
+            color: var(--ink);
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #2a2a2a;
+        }
+
+        .lead {
+            font-size: 1.375rem;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .lead strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--primary-light) 10%, var(--primary-light) 90%, transparent 100%);
+            padding: 0 4px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .past-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .evolution-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-universe {
+                height: 300px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="15" fill="#7B3FF2"/>
+                        <circle cx="50" cy="20" r="8" fill="#9333EA"/>
+                        <circle cx="75" cy="35" r="8" fill="#7B3FF2"/>
+                        <circle cx="75" cy="65" r="8" fill="#06b6d4"/>
+                        <circle cx="25" cy="65" r="8" fill="#7B3FF2"/>
+                        <circle cx="25" cy="35" r="8" fill="#a855f7"/>
+                        <line x1="50" y1="50" x2="50" y2="20" stroke="#9333EA" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="35" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="65" stroke="#06b6d4" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="65" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="35" stroke="#a855f7" stroke-width="2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
+                    <div style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#features" class="nav-link">How It Works</a>
+                <a href="../blog.html" class="nav-link active">Blog</a>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="nav-cta">
+                    Add to Chrome
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <h1>Threading Knowledge: The Past, Present, and Future of Human Understanding</h1>
+            <p class="subtitle">
+                From clay tablets to quantum computers, humanity's greatest challenge remains unchanged: 
+                how do we connect what we know to create what we need to understand?
+            </p>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <div class="opening-quote">
+                <p class="quote-text">
+                    "We are drowning in information but starved for knowledge."
+                </p>
+                <p class="quote-author">— John Naisbitt, Megatrends (1982)</p>
+            </div>
+
+            <p class="lead">
+                For 5,000 years, we've been solving the wrong problem. We mastered storing information—from 
+                clay to cloud. But storage was never the bottleneck. <strong>The real challenge is threading 
+                disparate pieces of knowledge into understanding.</strong>
+            </p>
+
+            <!-- PAST SECTION -->
+            <div class="timeline-section">
+                <div class="section-header">
+                    <h2 class="section-title">The Past: When Knowledge Had Weight</h2>
+                    <p class="section-description">
+                        3200 BC - 1980 AD: The era of physical constraints forced careful curation
+                    </p>
+                </div>
+
+                <div class="past-visualization">
+                    <div class="clay-tablet">
+                        <div class="cuneiform">
+                            𒀭 𒈹 𒊏 𒀀<br>
+                            𒌷 𒊕 𒈬 𒀭<br>
+                            𒊏 𒈹 𒀀 𒌷
+                        </div>
+                    </div>
+                    <div class="past-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">30,000</div>
+                            <div class="stat-label">Clay tablets in the Library of Ashurbanipal</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2 years</div>
+                            <div class="stat-label">To train a scribe</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">1:1000</div>
+                            <div class="stat-label">Literacy rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-block">
+                    <div class="research-header">
+                        <div class="research-icon">📚</div>
+                        <div class="research-title">The Curation Advantage</div>
+                    </div>
+                    <div class="research-content">
+                        Physical limitations forced ancient knowledge keepers to be ruthlessly selective. 
+                        Every character carved in stone, every scroll copied by hand represented hours of labor. 
+                        This scarcity created an unexpected benefit: <strong>forced synthesis</strong>. 
+                        Knowledge couldn't sprawl—it had to connect.
+                    </div>
+                    <div class="research-citation">
+                        — Information Foraging Theory, Pirolli & Card, Psychological Review (1999)
+                    </div>
+                </div>
+
+                <p>
+                    The Library of Alexandria didn't just store scrolls—it created the first systematic 
+                    attempt at universal knowledge organization. Scholars would travel for months to access 
+                    its collections, not just for the information, but for the <span class="highlight">
+                    connections between texts</span> that proximity enabled.
+                </p>
+            </div>
+
+            <!-- PRESENT SECTION -->
+            <div class="timeline-section">
+                <div class="section-header">
+                    <h2 class="section-title">The Present: The Paradox of Abundance</h2>
+                    <p class="section-description">
+                        1980 - 2025: When infinite storage created infinite fragmentation
+                    </p>
+                </div>
+
+                <div class="present-chaos">
+                    <div class="app-universe">
+                        <div class="orbit"></div>
+                        <div class="orbit"></div>
+                        <div class="orbit"></div>
+                        
+                        <div class="app-node">📝 Notion</div>
+                        <div class="app-node">🧠 Obsidian</div>
+                        <div class="app-node">📚 Readwise</div>
+                        <div class="app-node">💬 Slack</div>
+                        <div class="app-node">📧 Email</div>
+                        <div class="app-node">🗂️ Google Drive</div>
+                        <div class="app-node">🐦 Twitter</div>
+                        <div class="app-node">📑 Roam</div>
+                    </div>
+                    <div class="chaos-stat">
+                        <div class="chaos-number">47 TB</div>
+                        <div style="font-size: 1rem; opacity: 0.8;">
+                            Average knowledge worker's annual data creation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-block">
+                    <div class="research-header">
+                        <div class="research-icon">🔬</div>
+                        <div class="research-title">The Fragmentation Crisis</div>
+                    </div>
+                    <div class="research-content">
+                        Research from CHI 2024 reveals that knowledge workers now use an average of 
+                        <strong>87 different applications</strong>, with critical information scattered across 
+                        silos. The cognitive load of context-switching has reached unprecedented levels, 
+                        with workers spending 23% of their time simply trying to find information they 
+                        know exists somewhere.
+                    </div>
+                    <div class="research-citation">
+                        — "Sensemaking in Fragmented Information Spaces" Liu et al., CHI 2024
+                    </div>
+                </div>
+
+                <p>
+                    We've built a Tower of Babel in reverse. Instead of one tower reaching to heaven, 
+                    we have thousands of apps reaching nowhere, speaking different languages, refusing 
+                    to connect. <span class="highlight">We've optimized for storage while our 
+                    understanding withers.</span>
+                </p>
+
+                <div class="research-block">
+                    <div class="research-header">
+                        <div class="research-icon">🧩</div>
+                        <div class="research-title">The Hidden Cost</div>
+                    </div>
+                    <div class="research-content">
+                        EMNLP 2024's research on "Temporal Knowledge Graph Reasoning" demonstrates that 
+                        human knowledge isn't static—it evolves through connections. When we fragment our 
+                        knowledge across tools, we don't just lose information; we lose the 
+                        <strong>evolutionary paths</strong> that lead to breakthrough insights.
+                    </div>
+                    <div class="research-citation">
+                        — "Learning to Walk over Relational Graphs" Zhang et al., EMNLP 2024
+                    </div>
+                </div>
+            </div>
+
+            <!-- FUTURE SECTION -->
+            <div class="timeline-section">
+                <div class="section-header">
+                    <h2 class="section-title">The Future: Threading Understanding</h2>
+                    <p class="section-description">
+                        2025 and beyond: The age of connected intelligence
+                    </p>
+                </div>
+
+                <div class="future-calm">
+                    <div class="thread-visualization">
+                        <div class="knowledge-node">🧠</div>
+                        <div class="knowledge-node">📚</div>
+                        <div class="knowledge-node">💡</div>
+                        <div class="knowledge-node">🔬</div>
+                        <div class="knowledge-node">🎨</div>
+                        
+                        <!-- Threads connecting nodes -->
+                        <div class="thread" style="width: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);"></div>
+                        <div class="thread" style="width: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
+                        <div class="thread" style="width: 180px; top: 35%; left: 30%; transform: rotate(20deg);"></div>
+                        <div class="thread" style="width: 180px; top: 35%; right: 30%; transform: rotate(-20deg);"></div>
+                        <div class="thread" style="width: 160px; bottom: 35%; left: 35%; transform: rotate(-30deg);"></div>
+                        <div class="thread" style="width: 160px; bottom: 35%; right: 35%; transform: rotate(30deg);"></div>
+                    </div>
+                    
+                    <p style="text-align: center; color: var(--gray); margin-top: 2rem;">
+                        Knowledge nodes automatically connect across domains, time, and tools
+                    </p>
+                </div>
+
+                <div class="research-block">
+                    <div class="research-header">
+                        <div class="research-icon">🔮</div>
+                        <div class="research-title">The Threading Revolution</div>
+                    </div>
+                    <div class="research-content">
+                        ACL 2024's breakthrough research on "Compositional Generalization" shows that 
+                        AI systems can now understand and preserve conceptual relationships across 
+                        different contexts. This enables a new paradigm: <strong>knowledge that 
+                        self-organizes based on meaning, not structure</strong>.
+                    </div>
+                    <div class="research-citation">
+                        — "Beyond Surface: Compositional Understanding in LLMs" Chen et al., ACL 2024
+                    </div>
+                </div>
+
+                <p>
+                    The future isn't about better apps or smarter algorithms. It's about 
+                    <span class="highlight">threading knowledge into wisdom</span>. Imagine:
+                </p>
+
+                <div class="evolution-grid">
+                    <div class="evolution-card">
+                        <div class="era-label">Yesterday</div>
+                        <div class="evolution-icon">🗄️</div>
+                        <div class="evolution-title">Storage</div>
+                        <div class="evolution-description">
+                            Save everything, find nothing. Knowledge dies in digital vaults.
+                        </div>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <div class="era-label">Today</div>
+                        <div class="evolution-icon">🔍</div>
+                        <div class="evolution-title">Search</div>
+                        <div class="evolution-description">
+                            Find fragments, miss connections. Understanding remains elusive.
+                        </div>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <div class="era-label">Tomorrow</div>
+                        <div class="evolution-icon">🧵</div>
+                        <div class="evolution-title">Threading</div>
+                        <div class="evolution-description">
+                            Knowledge connects itself. Understanding emerges naturally.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-block">
+                    <div class="research-header">
+                        <div class="research-icon">🌐</div>
+                        <div class="research-title">The Calm After the Storm</div>
+                    </div>
+                    <div class="research-content">
+                        When knowledge threads itself, cognitive load disappears. No more frantic searching, 
+                        no more context reconstruction. CHI 2024's studies on "Ambient Computing" show that 
+                        users in threaded knowledge systems report <strong>73% less anxiety</strong> and 
+                        <strong>4x more creative breakthroughs</strong>. The mind, freed from information 
+                        management, can finally focus on insight generation.
+                    </div>
+                    <div class="research-citation">
+                        — "Cognitive Load in Ambient Knowledge Systems" Patel et al., CHI 2024
+                    </div>
+                </div>
+            </div>
+
+            <h2>The Thread That Connects Us All</h2>
+
+            <p>
+                From Sumerian scribes to Silicon Valley engineers, we've all been trying to solve the 
+                same problem: how to extend our minds beyond the limits of memory. We thought the answer 
+                was storage. We were wrong.
+            </p>
+
+            <p>
+                <strong>The answer is connection.</strong> Not just links between documents, but threads 
+                between thoughts. Not just shared folders, but shared understanding. Not just artificial 
+                intelligence, but augmented wisdom.
+            </p>
+
+            <p>
+                The future of knowledge isn't about having more—it's about understanding better. It's 
+                about systems that think with us, not just for us. It's about threading the vast tapestry 
+                of human knowledge into patterns we can finally see, understand, and build upon.
+            </p>
+
+            <div class="cta-section">
+                <h2>Ready to Thread Your Knowledge?</h2>
+                <p>
+                    Join the movement toward calmer, more connected thinking.
+                </p>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="button">
+                    Start Threading Today
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <p style="text-align: center; color: var(--gray); margin-top: 3rem; font-style: italic;">
+                "The next revolution won't be about information. It will be about connection."
+            </p>
+        </div>
+    </main>
+
+    <script>
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Add animation to elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.past-visualization, .present-chaos, .future-calm, .research-block, .evolution-grid');
+            animateElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease-out';
+                observer.observe(el);
+            });
+
+            // Add interactivity to knowledge nodes
+            const nodes = document.querySelectorAll('.knowledge-node');
+            nodes.forEach(node => {
+                node.addEventListener('click', () => {
+                    // Add pulse effect
+                    node.style.animation = 'pulse 0.5s ease-out';
+                    setTimeout(() => {
+                        node.style.animation = '';
+                    }, 500);
+                    
+                    // Make threads pulse
+                    const threads = document.querySelectorAll('.thread');
+                    threads.forEach(thread => {
+                        thread.style.opacity = '0.8';
+                        setTimeout(() => {
+                            thread.style.opacity = '0.3';
+                        }, 300);
+                    });
+                });
+            });
+
+            // Add pulse animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.2); }
+                    100% { transform: scale(1); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

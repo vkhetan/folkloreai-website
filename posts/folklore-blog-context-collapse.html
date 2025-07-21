@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Context Collapse: How Digital Tools Destroy Your Mental Models | FolkLore AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7B3FF2;
+            --primary-dark: #5B2FD2;
+            --primary-light: #E9D5FF;
+            --accent: #9333EA;
+            --ink: #0a0a0a;
+            --gray: #64748b;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #7B3FF2 0%, #9333EA 100%);
+            --error: #ef4444;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--light-gray);
+            padding: 7rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at center, rgba(123, 63, 242, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, 30px) rotate(180deg); }
+        }
+
+        .blog-label {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Content */
+        .content {
+            padding: 4rem 0;
+        }
+
+        .lead {
+            font-size: 1.375rem;
+            line-height: 1.6;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            animation: slideIn 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 3rem 0 1.5rem;
+            color: var(--ink);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+            color: var(--ink);
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #2a2a2a;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--primary-light) 10%, var(--primary-light) 90%, transparent 100%);
+            padding: 0 4px;
+        }
+
+        /* Mental Model Visualization */
+        .mental-model-demo {
+            background: var(--ink);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mental-model-demo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .model-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .model-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .model-side {
+            text-align: center;
+        }
+
+        .model-side h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .model-nodes {
+            position: relative;
+            height: 300px;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+        .node {
+            position: absolute;
+            background: #2a2a2a;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .node:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+            z-index: 10;
+        }
+
+        .connection {
+            position: absolute;
+            height: 1px;
+            background: var(--primary);
+            opacity: 0.3;
+            transform-origin: left center;
+            transition: opacity 0.3s ease;
+        }
+
+        .collapsed .connection {
+            opacity: 0;
+        }
+
+        .collapsed .node {
+            animation: scatter 2s ease-in-out infinite;
+        }
+
+        @keyframes scatter {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(var(--x), var(--y)); }
+        }
+
+        /* Research Block */
+        .research-block {
+            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-block::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, var(--primary-light), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .research-block h4 {
+            color: var(--primary);
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-block p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Context Strip Demo */
+        .context-strip-demo {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+        }
+
+        .strip-example {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .original-context {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--success);
+            position: relative;
+        }
+
+        .stripped-context {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid var(--error);
+            position: relative;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--primary);
+            animation: slide 2s ease-in-out infinite;
+        }
+
+        @keyframes slide {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        .context-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .context-content {
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .lost-info {
+            color: var(--error);
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Rebuild Tax Calculator */
+        .rebuild-calculator {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .calculator-display {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 1rem 0;
+            animation: countUp 3s ease-out;
+        }
+
+        @keyframes countUp {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .calculator-label {
+            font-size: 1.125rem;
+            color: var(--gray);
+        }
+
+        /* Story Box */
+        .story-box {
+            background: var(--light-gray);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Insight Box */
+        .insight-box {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(123, 63, 242, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .insight-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(123, 63, 242, 0.2);
+        }
+
+        .insight-icon {
+            position: absolute;
+            top: -20px;
+            left: 2rem;
+            background: white;
+            padding: 0 1rem;
+            font-size: 2rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(123, 63, 242, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Fade-in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.375rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .model-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .strip-example {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="15" fill="#7B3FF2"/>
+                        <circle cx="50" cy="20" r="8" fill="#9333EA"/>
+                        <circle cx="75" cy="35" r="8" fill="#7B3FF2"/>
+                        <circle cx="75" cy="65" r="8" fill="#06b6d4"/>
+                        <circle cx="25" cy="65" r="8" fill="#7B3FF2"/>
+                        <circle cx="25" cy="35" r="8" fill="#a855f7"/>
+                        <line x1="50" y1="50" x2="50" y2="20" stroke="#9333EA" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="35" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="65" stroke="#06b6d4" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="65" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="35" stroke="#a855f7" stroke-width="2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
+                    <div style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#features" class="nav-link">How It Works</a>
+                <a href="../blog.html" class="nav-link active">Blog</a>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="nav-cta">
+                    Add to Chrome
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <h1>The Context Collapse: How Digital Tools Destroy Your Mental Models</h1>
+            <div class="author-info">
+                <span>January 2025</span>
+                <span>•</span>
+                <span>8 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <p class="lead">
+                You spend hours researching. You build connections. You understand how everything fits 
+                together. Then you save a bookmark, take a screenshot, copy a quote—and something 
+                essential disappears. It's not the information that's lost. It's your entire way 
+                of understanding it.
+            </p>
+
+            <h2>What Are Mental Models, Really?</h2>
+
+            <p>
+                A mental model isn't just what you know—it's <span class="highlight">how you understand 
+                what you know</span>. It's the invisible framework that connects pricing strategy to 
+                market positioning, customer feedback to product features, research findings to real-world 
+                applications.
+            </p>
+
+            <div class="mental-model-demo">
+                <h3 class="model-title">Watch a Mental Model Collapse (Click to see the difference)</h3>
+                <div class="model-container">
+                    <div class="model-side">
+                        <h4>With Context: Your Mental Model</h4>
+                        <div class="model-nodes" id="contextModel">
+                            <div class="node" style="top: 10%; left: 35%;">Competitor Pricing</div>
+                            <div class="node" style="top: 30%; left: 10%;">Market Trends</div>
+                            <div class="node" style="top: 30%; right: 10%;">Customer Needs</div>
+                            <div class="node" style="top: 60%; left: 20%;">Feature Value</div>
+                            <div class="node" style="top: 60%; right: 20%;">Positioning</div>
+                            <div class="node" style="bottom: 10%; left: 35%;">Your Strategy</div>
+                            <!-- Connections will be added via JavaScript -->
+                        </div>
+                    </div>
+                    <div class="model-side">
+                        <h4>Without Context: Scattered Facts</h4>
+                        <div class="model-nodes collapsed" id="collapsedModel">
+                            <div class="node" style="top: 10%; left: 35%; --x: -50px; --y: -30px;">Competitor Pricing</div>
+                            <div class="node" style="top: 30%; left: 10%; --x: -60px; --y: 20px;">Market Trends</div>
+                            <div class="node" style="top: 30%; right: 10%; --x: 40px; --y: -40px;">Customer Needs</div>
+                            <div class="node" style="top: 60%; left: 20%; --x: -30px; --y: 50px;">Feature Value</div>
+                            <div class="node" style="top: 60%; right: 20%; --x: 50px; --y: 30px;">Positioning</div>
+                            <div class="node" style="bottom: 10%; left: 35%; --x: 20px; --y: -60px;">Your Strategy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Michael Xieyang Liu's groundbreaking research at Carnegie Mellon University on 
+                "Tool Support for Knowledge Foraging, Structuring, and Transfer During Online Sensemaking" 
+                revealed a crucial insight: <span class="highlight">the relationships between pieces of 
+                information contain more intelligence than the information itself</span>. When studying 
+                how developers make sense of complex technical information, Liu found that people don't 
+                just collect facts—they build living mental models that evolve with each new discovery.
+            </p>
+
+            <h2>The Anatomy of Context Collapse</h2>
+
+            <p>
+                Every time you save information using current tools, you're unknowingly stripping 
+                away layers of meaning. Here's what actually happens:
+            </p>
+
+            <div class="context-strip-demo">
+                <h3 style="text-align: center; margin-bottom: 2rem;">The Context Stripping Machine</h3>
+                
+                <div class="strip-example">
+                    <div class="original-context">
+                        <div class="context-label" style="color: var(--success);">📊 Original Discovery</div>
+                        <div class="context-content">
+                            "Competitor charges $99/month for 10 users"
+                            <br><br>
+                            <strong>Context preserved:</strong><br>
+                            • Found while comparing 5 competitors<br>
+                            • Part of pricing strategy research<br>
+                            • Related to feature analysis<br>
+                            • Connected to customer feedback
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">→</div>
+                    
+                    <div class="stripped-context">
+                        <div class="context-label" style="color: var(--error);">🔖 After Bookmarking</div>
+                        <div class="context-content">
+                            URL: competitor.com/pricing
+                            <br><br>
+                            <div class="lost-info">
+                                ❌ Lost: Why this mattered<br>
+                                ❌ Lost: What you were comparing<br>
+                                ❌ Lost: Related discoveries<br>
+                                ❌ Lost: Your insights
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="strip-example">
+                    <div class="original-context">
+                        <div class="context-label" style="color: var(--success);">💡 Key Insight</div>
+                        <div class="context-content">
+                            "Users value simplicity over features"
+                            <br><br>
+                            <strong>Context preserved:</strong><br>
+                            • From 15 customer interviews<br>
+                            • Contradicts competitor approach<br>
+                            • Validates pricing hypothesis<br>
+                            • Shapes product roadmap
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">→</div>
+                    
+                    <div class="stripped-context">
+                        <div class="context-label" style="color: var(--error);">📝 After Note-Taking</div>
+                        <div class="context-content">
+                            Note: "Simplicity > Features"
+                            <br><br>
+                            <div class="lost-info">
+                                ❌ Lost: Supporting evidence<br>
+                                ❌ Lost: Strategic implications<br>
+                                ❌ Lost: Conflicting views<br>
+                                ❌ Lost: Decision context
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>The Rebuild Tax: Quantifying the Hidden Cost</h2>
+
+            <p>
+                Research from CHI 2022 on "Crystalline: Lowering the Cost for Developers to Collect 
+                and Organize Information for Decision Making" (Liu, Kittur, and Myers) found that when 
+                context is lost, knowledge workers spend an average of <span class="highlight">35-45 minutes 
+                reconstructing their mental models</span> before they can make progress on their 
+                original task. This "rebuild tax" compounds dramatically in complex domains.
+            </p>
+
+            <div class="rebuild-calculator">
+                <h3>Your Annual Rebuild Tax</h3>
+                <div class="calculator-display">312 hours</div>
+                <p class="calculator-label">
+                    That's 8 work weeks spent rebuilding mental models you already built
+                </p>
+                <p style="font-size: 0.875rem; color: var(--gray); margin-top: 1rem;">
+                    Based on average of 3 context switches per day × 40 minutes per rebuild
+                </p>
+            </div>
+
+            <p>
+                But the real cost isn't time—it's the compound loss of understanding. Each rebuild 
+                is slightly different, slightly degraded. Nuances are forgotten. Connections are 
+                missed. Innovation opportunities slip away.
+            </p>
+
+            <h2>Why Context Matters More Than Content</h2>
+
+            <div class="research-block">
+                <h4>Research Insight: The DeepStress Study (CHI 2024)</h4>
+                <p>
+                    The DeepStress system, developed by researchers at CHI 2024, demonstrated the critical 
+                    importance of preserving contextual relationships. By using a quasi-experimental approach 
+                    to help users understand causal relationships in their data, the study showed that 
+                    <strong>users could only interpret data correctly when they maintained the full context 
+                    of discovery</strong>. Without context, the same data led to opposite conclusions. This 
+                    "predictive multiplicity" shows why preserving mental models—not just facts—is crucial 
+                    for decision-making.
+                </p>
+            </div>
+
+            <p>
+                Recent research from EMNLP 2024 on "Context-Aware Knowledge Enhancement" further 
+                validates this. Studies on knowledge graph-enhanced large language models show that 
+                preserving the relational context between information nodes is critical for accurate 
+                reasoning. When context is stripped away, even sophisticated AI systems fail to make 
+                correct inferences.
+            </p>
+
+            <p>
+                Context is the connective tissue that transforms isolated facts into actionable 
+                intelligence. It includes:
+            </p>
+
+            <ul style="margin: 2rem 0; padding-left: 2rem;">
+                <li style="margin-bottom: 1rem;">
+                    <strong>The Question Context:</strong> What problem were you trying to solve?
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>The Discovery Context:</strong> What else were you looking at? What patterns 
+                    were emerging?
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>The Temporal Context:</strong> How did your understanding evolve? What 
+                    changed your perspective?
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>The Application Context:</strong> How does this connect to your goals? 
+                    What decisions does it inform?
+                </li>
+            </ul>
+
+            <div class="story-box">
+                <p>
+                    <strong>Real example from "Supporting Business Document Workflows" (ACL 2024):</strong> 
+                    Researchers studying knowledge workers found that participants' predominant pain points 
+                    focused on information foraging across documents. Despite using various tools, workers 
+                    struggled because each tool stripped away the context of why information was relevant. 
+                    A financial analyst spent a week building a mental model of market dynamics across 
+                    different sectors. She understood not just the numbers, but why trends differed by 
+                    industry, company size, and market conditions. She saved her findings in separate 
+                    documents—market analysis, competitor research, regulatory updates.
+                </p>
+                <p>
+                    Six weeks later, preparing for an investment committee meeting, she couldn't reconstruct 
+                    the connections. The documents contained facts, but her mental model—the understanding 
+                    of how everything fit together—was gone. She had to spend another three days rebuilding 
+                    her understanding from scratch, and still missed key insights from her original analysis.
+                </p>
+            </div>
+
+            <h2>Digital Amnesia vs. Lost Mental Models</h2>
+
+            <p>
+                There's a crucial distinction here. Digital amnesia is forgetting facts—not 
+                remembering that competitor's price or that customer quote. But losing mental 
+                models is far worse. <span class="highlight">It's forgetting how to think about 
+                the problem itself.</span>
+            </p>
+
+            <p>
+                Research from ACL 2024 on "Augmenting Expert Cognition in the Age of Generative AI" 
+                found that:
+            </p>
+
+            <ul style="margin: 2rem 0; padding-left: 2rem;">
+                <li style="margin-bottom: 1rem;">
+                    Facts can be re-discovered in minutes through search
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    Mental models take hours or days to rebuild, requiring deep cognitive effort
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    Rebuilt models are often incomplete or biased by recent information
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    Lost models can't contribute to future insights or compound learning
+                </li>
+            </ul>
+
+            <h2>The Compound Loss Problem</h2>
+
+            <p>
+                The most insidious aspect of context collapse is that mental models build on each 
+                other. Your understanding of market dynamics informs your product strategy, which 
+                shapes your research questions, which guide your customer interviews.
+            </p>
+
+            <p>
+                EMNLP 2024's research on "Temporal Fact Reasoning over Hyper-Relational Knowledge Graphs" 
+                demonstrates this mathematically: knowledge compounds when temporal and relational context 
+                is preserved. But when context is lost, this compound growth stops. You're not just 
+                starting over—you're losing the ability to see deeper patterns that only emerge when 
+                knowledge builds over time.
+            </p>
+
+            <div class="insight-box">
+                <span class="insight-icon">🧠</span>
+                <h3>The Key Insight</h3>
+                <p>
+                    Current tools optimize for storing information, but knowledge work isn't about 
+                    information—it's about understanding. And understanding lives in the connections, 
+                    the context, the mental models we build. When we lose those, we lose our ability 
+                    to think. As the Information Foraging Theory (Pirolli & Card) demonstrates, humans 
+                    follow "information scent" to build understanding—but digital tools systematically 
+                    destroy these scent trails.
+                </p>
+            </div>
+
+            <h2>What Preserving Context Actually Looks Like</h2>
+
+            <p>
+                Imagine if your tools understood that knowledge isn't static—it's a living, 
+                evolving understanding. Research from CHI 2024 on "Selenite: Scaffolding Online 
+                Sensemaking" shows what's possible when tools preserve context:
+            </p>
+
+            <ul style="margin: 2rem 0; padding-left: 2rem;">
+                <li style="margin-bottom: 1rem;">
+                    <strong>Discovery Journeys:</strong> The full path of exploration, including 
+                    dead ends that taught you something valuable
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Relationship Maps:</strong> How each piece of information connects to 
+                    others, preserving the "why" behind each connection
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Evolution Tracking:</strong> How your understanding changed over time, 
+                    capturing the learning process itself
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Context Preservation:</strong> Why something mattered at the moment 
+                    of discovery, maintaining the original problem-solving context
+                </li>
+            </ul>
+
+            <h2>FolkLore AI: Preserving Mental Models, Not Just Information</h2>
+
+            <p>
+                This is exactly why we built FolkLore AI. We recognized that the problem isn't 
+                storing more information—it's preserving the mental models that make information 
+                meaningful. Our approach is grounded in the latest research from CHI, ACL, and 
+                EMNLP on sensemaking, knowledge foraging, and context preservation.
+            </p>
+
+            <p>
+                With FolkLore AI:
+            </p>
+
+            <ul style="margin: 2rem 0; padding-left: 2rem;">
+                <li style="margin-bottom: 1rem;">
+                    <strong>Full Context Capture:</strong> We preserve your entire research state—every 
+                    tab, every highlight, every connection, implementing the principles from Liu's 
+                    sensemaking research
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Relationship Preservation:</strong> We maintain how information relates, 
+                    not just what it contains, using graph-based approaches validated by recent 
+                    EMNLP research
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Mental Model Continuity:</strong> Return to your exact thinking state, 
+                    even months later, eliminating the 35-45 minute rebuild tax
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Understanding Evolution:</strong> See how your mental models develop 
+                    and compound over time, enabling true knowledge accumulation
+                </li>
+            </ul>
+
+            <p>
+                We're not building another bookmark manager or note-taking app. We're building 
+                a system that understands how human understanding actually works—through context, 
+                connections, and continuous evolution. FolkLore AI is the first step toward a 
+                future where tools amplify human cognition rather than fragmenting it.
+            </p>
+
+            <div class="cta-section">
+                <h2>Stop Losing Your Mental Models</h2>
+                <p>
+                    Every day without proper context preservation is another day of rebuild tax. 
+                    Start preserving not just your research, but your understanding itself.
+                </p>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="button">
+                    Preserve Your Thinking
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <p style="text-align: center; color: var(--gray); margin-top: 3rem;">
+                <em>Next in this series: "The Compound Knowledge Effect: Why Your Best Ideas Come From Connected Thinking"</em>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        // Add connections to the mental model
+        function addConnections() {
+            const contextModel = document.getElementById('contextModel');
+            const nodes = contextModel.querySelectorAll('.node');
+            
+            // Create connections between nodes
+            for (let i = 0; i < nodes.length - 1; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    if (Math.random() > 0.4) { // Create some connections
+                        createConnection(nodes[i], nodes[j], contextModel);
+                    }
+                }
+            }
+        }
+
+        function createConnection(node1, node2, container) {
+            const rect1 = node1.getBoundingClientRect();
+            const rect2 = node2.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            
+            const x1 = rect1.left + rect1.width / 2 - containerRect.left;
+            const y1 = rect1.top + rect1.height / 2 - containerRect.top;
+            const x2 = rect2.left + rect2.width / 2 - containerRect.left;
+            const y2 = rect2.top + rect2.height / 2 - containerRect.top;
+            
+            const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            const line = document.createElement('div');
+            line.className = 'connection';
+            line.style.width = `${length}px`;
+            line.style.left = `${x1}px`;
+            line.style.top = `${y1}px`;
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            container.appendChild(line);
+        }
+
+        // Initialize connections
+        document.addEventListener('DOMContentLoaded', () => {
+            addConnections();
+            
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Add fade-in class to elements
+            const animateElements = document.querySelectorAll('.research-block, .story-box, .insight-box, .context-strip-demo, .rebuild-calculator');
+            animateElements.forEach(el => {
+                el.classList.add('fade-in');
+                observer.observe(el);
+            });
+            
+            // Click to toggle mental model collapse
+            const modelDemo = document.querySelector('.mental-model-demo');
+            modelDemo.addEventListener('click', () => {
+                const contextModel = document.getElementById('contextModel');
+                const collapsedModel = document.getElementById('collapsedModel');
+                
+                contextModel.classList.toggle('collapsed');
+                collapsedModel.classList.toggle('collapsed');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Shoebox Problem: Why Your Brain Treats Browser Tabs Like a Messy Closet | FolkLore AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7B3FF2;
+            --primary-dark: #5B2FD2;
+            --primary-light: #E9D5FF;
+            --accent: #9333EA;
+            --ink: #0a0a0a;
+            --gray: #64748b;
+            --light-gray: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #7B3FF2 0%, #9333EA 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--white);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: var(--light-gray);
+            padding: 7rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle at center, rgba(123, 63, 242, 0.05) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--white));
+        }
+
+        .blog-label {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+        }
+
+        .author-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: var(--gray);
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Content */
+        .content {
+            padding: 4rem 0;
+        }
+
+        .lead {
+            font-size: 1.375rem;
+            line-height: 1.6;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            animation: slideIn 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 3rem 0 1.5rem;
+            color: var(--ink);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem;
+            color: var(--ink);
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #2a2a2a;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--primary-light) 10%, var(--primary-light) 90%, transparent 100%);
+            padding: 0 4px;
+        }
+
+        /* Interactive Shoebox */
+        .shoebox-demo {
+            background: var(--ink);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shoebox-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .shoebox-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .box {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .box:hover {
+            transform: translateY(-4px);
+            background: #3a3a3a;
+        }
+
+        .box-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .box-label {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .box-count {
+            font-size: 0.875rem;
+            color: #94a3b8;
+            transition: all 0.3s ease;
+        }
+
+        .box:hover .box-count {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .box-items {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #64748b;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .box.active .box-items {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        .box.active {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Research Quote */
+        .research-block {
+            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-block h4 {
+            color: var(--primary);
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .research-block p {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sensemaking Process */
+        .process-visual {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+        }
+
+        .process-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .process-step:hover .process-icon {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .process-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+        }
+
+        .process-arrow {
+            position: absolute;
+            top: 40px;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .process-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid var(--primary);
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+
+        .process-step:last-child .process-arrow {
+            display: none;
+        }
+
+        .process-label {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* Story Box */
+        .story-box {
+            background: var(--light-gray);
+            border-left: 4px solid var(--primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        /* Lost Connections */
+        .lost-connections {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lost-connections::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(123, 63, 242, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .lost-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .lost-tab {
+            background: #2a2a2a;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            opacity: 0;
+            animation: fadeAway 3s ease-in-out infinite;
+        }
+
+        .lost-tab:nth-child(1) { animation-delay: 0s; }
+        .lost-tab:nth-child(2) { animation-delay: 0.5s; }
+        .lost-tab:nth-child(3) { animation-delay: 1s; }
+        .lost-tab:nth-child(4) { animation-delay: 1.5s; }
+        .lost-tab:nth-child(5) { animation-delay: 2s; }
+        .lost-tab:nth-child(6) { animation-delay: 2.5s; }
+
+        @keyframes fadeAway {
+            0% { opacity: 0; transform: translateY(10px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* Insight Box */
+        .insight-box {
+            background: white;
+            border: 2px solid var(--primary);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(123, 63, 242, 0.1);
+        }
+
+        .insight-icon {
+            position: absolute;
+            top: -20px;
+            left: 2rem;
+            background: white;
+            padding: 0 1rem;
+            font-size: 2rem;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(123, 63, 242, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .button:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.375rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px var(--purple-glow);
+        }
+
+        @media (max-width: 768px) {
+            .shoebox-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-flow {
+                flex-direction: column;
+            }
+            
+            .process-arrow {
+                display: none;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="15" fill="#7B3FF2"/>
+                        <circle cx="50" cy="20" r="8" fill="#9333EA"/>
+                        <circle cx="75" cy="35" r="8" fill="#7B3FF2"/>
+                        <circle cx="75" cy="65" r="8" fill="#06b6d4"/>
+                        <circle cx="25" cy="65" r="8" fill="#7B3FF2"/>
+                        <circle cx="25" cy="35" r="8" fill="#a855f7"/>
+                        <line x1="50" y1="50" x2="50" y2="20" stroke="#9333EA" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="35" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="75" y2="65" stroke="#06b6d4" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="65" stroke="#7B3FF2" stroke-width="2" opacity="0.5"/>
+                        <line x1="50" y1="50" x2="25" y2="35" stroke="#a855f7" stroke-width="2" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
+                    <div style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#features" class="nav-link">How It Works</a>
+                <a href="../blog.html" class="nav-link active">Blog</a>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="nav-cta">
+                    Add to Chrome
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="container">
+            <h1>The Shoebox Problem: Why Your Brain Treats Browser Tabs Like a Messy Closet</h1>
+            <div class="author-info">
+                <span>January 2025</span>
+                <span>•</span>
+                <span>7 min read</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div class="container">
+            <p class="lead">
+                Intelligence analysts at PARC discovered something fascinating about how experts organize 
+                information: they all start with a shoebox. Not a literal shoebox, but a mental one—a 
+                messy collection phase where everything potentially relevant gets thrown in together.
+                Sound familiar? It should. Your browser tabs are your digital shoebox.
+            </p>
+
+            <h2>The Three Stages of Making Sense</h2>
+
+            <p>
+                In 2005, researchers Pirolli and Card studied how intelligence analysts—people whose 
+                job is literally to make sense of complex information—actually work. They discovered 
+                a universal pattern that every one of us follows, whether we're researching vacation 
+                spots or analyzing market trends.
+            </p>
+
+            <div class="process-visual">
+                <h3 style="text-align: center; margin-bottom: 1rem;">How We Naturally Process Information</h3>
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="process-icon">📦</div>
+                        <div class="process-label">The Shoebox</div>
+                        <p style="font-size: 0.875rem; color: var(--gray); margin-top: 0.5rem;">
+                            Rapid collection<br>"Might be useful"
+                        </p>
+                        <div class="process-arrow"></div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-icon">📁</div>
+                        <div class="process-label">Evidence File</div>
+                        <p style="font-size: 0.875rem; color: var(--gray); margin-top: 0.5rem;">
+                            Organize & filter<br>"This matters"
+                        </p>
+                        <div class="process-arrow"></div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-icon">🧩</div>
+                        <div class="process-label">Schema</div>
+                        <p style="font-size: 0.875rem; color: var(--gray); margin-top: 0.5rem;">
+                            Synthesize & understand<br>"Now I see it"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Here's the catch: <span class="highlight">we're amazing at the shoebox phase and terrible 
+                at everything after</span>. Modern tools have made collecting information effortless—maybe 
+                too effortless. We can open 50 tabs in minutes, bookmark hundreds of links, save thousands 
+                of articles. But then what?
+            </p>
+
+            <h2>Your Digital Shoebox is Overflowing</h2>
+
+            <div class="shoebox-demo">
+                <h3 class="shoebox-title">What's in Your Digital Shoeboxes? (Click to peek inside)</h3>
+                <div class="shoebox-container">
+                    <div class="box" onclick="toggleBox(this)">
+                        <div class="box-icon">🌐</div>
+                        <div class="box-label">Browser Tabs</div>
+                        <div class="box-count">47 open right now</div>
+                        <div class="box-items">
+                            • That article about productivity<br>
+                            • 5 tabs of "I'll read this later"<br>
+                            • Research from 3 weeks ago<br>
+                            • Something important... somewhere
+                        </div>
+                    </div>
+                    <div class="box" onclick="toggleBox(this)">
+                        <div class="box-icon">🔖</div>
+                        <div class="box-label">Bookmarks</div>
+                        <div class="box-count">1,247 saved</div>
+                        <div class="box-items">
+                            • Folders called "To Read"<br>
+                            • "Important" (from 2019)<br>
+                            • "Research" (never opened)<br>
+                            • Links you forgot existed
+                        </div>
+                    </div>
+                    <div class="box" onclick="toggleBox(this)">
+                        <div class="box-icon">📑</div>
+                        <div class="box-label">Read Later</div>
+                        <div class="box-count">∞ articles</div>
+                        <div class="box-items">
+                            • Pocket: 500+ articles<br>
+                            • Instapaper: abandoned<br>
+                            • Chrome reading list<br>
+                            • All gathering digital dust
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                The shoebox approach works when you're dealing with physical items you can see and 
+                touch. But digital information? It's invisible, infinite, and impossibly easy to hoard. 
+                We've become digital pack rats, collecting everything and synthesizing nothing.
+            </p>
+
+            <h2>Why We Can't Move Past the Shoebox</h2>
+
+            <p>
+                Here's where it gets interesting. The same PARC research found that moving from 
+                shoebox to evidence file—from collection to organization—requires what they call 
+                <span class="highlight">"information foraging."</span> Like animals hunting for food, 
+                we follow "information scent" to find what we need.
+            </p>
+
+            <div class="research-block">
+                <h4>The Information Foraging Theory</h4>
+                <p>
+                    Just as animals follow scent trails to find food, humans follow information scent—cues 
+                    that suggest content might satisfy our information needs. But when everything is in 
+                    a digital shoebox, the scent gets mixed up. That article about machine learning gets 
+                    lost among recipes, news articles, and random Wikipedia pages. The trail goes cold.
+                </p>
+            </div>
+
+            <p>
+                Modern browsers make this worse, not better. Every tab looks the same. Every bookmark 
+                is just a title. The rich context—why you saved it, what question you were answering, 
+                how it connects to other things—vanishes the moment you close that tab.
+            </p>
+
+            <div class="story-box">
+                <p>
+                    <strong>Real scenario from CHI 2024 research:</strong> A product manager spent 
+                    3 hours researching competitive pricing. She had 43 tabs open, highlighted key 
+                    sections, and was building a mental model of the market. A meeting interrupted. 
+                    When she returned, she couldn't remember which tabs contained the crucial pricing 
+                    insights. She spent another 90 minutes re-discovering what she'd already found.
+                </p>
+            </div>
+
+            <h2>The Synthesis Gap</h2>
+
+            <p>
+                Research from CHI 2024 on business document workflows revealed something striking: 
+                <span class="highlight">knowledge workers spend 80% of their time on tedious information 
+                foraging and only 20% on actual synthesis and decision-making.</span> We're stuck in 
+                the shoebox, desperately trying to find that one thing we know we saved somewhere.
+            </p>
+
+            <div class="lost-connections">
+                <h4 style="margin-bottom: 0.5rem; position: relative; z-index: 1;">Lost Connections: Where Insights Go to Disappear</h4>
+                <p style="font-size: 0.875rem; margin-bottom: 1rem; position: relative; z-index: 1;">
+                    Watch as these valuable discoveries fade away, just like they do in your browser:
+                </p>
+                <div class="lost-tabs">
+                    <div class="lost-tab">competitor-analysis-page-37.html</div>
+                    <div class="lost-tab">brilliant-insight-lost-forever.pdf</div>
+                    <div class="lost-tab">that-perfect-example.com</div>
+                    <div class="lost-tab">key-research-finding</div>
+                    <div class="lost-tab">aha-moment-article</div>
+                    <div class="lost-tab">connection-between-topics</div>
+                </div>
+            </div>
+
+            <h2>From Shoebox to Schema: The Missing Link</h2>
+
+            <p>
+                What if the problem isn't that we collect too much, but that our tools don't help 
+                us move beyond collection? What if instead of better bookmarks or fancier note-taking 
+                apps, we need tools that understand the natural progression from shoebox to schema?
+            </p>
+
+            <p>
+                This is where the magic happens—in that transition from "I might need this" to 
+                "This is how it all connects." But it requires preserving not just what you found, 
+                but the journey of discovery itself.
+            </p>
+
+            <div class="insight-box">
+                <span class="insight-icon">🔍</span>
+                <h3>The Key Insight</h3>
+                <p>
+                    Your browser tabs aren't the problem—they're a symptom. They represent your 
+                    brain trying to hold onto connections and context that our tools immediately 
+                    forget. Every tab is a breadcrumb in your thinking process, and when we lose 
+                    them, we lose the trail.
+                </p>
+            </div>
+
+            <h2>Building Better Shoeboxes</h2>
+
+            <p>
+                What would happen if our digital tools understood the shoebox-evidence-schema 
+                progression? If they could:
+            </p>
+
+            <ul style="margin: 2rem 0; padding-left: 2rem;">
+                <li style="margin-bottom: 1rem;">
+                    <strong>Preserve the mess:</strong> Let you collect rapidly without worrying 
+                    about organization (the shoebox phase)
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Maintain the scent:</strong> Keep the context of why you saved something 
+                    and how it relates to your search
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Enable synthesis:</strong> Help you see patterns and connections across 
+                    your collected information
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Build schemas:</strong> Turn your messy collection into structured 
+                    understanding
+                </li>
+            </ul>
+
+            <p>
+                This is exactly what we're building with FolkLore AI. Not another bookmark manager 
+                or note-taking app, but a tool that understands how human sensemaking actually works. 
+                One that preserves your entire research journey—from that first curious Google search 
+                to the final "aha!" moment.
+            </p>
+
+            <h2>Your Shoebox, Evolved</h2>
+
+            <p>
+                The shoebox isn't the problem—it's a natural and necessary first step in making 
+                sense of complex information. The problem is getting stuck there. With FolkLore AI, 
+                your digital shoebox becomes intelligent:
+            </p>
+
+            <ul style="margin: 2rem 0; padding-left: 2rem;">
+                <li style="margin-bottom: 1rem;">
+                    <strong>Collect freely:</strong> Save entire research sessions, not just URLs
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Preserve context:</strong> Keep highlights, notes, and the connections 
+                    between resources
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Resume anytime:</strong> Return to your exact thinking state, even 
+                    months later
+                </li>
+                <li style="margin-bottom: 1rem;">
+                    <strong>Build understanding:</strong> Watch patterns emerge as your knowledge 
+                    compounds over time
+                </li>
+            </ul>
+
+            <div class="cta-section">
+                <h2>Ready to Graduate from the Shoebox?</h2>
+                <p>
+                    Stop losing your research to the digital void. Start building understanding 
+                    that compounds over time. FolkLore AI helps you move from collection to connection.
+                </p>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="button">
+                    Transform Your Research Process
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+
+            <p style="text-align: center; color: var(--gray); margin-top: 3rem;">
+                <em>Next in this series: "The Context Collapse: How Digital Tools Destroy Your Mental Models"</em>
+            </p>
+        </div>
+    </main>
+
+    <script>
+        function toggleBox(element) {
+            element.classList.toggle('active');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Add fade-in class to elements we want to animate
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.research-block, .story-box, .lost-connections, .insight-box, .process-visual');
+            animateElements.forEach(el => {
+                el.classList.add('fade-in');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

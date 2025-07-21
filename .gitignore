@@ -56,3 +56,32 @@ build/
 *.map
 
 
+
+# macOS specific files
+.DS_Store
+
+# Node.js dependencies
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Ignore built files
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.swp
+
+# Claude Code
+.claude/
+
+

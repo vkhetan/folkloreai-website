@@ -884,27 +884,40 @@
         }
 
         .testimonial-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--whisper);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            background: none;
             border: none;
+            cursor: pointer;
             padding: 0;
+            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .testimonial-dot.active {
+        .testimonial-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--whisper);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active::before {
             background: var(--primary);
             width: 30px;
             border-radius: 5px;
         }
 
-        .testimonial-dot:hover {
+        .testimonial-dot:hover::before {
             background: var(--smoke);
         }
 
-        .testimonial-dot.active:hover {
+        .testimonial-dot.active:hover::before {
             background: var(--primary);
         }
 
@@ -923,6 +936,11 @@
         .testimonial-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Touch feedback */
+        .testimonial-card:active {
+            transform: scale(0.98);
         }
 
         .quote-icon {
@@ -1229,10 +1247,18 @@
             }
             
             /* Testimonial Mobile */
+            .testimonials-wrapper {
+                padding: 0 1rem;
+            }
+
             .testimonial-card {
-                width: 85vw;
-                max-width: 400px;
-                padding: 2rem;
+                width: calc(100vw - 2rem);
+                max-width: 100%;
+                padding: 2rem 1.5rem;
+            }
+
+            .testimonials-track {
+                gap: 1rem;
             }
             
             .testimonial-text {
@@ -1240,16 +1266,41 @@
             }
             
             .testimonial-dots {
-                gap: 0.5rem;
+                gap: 1rem;
+                padding: 1rem 0;
             }
             
             .testimonial-dot {
-                width: 8px;
-                height: 8px;
+                width: 44px;
+                height: 44px;
+                position: relative;
             }
-            
-            .testimonial-dot.active {
-                width: 24px;
+
+            .testimonial-dot::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 10px;
+                height: 10px;
+                background: var(--whisper);
+                border-radius: 50%;
+                transition: all 0.3s ease;
+            }
+
+            .testimonial-dot.active::before {
+                background: var(--primary);
+                width: 30px;
+                border-radius: 5px;
+            }
+
+            .testimonial-dot:hover::before {
+                background: var(--smoke);
+            }
+
+            .testimonial-dot.active:hover::before {
+                background: var(--primary);
             }
         }
     </style>
@@ -2015,7 +2066,13 @@
 
         function goToTestimonial(index) {
             currentTestimonial = index;
-            const offset = -index * (800 + 48); // card width + gap
+            
+            // Get actual card width and gap dynamically
+            const firstCard = testimonials[0];
+            const cardWidth = firstCard.offsetWidth;
+            const gap = window.innerWidth <= 768 ? 16 : 48; // 1rem on mobile, 3rem on desktop
+            const offset = -index * (cardWidth + gap);
+            
             track.style.transform = `translateX(${offset}px)`;
             
             // Update dots
@@ -2049,6 +2106,40 @@
         testimonialSection.addEventListener('mouseleave', () => {
             startAutoScroll();
         });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            goToTestimonial(currentTestimonial);
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleTestimonialSwipe();
+        }, { passive: true });
+
+        function handleTestimonialSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next testimonial
+                    nextTestimonial();
+                } else {
+                    // Swipe right - previous testimonial
+                    const prevIndex = currentTestimonial - 1;
+                    goToTestimonial(prevIndex < 0 ? testimonials.length - 1 : prevIndex);
+                }
+            }
+        }
 
         // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobileMenuButton');

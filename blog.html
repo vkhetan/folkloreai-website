@@ -190,6 +190,11 @@
             padding: 0 3rem;
         }
 
+        .carousel-viewport {
+            overflow: hidden;
+            position: relative;
+        }
+
         .blog-carousel {
             display: flex;
             gap: 1.5rem;
@@ -605,6 +610,11 @@
             }
 
             .blog-carousel-wrapper {
+                padding: 0;
+                overflow: visible;
+            }
+
+            .carousel-header {
                 padding: 0 1rem;
             }
 
@@ -612,9 +622,16 @@
                 gap: 1rem;
             }
 
+            .carousel-viewport {
+                width: calc(100% + 2rem);
+                margin: 0 -1rem;
+                padding: 0 1rem;
+            }
+
             .blog-carousel .blog-card {
-                flex: 0 0 calc(100vw - 2rem);
-                max-width: calc(100vw - 2rem);
+                flex: 0 0 calc(100% - 2rem);
+                max-width: calc(100% - 2rem);
+                width: calc(100% - 2rem);
             }
 
             .carousel-nav {
@@ -738,7 +755,8 @@
                         <path d="M9 18l6-6-6-6" />
                     </svg>
                 </button>
-                <div class="blog-carousel" id="blogCarousel">
+                <div class="carousel-viewport">
+                    <div class="blog-carousel" id="blogCarousel">
 
             <a href="posts/folklore-blog-shoebox.html" class="blog-card">
                 <div class="blog-image">
@@ -803,6 +821,7 @@
                 </div>
             </a>
 
+                    </div>
                 </div>
             </div>
             <!-- Carousel Dots Navigation -->

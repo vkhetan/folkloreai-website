@@ -614,57 +614,6 @@
             font-weight: 600;
         }
 
-        /* AI Personas Section */
-        .personas-section {
-            padding: 6rem 0;
-            background: var(--dawn);
-        }
-
-        .personas-showcase {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 4rem;
-        }
-
-        .personas-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .persona-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .persona-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .persona-emoji {
-            font-size: 2rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .persona-name {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--ink);
-        }
-
-        .persona-description {
-            font-size: 0.875rem;
-            color: var(--smoke);
-            line-height: 1.4;
-        }
 
         /* Temporal Section */
         .temporal-section {
@@ -893,6 +842,16 @@
             position: relative;
             transition: all 0.3s ease;
         }
+        
+        /* Add subtle scale on hover for better feedback */
+        .testimonial-dot:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Add pressed state */
+        .testimonial-dot:active {
+            transform: scale(0.95);
+        }
 
         .testimonial-dot::before {
             content: '';
@@ -905,20 +864,25 @@
             background: var(--whisper);
             border-radius: 50%;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Add subtle glow on hover */
+        .testimonial-dot:hover::before {
+            background: var(--smoke);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .testimonial-dot.active::before {
             background: var(--primary);
             width: 30px;
-            border-radius: 5px;
-        }
-
-        .testimonial-dot:hover::before {
-            background: var(--smoke);
+            border-radius: 15px;
+            box-shadow: 0 2px 8px var(--purple-glow);
         }
 
         .testimonial-dot.active:hover::before {
-            background: var(--primary);
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px var(--purple-glow);
         }
 
         .testimonial-card {
@@ -1148,7 +1112,6 @@
 
         /* Mobile Menu Overlay */
         .mobile-menu-overlay {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -1157,12 +1120,54 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 998;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            backdrop-filter: blur(2px);
         }
 
         .mobile-menu-overlay.active {
-            display: block;
             opacity: 1;
+            visibility: visible;
+        }
+
+        /* Floating CTA Button */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 20px rgba(123, 63, 242, 0.3);
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+            z-index: 900;
+        }
+        
+        .floating-cta.show {
+            transform: translateY(0);
+        }
+        
+        .floating-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(123, 63, 242, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .floating-cta {
+                display: flex;
+                font-size: 0.875rem;
+                padding: 0.875rem 1.25rem;
+                bottom: 16px;
+                right: 16px;
+            }
         }
 
         /* Mobile Responsive */
@@ -1179,8 +1184,7 @@
                 display: block;
             }
 
-            .hero-container,
-            .personas-showcase {
+            .hero-container {
                 grid-template-columns: 1fr;
                 gap: 3rem;
             }
@@ -1209,9 +1213,6 @@
                 transform: none;
             }
 
-            .personas-grid {
-                grid-template-columns: 1fr;
-            }
 
             .footer-content {
                 flex-direction: column;
@@ -1411,8 +1412,8 @@
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </a>
-                    <a href="#demo" class="hero-cta-secondary">
-                        See it in action
+                    <a href="#features" class="hero-cta-secondary">
+                        See How It Works
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polygon points="5 3 19 12 5 21 5 3"></polygon>
                         </svg>
@@ -1494,6 +1495,42 @@
                     A connection that will never be made.<br>
                     A pattern that will remain hidden.
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">How FolkLore Works</div>
+                <h2 class="section-title">A complete system for capturing and connecting knowledge</h2>
+                <p class="section-description">
+                    Three powerful modes that adapt to how you think, not the other way around.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-number">1</div>
+                    <div class="feature-icon">📝</div>
+                    <h3>Annotate</h3>
+                    <p>Capture insights as they emerge. Highlight any text, add your thoughts, and watch as patterns reveal themselves.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">2</div>
+                    <div class="feature-icon">✨</div>
+                    <h3>Insights</h3>
+                    <p>Let AI illuminate connections you missed. Surface themes, extract patterns, and build understanding.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-number">3</div>
+                    <div class="feature-icon">💭</div>
+                    <h3>Brainstorm</h3>
+                    <p>Converse with AI personas that adapt to your thinking style. Explore ideas through dialogue.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1617,90 +1654,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">How FolkLore Works</div>
-                <h2 class="section-title">A complete system for capturing and connecting knowledge</h2>
-                <p class="section-description">
-                    Three powerful modes that adapt to how you think, not the other way around.
-                </p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-number">1</div>
-                    <div class="feature-icon">📝</div>
-                    <h3>Annotate</h3>
-                    <p>Capture insights as they emerge. Highlight any text, add your thoughts, and watch as patterns reveal themselves.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-number">2</div>
-                    <div class="feature-icon">✨</div>
-                    <h3>Insights</h3>
-                    <p>Let AI illuminate connections you missed. Surface themes, extract patterns, and build understanding.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-number">3</div>
-                    <div class="feature-icon">💭</div>
-                    <h3>Brainstorm</h3>
-                    <p>Converse with AI personas that adapt to your thinking style. Explore ideas through dialogue.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Personas Section -->
-    <section class="personas-section" id="personas">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">Your AI Research Companion</div>
-                <h2 class="section-title">The thinking partner you need</h2>
-                <p class="section-description">
-                    Choose or customize AI personas based on your current task – from academic research to creative exploration. Each persona adapts to your work style and thinking patterns.
-                </p>
-            </div>
-            
-            <div class="personas-showcase">
-                <div class="personas-grid">
-                    <div class="persona-card">
-                        <div class="persona-emoji">🤝</div>
-                        <div class="persona-name">Empathetic Counselor</div>
-                        <div class="persona-description">Helps you think through decisions with patience and understanding</div>
-                    </div>
-                    <div class="persona-card">
-                        <div class="persona-emoji">🎓</div>
-                        <div class="persona-name">Academic Researcher</div>
-                        <div class="persona-description">Brings rigor and structure to your analysis and arguments</div>
-                    </div>
-                    <div class="persona-card">
-                        <div class="persona-emoji">💡</div>
-                        <div class="persona-name">Creative Strategist</div>
-                        <div class="persona-description">Explores unconventional connections and innovative approaches</div>
-                    </div>
-                    <div class="persona-card">
-                        <div class="persona-emoji">🔍</div>
-                        <div class="persona-name">Critical Analyst</div>
-                        <div class="persona-description">Challenges assumptions and strengthens your thinking</div>
-                    </div>
-                </div>
-                
-                <div class="personas-content">
-                    <h3 style="font-size: 2rem; margin-bottom: 1.5rem;">AI that thinks with you, not for you</h3>
-                    <p style="font-size: 1.125rem; color: var(--smoke); line-height: 1.7; margin-bottom: 2rem;">
-                        Each persona brings a unique perspective to your brainstorming sessions. Switch between them based on what you need—empathy for decision-making, rigor for research, creativity for innovation, or critical thinking for analysis.
-                    </p>
-                    <p style="font-size: 1.125rem; color: var(--smoke); line-height: 1.7;">
-                        Your annotations and insights provide context, making every conversation more relevant and productive. The AI remembers your project context, helping you build on previous thoughts.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Testimonial Section -->
     <section class="testimonial-section">
         <div class="testimonials-wrapper">
@@ -1743,9 +1696,9 @@
                         I was diving deep into model parallelization, jumping between technical blogs, research papers, and documentation. FolkLore connected all those scattered pieces - what took weeks of learning compressed into days of insight.
                     </p>
                     <div class="testimonial-author">
-                        <div class="author-avatar">SK</div>
+                        <div class="author-avatar">SN</div>
                         <div class="author-info">
-                            <div class="author-name">Sarah Kim</div>
+                            <div class="author-name">Sona N</div>
                             <div class="author-role">CTO, AI Startup</div>
                         </div>
                     </div>
@@ -1971,7 +1924,7 @@
 
         // Observe elements for animation
         document.querySelectorAll('.lost-tab').forEach(el => observer.observe(el));
-        document.querySelectorAll('.feature-card, .persona-card').forEach(el => {
+        document.querySelectorAll('.feature-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease';
@@ -2046,16 +1999,6 @@
             });
         });
 
-        // Persona card hover effect
-        document.querySelectorAll('.persona-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-4px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-2px) scale(1)';
-            });
-        });
 
         // Testimonial Navigation
         let currentTestimonial = 0;
@@ -2176,6 +2119,58 @@
                 closeMobileMenu();
             }
         });
+        
+        // Floating CTA logic
+        const floatingCTA = document.getElementById('floatingCTA');
+        const footer = document.querySelector('footer');
+        let scrollTimeout;
+        
+        function handleFloatingCTA() {
+            const scrollPosition = window.pageYOffset;
+            const heroHeight = document.querySelector('.hero').offsetHeight;
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Show after scrolling past hero section
+            if (scrollPosition > heroHeight * 0.5) {
+                floatingCTA.classList.add('show');
+                
+                // Hide when footer is visible
+                if (footerRect.top < windowHeight) {
+                    floatingCTA.classList.remove('show');
+                }
+            } else {
+                floatingCTA.classList.remove('show');
+            }
+        }
+        
+        // Only on mobile
+        if (window.innerWidth <= 768) {
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(handleFloatingCTA, 100);
+            });
+            
+            // Initial check
+            handleFloatingCTA();
+        }
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                floatingCTA.classList.remove('show');
+            } else {
+                handleFloatingCTA();
+            }
+        });
     </script>
+    
+    <!-- Floating CTA for Mobile -->
+    <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="floating-cta" id="floatingCTA">
+        Add to Chrome
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+    </a>
 </body>
 </html>

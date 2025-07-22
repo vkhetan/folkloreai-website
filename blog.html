@@ -221,12 +221,30 @@
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 10;
+            /* Larger touch target */
+            padding: 8px;
+            margin: -8px;
+        }
+        
+        /* Mobile touch target enhancement */
+        @media (max-width: 768px) {
+            .carousel-nav {
+                width: 44px;
+                height: 44px;
+                /* Even larger touch area on mobile */
+                padding: 12px;
+                margin: -12px;
+            }
         }
 
         .carousel-nav:hover {
             background: var(--primary);
             border-color: var(--primary);
             color: white;
+        }
+        
+        .carousel-nav:active {
+            transform: translateY(-50%) scale(0.95);
         }
 
         /* Carousel Dots */
@@ -288,6 +306,32 @@
             width: 24px;
             height: 24px;
             stroke: currentColor;
+        }
+        
+        /* Swipe indicator for mobile */
+        .swipe-indicator {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--smoke);
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out;
+        }
+        
+        @media (max-width: 768px) {
+            .swipe-indicator {
+                display: block;
+            }
+            
+            .swipe-indicator.hide {
+                display: none;
+            }
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
         }
 
         /* Blog Grid */
@@ -554,20 +598,21 @@
 
         /* Mobile Menu Overlay */
         .mobile-menu-overlay {
-            display: none;
+            visibility: hidden;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
             z-index: 998;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
         .mobile-menu-overlay.active {
-            display: block;
+            visibility: visible;
             opacity: 1;
         }
 
@@ -824,6 +869,8 @@
                     </div>
                 </div>
             </div>
+            <!-- Swipe Indicator -->
+            <div class="swipe-indicator" id="swipeIndicator">← Swipe for more →</div>
             <!-- Carousel Dots Navigation -->
             <div class="carousel-dots" id="carouselDots"></div>
         </section>
@@ -1020,6 +1067,12 @@
             const diff = touchStartX - touchEndX;
 
             if (Math.abs(diff) > swipeThreshold) {
+                // Hide swipe indicator after first swipe
+                const swipeIndicator = document.getElementById('swipeIndicator');
+                if (swipeIndicator) {
+                    swipeIndicator.classList.add('hide');
+                }
+                
                 if (diff > 0) {
                     // Swipe left - next
                     scrollCarousel(1);

@@ -84,4 +84,7 @@ build/
 # Claude Code
 .claude/
 
+# Ideas and drafts (not for production)
+ideas.html
+
 

@@ -534,86 +534,605 @@
             line-height: 1.5;
         }
 
-        /* Features Section */
-        .features-section {
-            padding: 6rem 0;
+        /* Philosophy Section - NEW */
+        .philosophy-section {
+            padding: 8rem 0;
             background: white;
+            position: relative;
+            overflow: hidden;
         }
 
-        .features-grid {
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .philosophy-headline {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+
+        .philosophy-text {
+            font-size: 1.5rem;
+            color: var(--smoke);
+            line-height: 1.6;
+            font-weight: 300;
+            margin-bottom: 4rem;
+        }
+
+        .core-question {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 600;
+            color: var(--primary);
+            margin: 4rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        /* What is Folklore Section - NEW */
+        .what-is-section {
+            padding: 6rem 0;
+            background: var(--dawn);
+        }
+
+        .what-is-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .what-is-headline {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .what-is-subheadline {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .what-is-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 4rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .feature-card {
+        .what-is-block {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
             text-align: center;
-            position: relative;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .feature-number {
-            position: absolute;
-            top: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.125rem;
+        .what-is-block:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 32px rgba(123, 63, 242, 0.15);
         }
 
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 2rem auto 2rem;
-            background: var(--light-purple);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-        }
-
-        .feature-card h3 {
+        .what-is-block h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--ink);
         }
 
-        .feature-card p {
+        .what-is-block p {
             color: var(--smoke);
             line-height: 1.6;
-            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
         }
 
-        .feature-list {
-            list-style: none;
-            text-align: left;
-            display: inline-block;
+        /* How It Works Section - UPDATED */
+        .how-it-works-section {
+            padding: 6rem 0;
+            background: white;
         }
 
-        .feature-list li {
+        .how-it-works-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            max-width: 1000px;
+            margin: 4rem auto 0;
+            position: relative;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .step-card:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -1rem;
+            top: 30px;
+            font-size: 1.5rem;
+            color: var(--primary);
+            opacity: 0.5;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border: 3px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0 auto 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-card:nth-child(2) .step-number {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 16px var(--purple-glow);
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .step-card p {
+            color: var(--smoke);
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        /* Magic Moment Section - NEW */
+        .magic-moment-section {
+            padding: 6rem 0;
+            background: var(--dawn);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magic-moment-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .magic-moment-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .magic-moment-title {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .magic-demo {
+            background: #f5f5f5;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            height: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .browser-window {
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+            transition: all 0.5s ease;
+        }
+
+        .browser-window.closed {
+            opacity: 0;
+            transform: scale(0.95) translateY(-20px);
+        }
+
+        .browser-header {
+            background: #e8e8e8;
+            padding: 0.75rem;
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-bottom: 0.75rem;
-            color: var(--smoke);
-            font-size: 0.95rem;
+            border-bottom: 1px solid #d0d0d0;
         }
 
-        .feature-list li::before {
-            content: '→';
+        .browser-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .browser-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ff5f57;
+        }
+
+        .browser-button:nth-child(2) {
+            background: #ffbd2e;
+        }
+
+        .browser-button:nth-child(3) {
+            background: #28ca42;
+        }
+
+        .browser-tab {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            font-size: 0.875rem;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 0.5rem;
+            position: relative;
+            min-width: 200px;
+        }
+
+        .browser-tab.closing {
+            animation: tabClose 0.5s ease forwards;
+        }
+
+        @keyframes tabClose {
+            to {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+        }
+
+        .tab-favicon {
+            width: 16px;
+            height: 16px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .tab-close {
+            margin-left: auto;
+            width: 16px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .tab-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .browser-address-bar {
+            flex: 1;
+            background: white;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: var(--smoke);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0 1rem;
+        }
+
+        .lock-icon {
+            width: 14px;
+            height: 14px;
+            opacity: 0.5;
+        }
+
+        .browser-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .article-header {
+            margin-bottom: 2rem;
+        }
+
+        .article-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .article-meta {
+            font-size: 0.875rem;
+            color: var(--smoke);
+        }
+
+        .article-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--ink);
+        }
+
+        .highlight-text {
+            background: transparent;
+            transition: all 0.5s ease;
+            padding: 2px 0;
+            position: relative;
+            cursor: text;
+        }
+
+        .highlight-text.highlighting {
+            background: rgba(123, 63, 242, 0.3);
+            animation: highlightDraw 0.5s ease forwards;
+        }
+
+        @keyframes highlightDraw {
+            from {
+                background-size: 0% 100%;
+            }
+            to {
+                background-size: 100% 100%;
+            }
+        }
+
+        .highlight-text.highlighted {
+            background: rgba(123, 63, 242, 0.2);
+            color: var(--ink);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .highlight-tooltip {
+            position: absolute;
+            top: -35px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .highlight-tooltip.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .highlight-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid var(--primary);
+        }
+
+        .time-transition {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dawn);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .time-transition.show {
+            animation: timeTransition 3s ease forwards;
+        }
+
+        @keyframes timeTransition {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .time-text {
+            font-size: 2.5rem;
+            font-weight: 700;
             color: var(--primary);
+            text-align: center;
+        }
+
+        .demo-state-indicator {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .state-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--whisper);
+            transition: all 0.3s ease;
+        }
+
+        .state-dot.active {
+            background: var(--primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .demo-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .demo-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .demo-button:hover:not(:disabled) {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .demo-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .floating-note {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--light-purple);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+            font-size: 0.875rem;
+            color: var(--ink);
+            opacity: 0;
+            transform: translateY(20px);
+            box-shadow: 0 4px 12px rgba(123, 63, 242, 0.2);
+            max-width: 300px;
+            z-index: 5;
+        }
+
+        .floating-note.show {
+            animation: noteAppear 0.5s ease forwards;
+        }
+
+        @keyframes noteAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .note-header {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Three Powerful Modes - Feature Cards */
+        .three-modes-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(123, 63, 242, 0.1);
+        }
+
+        .three-modes-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .three-modes-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dawn);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(123, 63, 242, 0.1);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem;
+            background: var(--light-purple);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--ink);
             font-weight: 600;
         }
 
+        .feature-card p {
+            color: var(--smoke);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
 
         /* Temporal Section */
         .temporal-section {
@@ -1190,9 +1709,19 @@
             }
 
             .problem-grid,
-            .features-grid {
+            .features-grid,
+            .what-is-grid,
+            .how-it-works-steps {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .how-it-works-steps::before {
+                display: none;
+            }
+            
+            .step-card::after {
+                display: none;
             }
 
             .hero-hook {
@@ -1213,11 +1742,55 @@
                 transform: none;
             }
 
+            .philosophy-text {
+                font-size: 1.25rem;
+            }
 
             .footer-content {
                 flex-direction: column;
                 gap: 2rem;
                 text-align: center;
+            }
+            
+            /* Magic Demo Mobile */
+            .magic-demo {
+                height: 400px;
+            }
+            
+            .browser-tab {
+                min-width: 150px;
+                font-size: 0.75rem;
+                padding: 0.4rem 0.75rem;
+            }
+            
+            .browser-address-bar {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.75rem;
+                margin: 0 0.5rem;
+            }
+            
+            .browser-content {
+                padding: 1.5rem;
+            }
+            
+            .article-title {
+                font-size: 1.25rem;
+            }
+            
+            .article-text {
+                font-size: 0.875rem;
+            }
+            
+            .floating-note {
+                max-width: 250px;
+                padding: 0.75rem;
+                font-size: 0.75rem;
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            .time-text {
+                font-size: 1.75rem;
             }
             
             /* Temporal Section Mobile */
@@ -1499,43 +2072,170 @@
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
+    <!-- Philosophy Section - NEW -->
+    <section class="philosophy-section">
+        <div class="philosophy-content">
+            <h2 class="philosophy-headline">
+                The internet should be an extension of your mind,<br>
+                not a library you visit
+            </h2>
+            <p class="philosophy-text">
+                Every day, you have brilliant insights while reading. Moments of clarity. Connections between ideas. Then you close the tab, and they vanish forever. Your mind doesn't work in sessions. Neither should your research.
+            </p>
+            <h3 class="core-question">
+                What if you never lost a thought again?
+            </h3>
+        </div>
+    </section>
+
+    <!-- What is Folklore Section - NEW -->
+    <section class="what-is-section">
         <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">How FolkLore Works</div>
-                <h2 class="section-title">A complete system for capturing and connecting knowledge</h2>
-                <p class="section-description">
-                    Three powerful modes that adapt to how you think, not the other way around.
-                </p>
+            <div class="what-is-header">
+                <h2 class="what-is-headline">What if every webpage remembered your research?</h2>
+                <p class="what-is-subheadline">That's exactly what Folklore does.</p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-number">1</div>
-                    <div class="feature-icon">📝</div>
-                    <h3>Annotate</h3>
-                    <p>Capture insights as they emerge. Highlight any text, add your thoughts, and watch as patterns reveal themselves.</p>
+            <div class="what-is-grid">
+                <div class="what-is-block">
+                    <h3>Your Thoughts Persist</h3>
+                    <p>Every highlight, note, and connection you make stays exactly where you put it. Forever.</p>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-number">2</div>
-                    <div class="feature-icon">✨</div>
-                    <h3>Insights</h3>
-                    <p>Let AI illuminate connections you missed. Surface themes, extract patterns, and build understanding.</p>
+                <div class="what-is-block">
+                    <h3>Across Every Website</h3>
+                    <p>From academic papers to blog posts, your research lives on every page you visit.</p>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-number">3</div>
-                    <div class="feature-icon">💭</div>
-                    <h3>Brainstorm</h3>
-                    <p>Converse with AI personas that adapt to your thinking style. Explore ideas through dialogue.</p>
+                <div class="what-is-block">
+                    <h3>Growing Over Time</h3>
+                    <p>Return months later. Build on your past insights. Watch your understanding compound.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Temporal Section -->
+    <!-- How It Works Section - UPDATED -->
+    <section class="how-it-works-section" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">How FolkLore Works</div>
+                <h2 class="section-title">Research naturally. Your thoughts stay forever.</h2>
+            </div>
+            
+            <div class="how-it-works-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Research Naturally</h3>
+                    <p>Browse any website, read any article, just like always</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Your Thoughts Stay</h3>
+                    <p>Highlight key insights. They live on that page forever.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Return and Build</h3>
+                    <p>Come back anytime. Your past research is waiting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Magic Moment Section - NEW -->
+    <section class="magic-moment-section">
+        <div class="magic-moment-container">
+            <div class="magic-moment-header">
+                <h2 class="magic-moment-title">See what happens when you return to your old research</h2>
+            </div>
+            
+            <div class="magic-demo">
+                <div class="browser-window" id="browserWindow">
+                    <div class="browser-header">
+                        <div class="browser-controls">
+                            <div class="browser-button"></div>
+                            <div class="browser-button"></div>
+                            <div class="browser-button"></div>
+                        </div>
+                        <div class="browser-tab" id="browserTab">
+                            <div class="tab-favicon"></div>
+                            <span id="tabTitle">Research on Innovation</span>
+                            <div class="tab-close" onclick="event.stopPropagation();">×</div>
+                        </div>
+                        <div class="browser-address-bar">
+                            <svg class="lock-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            <span id="urlText">myresearch.folkloreai.com</span>
+                        </div>
+                    </div>
+                    <div class="browser-content">
+                        <div class="article-header">
+                            <h1 class="article-title">The Architecture of Innovation</h1>
+                            <div class="article-meta">Research Notes • Last edited 3 months ago</div>
+                        </div>
+                        <div class="article-text">
+                            <p>Understanding the patterns behind breakthrough innovations reveals several key insights. First, disruptive technologies rarely emerge from established players. Instead, <span class="highlight-text" id="highlightText">the key to innovation lies in connecting disparate ideas from different domains</span>, creating unexpected solutions to existing problems.</p>
+                            
+                            <p>This pattern has been observed across multiple industries, from computing to biotechnology. The most successful innovators are those who can bridge different fields of knowledge, combining insights in novel ways.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="time-transition" id="timeTransition">
+                    <div class="time-text">3 months later...</div>
+                </div>
+                
+                <div class="floating-note" id="floatingNote">
+                    <div class="note-header">Your highlight from 3 months ago</div>
+                    <div>"The key to innovation lies in connecting disparate ideas from different domains"</div>
+                </div>
+                
+                <div class="demo-state-indicator">
+                    <div class="state-dot active" id="state1"></div>
+                    <div class="state-dot" id="state2"></div>
+                    <div class="state-dot" id="state3"></div>
+                    <div class="state-dot" id="state4"></div>
+                </div>
+            </div>
+            
+            <div class="demo-controls">
+                <button class="demo-button" onclick="runMagicDemo()">See the Magic</button>
+            </div>
+            
+            <!-- Three Powerful Modes -->
+            <div class="three-modes-section">
+                <div class="three-modes-header">
+                    <h3 class="three-modes-title">Three Powerful Modes</h3>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📝</div>
+                        <h3>Annotate</h3>
+                        <p>Capture insights as they emerge. Highlight any text, add your thoughts, and watch as patterns reveal themselves.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Insights</h3>
+                        <p>Let AI illuminate connections you missed. Surface themes, extract patterns, and build understanding.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💭</div>
+                        <h3>Brainstorm</h3>
+                        <p>Converse with AI personas that adapt to your thinking style. Explore ideas through dialogue.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Temporal Section (keeping existing) -->
     <section class="temporal-section">
         <div class="section-container">
             <div class="temporal-header">
@@ -1924,7 +2624,7 @@
 
         // Observe elements for animation
         document.querySelectorAll('.lost-tab').forEach(el => observer.observe(el));
-        document.querySelectorAll('.feature-card').forEach(el => {
+        document.querySelectorAll('.feature-card, .what-is-block').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'all 0.6s ease';
@@ -1999,6 +2699,125 @@
             });
         });
 
+        // Magic Demo Animation
+        function runMagicDemo() {
+            const browserWindow = document.getElementById('browserWindow');
+            const browserTab = document.getElementById('browserTab');
+            const highlightText = document.getElementById('highlightText');
+            const timeTransition = document.getElementById('timeTransition');
+            const floatingNote = document.getElementById('floatingNote');
+            const button = document.querySelector('.demo-button');
+            const highlightTooltip = document.createElement('div');
+            highlightTooltip.className = 'highlight-tooltip';
+            highlightTooltip.textContent = 'Highlight saved!';
+            highlightText.appendChild(highlightTooltip);
+            
+            const stateDots = [
+                document.getElementById('state1'),
+                document.getElementById('state2'), 
+                document.getElementById('state3'),
+                document.getElementById('state4')
+            ];
+            
+            // Reset everything
+            browserWindow.classList.remove('closed');
+            browserTab.classList.remove('closing');
+            highlightText.classList.remove('highlighting', 'highlighted');
+            timeTransition.classList.remove('show');
+            floatingNote.classList.remove('show');
+            highlightTooltip.classList.remove('show');
+            stateDots.forEach(dot => dot.classList.remove('active'));
+            button.disabled = true;
+            
+            // Animation sequence
+            const sequence = [
+                // State 1: User reading
+                {
+                    delay: 0,
+                    action: () => {
+                        stateDots[0].classList.add('active');
+                    }
+                },
+                // State 2: User highlighting text
+                {
+                    delay: 1500,
+                    action: () => {
+                        stateDots[0].classList.remove('active');
+                        stateDots[1].classList.add('active');
+                        highlightText.classList.add('highlighting');
+                        setTimeout(() => {
+                            highlightText.classList.add('highlighted');
+                            highlightTooltip.classList.add('show');
+                            setTimeout(() => {
+                                highlightTooltip.classList.remove('show');
+                            }, 1500);
+                        }, 500);
+                    }
+                },
+                // State 3: Close tab
+                {
+                    delay: 4000,
+                    action: () => {
+                        stateDots[1].classList.remove('active');
+                        stateDots[2].classList.add('active');
+                        browserTab.classList.add('closing');
+                        setTimeout(() => {
+                            browserWindow.classList.add('closed');
+                            setTimeout(() => {
+                                timeTransition.classList.add('show');
+                            }, 300);
+                        }, 400);
+                    }
+                },
+                // State 4: Return to page
+                {
+                    delay: 7500,
+                    action: () => {
+                        stateDots[2].classList.remove('active');
+                        stateDots[3].classList.add('active');
+                        timeTransition.classList.remove('show');
+                        browserTab.classList.remove('closing');
+                        
+                        // Simulate typing URL
+                        const urlText = document.getElementById('urlText');
+                        const originalUrl = urlText.textContent;
+                        urlText.textContent = '';
+                        
+                        setTimeout(() => {
+                            browserWindow.classList.remove('closed');
+                            
+                            // Type URL animation
+                            let i = 0;
+                            const typeInterval = setInterval(() => {
+                                if (i < originalUrl.length) {
+                                    urlText.textContent += originalUrl[i];
+                                    i++;
+                                } else {
+                                    clearInterval(typeInterval);
+                                    // Show the floating note
+                                    setTimeout(() => {
+                                        floatingNote.classList.add('show');
+                                    }, 500);
+                                }
+                            }, 50);
+                        }, 300);
+                    }
+                },
+                // Re-enable button
+                {
+                    delay: 10000,
+                    action: () => {
+                        button.disabled = false;
+                        button.textContent = 'See Again';
+                    }
+                }
+            ];
+            
+            // Run the sequence
+            sequence.forEach(({ delay, action }) => {
+                setTimeout(action, delay);
+            });
+        }
 
         // Testimonial Navigation
         let currentTestimonial = 0;

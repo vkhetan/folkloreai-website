@@ -84,10 +84,9 @@ build/
 # Claude Code
 .claude/
 
-# Ideas and drafts (not for production)
+# Internal files and drafts (not for production)
+_internal/
 ideas.html
-
-# Notes
 notes.txt
 
 

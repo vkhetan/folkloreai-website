@@ -672,6 +672,7 @@
             }
         }
     </style>
+    <meta name="tagline" content="Organize the chaos of your digital mind">
 </head>
 <body>
     <!-- Navigation -->
@@ -695,7 +696,7 @@
                 </div>
                 <div>
                     <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
-                    <div style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
+                    <div id="nav-tagline" style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
                 </div>
             </a>
             <div class="nav-links">
@@ -1074,5 +1075,16 @@
             }
         });
     </script>
+<script>
+// Update navigation tagline from meta tag
+document.addEventListener('DOMContentLoaded', function() {
+    const taglineMeta = document.querySelector('meta[name="tagline"]');
+    const navTagline = document.getElementById('nav-tagline');
+    
+    if (taglineMeta && taglineMeta.content && navTagline) {
+        navTagline.textContent = taglineMeta.content;
+    }
+});
+</script>
 </body>
 </html>

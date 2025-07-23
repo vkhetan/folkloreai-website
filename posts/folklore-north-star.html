@@ -1,11 +1,9 @@
-            .insight-grid {
-                grid-template-columns: 1fr;
-            }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our North Star: Building the Cognitive Infrastructure for 1 Billion Knowledge Workers | FolkLore AI</title>
+    <title>The Knowledge Layer for 1 Billion Connected Minds | FolkLore AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -43,7 +41,7 @@
             top: 0;
             width: 100%;
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -62,7 +60,6 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            font-size: 1.375rem;
             font-weight: 600;
             letter-spacing: -0.02em;
             cursor: pointer;
@@ -71,8 +68,8 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 40px;
+            height: 40px;
         }
 
         .nav-links {
@@ -114,7 +111,7 @@
             box-shadow: 0 4px 12px rgba(123, 63, 242, 0.3);
         }
 
-        /* Header - adjusted for fixed nav */
+        /* Header */
         .header {
             background: linear-gradient(to bottom, var(--white), rgba(123, 63, 242, 0.02));
             padding: 7rem 0 4rem;
@@ -164,6 +161,7 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            font-style: italic;
         }
 
         /* Content */
@@ -171,12 +169,9 @@
             padding: 4rem 0;
         }
 
-        /* Opening Scene - Combined the emotional hook from previous version */
+        /* Opening Scene */
         .opening-scene {
             margin-bottom: 4rem;
-            padding: 3rem;
-            background: linear-gradient(135deg, rgba(123, 63, 242, 0.03) 0%, rgba(147, 51, 234, 0.03) 100%);
-            border-radius: 16px;
             text-align: center;
         }
 
@@ -184,100 +179,6 @@
             font-size: 2.5rem;
             margin-bottom: 2rem;
             color: var(--ink);
-        }
-
-        .time-counter {
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .time-label {
-            font-size: 1.25rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-        }
-
-        /* Market Impact Box */
-        .market-impact {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.03) 100%);
-            border: 2px solid var(--error);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 2rem 0 3rem;
-            text-align: center;
-        }
-
-        .impact-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(to right, var(--error), var(--warning));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-        }
-
-        .impact-label {
-            font-size: 1.25rem;
-            color: var(--ink);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .impact-comparison {
-            font-size: 1rem;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        /* App Growth Timeline */
-        .app-growth-timeline {
-            background: var(--ink);
-            color: white;
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .timeline-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .timeline-point {
-            text-align: center;
-            flex: 1;
-        }
-
-        .timeline-year {
-            font-size: 0.875rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-number {
-            font-size: 2rem;
-            font-weight: 900;
-            margin-bottom: 0.25rem;
-        }
-
-        .timeline-label {
-            font-size: 0.75rem;
-            opacity: 0.8;
-        }
-
-        .timeline-arrow {
-            color: var(--primary);
-            opacity: 0.5;
-            font-size: 1.5rem;
         }
 
         /* App Ecosystem Visualization */
@@ -359,7 +260,7 @@
             75% { transform: translateY(-10px) translateX(20px); }
         }
 
-        /* Position apps across the cloud */
+        /* Position apps */
         .app-bubble:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
         .app-bubble:nth-child(2) { top: 5%; right: 25%; animation-delay: 2s; }
         .app-bubble:nth-child(3) { top: 25%; left: 5%; animation-delay: 4s; }
@@ -376,25 +277,9 @@
         .app-bubble:nth-child(14) { top: 35%; right: 40%; animation-delay: 1.2s; }
         .app-bubble:nth-child(15) { bottom: 5%; left: 50%; animation-delay: 4.2s; }
 
-        /* Disconnection lines */
-        .disconnect-line {
-            position: absolute;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.3), transparent);
-            transform-origin: center;
-            animation: flicker 3s ease-in-out infinite;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        @keyframes flicker {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 0.6; }
-        }
-
-        /* Cost visualization from previous version */
+        /* Cost visualization */
         .cost-visualization {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(239, 68, 68, 0.03) 100%);
             border: 2px solid var(--error);
             border-radius: 16px;
             padding: 3rem;
@@ -439,7 +324,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Story Box - Maria's story from previous version */
+        /* Story Box */
         .story-box {
             background: var(--light-gray);
             border-left: 4px solid var(--primary);
@@ -453,130 +338,15 @@
             border-left-color: var(--error);
         }
 
-        /* Maria's Screen Visualization */
-        .marias-screen {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 0.875rem;
-            color: #e0e0e0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .browser-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #333;
-        }
-
-        .browser-dots {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .browser-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .browser-dot.red { background: #ff5f56; }
-        .browser-dot.yellow { background: #ffbd2e; }
-        .browser-dot.green { background: #27c93f; }
-
-        .tab-bar {
-            display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-            padding-bottom: 0.75rem;
-            margin-bottom: 1.5rem;
-            scrollbar-width: thin;
-            scrollbar-color: #555 #2a2a2a;
-        }
-
-        .tab-bar::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        .tab-bar::-webkit-scrollbar-track {
-            background: #2a2a2a;
-        }
-
-        .tab-bar::-webkit-scrollbar-thumb {
-            background: #555;
-            border-radius: 2px;
-        }
-
-        .tab {
-            background: #2a2a2a;
-            padding: 0.5rem 1rem;
-            border-radius: 6px 6px 0 0;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            color: #999;
-            transition: all 0.2s ease;
-            border: 1px solid #333;
-        }
-
-        .tab.active {
-            background: #3a3a3a;
-            color: white;
-            border-color: #555;
-        }
-
-        .discovery-item {
-            background: #2a2a2a;
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary);
-            opacity: 0;
-            animation: fadeInUp 0.6s ease-out forwards;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .discovery-item:nth-child(1) { animation-delay: 0.2s; }
-        .discovery-item:nth-child(2) { animation-delay: 0.4s; }
-        .discovery-item:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(10px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Day in the Life - Enhanced from current version */
-        .day-in-life {
-            margin: 4rem 0;
+        /* Personas Grid */
+        .personas-section {
             background: var(--ink);
             color: white;
             border-radius: 24px;
             padding: 4rem;
+            margin: 4rem 0;
             position: relative;
             overflow: hidden;
-        }
-
-        .day-in-life::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(123, 63, 242, 0.2) 0%, transparent 70%);
-            animation: rotate 40s linear infinite;
-        }
-
-        .day-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
         }
 
         .personas-grid {
@@ -588,228 +358,36 @@
             z-index: 1;
         }
 
-        .persona-story {
+        .persona-card {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 16px;
             padding: 2rem;
-            cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
         }
 
-        .persona-story:hover {
+        .persona-card:hover {
             background: rgba(255, 255, 255, 0.12);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border-color: rgba(123, 63, 242, 0.5);
         }
 
-        .persona-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .persona-avatar {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .persona-info h4 {
+        .persona-name {
             font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-            color: white;
             font-weight: 600;
-        }
-
-        .persona-title {
-            font-size: 0.95rem;
-            color: #a88bff;
-            font-weight: 600;
-        }
-
-        .persona-pain {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.875rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .tools-used {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tool-tag {
-            background: rgba(123, 63, 242, 0.25);
-            padding: 0.375rem 0.875rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: #c3b1ff;
-            font-weight: 500;
-            border: 1px solid rgba(123, 63, 242, 0.3);
-        }
-
-        /* Connection Indicator */
-        .connection-indicator {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 30px;
-            height: 30px;
-            background: rgba(16, 185, 129, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .persona-story:hover .connection-indicator {
-            opacity: 1;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 1; }
-        }
-
-        /* Connection Discovery */
-        .connection-discovery {
-            background: white;
-            border: 3px solid var(--primary);
-            border-radius: 16px;
-            padding: 3rem;
-            margin: 2rem 0;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            box-shadow: 0 4px 20px rgba(123, 63, 242, 0.1);
-        }
-
-        .connection-title {
-            font-size: 1.75rem;
-            color: var(--ink);
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        .insight-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-
-        .insight-item {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        .insight-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .insight-item strong {
-            color: var(--primary-dark);
-            font-weight: 700;
-            display: block;
             margin-bottom: 0.5rem;
-            font-size: 1.125rem;
         }
 
-        .insight-item span {
-            color: var(--ink);
+        .persona-insight {
             font-size: 1.125rem;
-            line-height: 1.6;
+            color: var(--primary-light);
             font-style: italic;
-        }
-
-        .connection-discovery > p:last-child {
-            margin-top: 1.5rem;
-            font-size: 1.125rem;
-            color: #2a2a2a;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(239, 68, 68, 0.02) 100%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            line-height: 1.6;
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        /* Why Now Section */
-        .why-now-section {
-            background: linear-gradient(135deg, var(--ink) 0%, #1a1a1a 100%);
-            color: white;
-            border-radius: 24px;
-            padding: 4rem;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .why-now-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .why-now-item {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .why-now-item:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-5px);
-            border-color: rgba(123, 63, 242, 0.5);
-        }
-
-        .why-now-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .why-now-item h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: white;
-        }
-
-        .why-now-item p {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.85);
-            margin: 0;
-            line-height: 1.6;
         }
 
         /* Historical Timeline */
         .historical-timeline {
             margin: 4rem 0;
-            position: relative;
         }
 
         .era-container {
@@ -862,13 +440,180 @@
         }
 
         .era p {
-            font-size: 0.875rem;
+            font-size: 1rem;
             color: var(--gray);
             margin: 0;
         }
 
-        /* Philosophical Box */
-        .philosophical-box {
+        /* Improved Transformation Section - Version 3 */
+        .transformation-section {
+            margin: 4rem 0;
+            padding: 4rem 0;
+        }
+
+        .transformation-section h3 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--ink);
+            font-size: 2rem;
+        }
+
+        .transformation-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .transformation-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .transformation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .transformation-card-before {
+            border: 2px solid #fee2e2;
+        }
+
+        .transformation-card-before:hover {
+            border-color: #fca5a5;
+        }
+
+        .transformation-card-after {
+            border: 2px solid #dcfce7;
+        }
+
+        .transformation-card-after:hover {
+            border-color: #86efac;
+        }
+
+        .transformation-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .transformation-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .transformation-card-before .transformation-card-icon {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+
+        .transformation-card-after .transformation-card-icon {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .transformation-card h4 {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .transformation-card-before h4 {
+            color: #dc2626;
+        }
+
+        .transformation-card-after h4 {
+            color: #16a34a;
+        }
+
+        .transformation-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            margin: 0 -0.75rem;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+
+        .transformation-feature:hover {
+            background: #f9fafb;
+        }
+
+        .transformation-feature-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .transformation-card-before .transformation-feature-icon {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .transformation-card-after .transformation-feature-icon {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .transformation-feature-text {
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        .transformation-feature-text strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .transformation-card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .transformation-card-before .transformation-card-badge {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .transformation-card-after .transformation-card-badge {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        /* Knowledge Layer Section */
+        .knowledge-layer-section {
+            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        /* CTA Section */
+        .final-cta {
             background: var(--gradient);
             color: white;
             padding: 4rem 3rem;
@@ -879,7 +624,7 @@
             overflow: hidden;
         }
 
-        .philosophical-box::before {
+        .final-cta::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -890,521 +635,101 @@
             animation: rotate 30s linear infinite;
         }
 
-        .philosophical-text {
-            font-size: 1.75rem;
-            line-height: 1.8;
-            font-weight: 300;
-            max-width: 700px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .philosophical-text p {
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: inherit;
-        }
-
-        .philosophical-text p:last-child {
-            margin-bottom: 0;
-            font-weight: 500;
-        }
-
-        /* Transformation Section - Enhanced from previous version */
-        .transformation-section {
-            margin: 4rem 0;
-            padding: 3rem;
-            background: var(--ink);
-            color: white;
-            border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .transformation-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(123, 63, 242, 0.2) 0%, transparent 70%);
-            animation: pulse-bg 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse-bg {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.8; }
-        }
-
-        .transformation-title {
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .before-after {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-            flex-wrap: wrap;
-        }
-
-        .before, .after {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .before h4, .after h4 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .before h4 {
-            color: #fde047;
-        }
-
-        .after h4 {
-            color: #4ade80;
-        }
-
-        .before p, .after p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 0.75rem;
-        }
-
-        .transformation-arrow {
-            font-size: 3rem;
-            color: var(--primary);
-            animation: slide 2s ease-in-out infinite;
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-        }
-
-        @keyframes slide {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
-        }
-
-        /* The Magic of Threading */
-        .magic-moment {
-            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
-            border-radius: 24px;
+        /* Refined Final CTA */
+        .final-cta-wrapper {
+            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
             padding: 4rem;
+            border-radius: 32px;
             margin: 4rem 0;
-            text-align: center;
             position: relative;
             overflow: hidden;
+            border: 1px solid #dee2e6;
         }
 
-        .connection-flow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .connection-node {
+        .final-cta-inner {
             background: white;
-            border: 2px solid var(--primary-light);
-            padding: 2rem 1.5rem;
-            border-radius: 16px;
-            min-width: 200px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            flex: 0 0 auto;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .connection-node:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(123, 63, 242, 0.25);
-            border-color: var(--primary);
-            background: linear-gradient(to bottom, white, rgba(123, 63, 242, 0.02));
-        }
-
-        .connection-node div[style*="font-weight: 600"] {
-            font-size: 1.125rem !important;
-        }
-
-        .connection-node div[style*="color: var(--gray)"] {
-            font-size: 0.875rem !important;
-            margin-top: 0.5rem;
-        }
-
-        .connection-arrow {
-            color: var(--primary);
-            font-size: 2rem;
-            animation: pulse-arrow 2s ease-in-out infinite;
-            flex: 0 0 auto;
-            display: flex;
-            align-items: center;
-        }
-
-        @keyframes pulse-arrow {
-            0%, 100% { transform: translateX(0); opacity: 0.5; }
-            50% { transform: translateX(5px); opacity: 1; }
-        }
-
-        /* Enhanced Threading Demo */
-        .threading-demo {
-            background: white;
-            border: 2px solid var(--primary-light);
-            border-radius: 16px;
-            padding: 3rem;
-            margin: 3rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .thread-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 200px;
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .thread-point {
+            border-radius: 24px;
+            padding: 5rem 3rem;
+            box-shadow: 
+                0 0 0 1px rgba(123, 63, 242, 0.1),
+                0 10px 40px rgba(123, 63, 242, 0.08);
             position: relative;
             text-align: center;
-            z-index: 2;
-            flex: 0 0 auto;
         }
 
-        .thread-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 5px 20px rgba(123, 63, 242, 0.3);
-            animation: pulse-icon 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse-icon {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .thread-label {
-            font-weight: 600;
-            color: var(--ink);
-            font-size: 0.875rem;
-        }
-
-        .thread-connector {
-            flex: 1;
-            height: 2px;
-            background: var(--primary);
-            position: relative;
-            margin: 0 1rem;
-            align-self: center;
-            margin-bottom: 3rem;
-        }
-
-        .thread-connector::after {
+        .final-cta-inner::before {
             content: '';
             position: absolute;
-            right: -8px;
-            top: -4px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid var(--primary);
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-        }
-
-        .thread-flow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(123, 63, 242, 0.3), transparent);
-            animation: flow 2s ease-in-out infinite;
-        }
-
-        @keyframes flow {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Threading Example */
-        .threading-example {
-            background: var(--light-gray);
-            border-radius: 16px;
-            padding: 2rem;
-            margin: 2rem 0;
-        }
-
-        .thread-timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .thread-event {
-            position: relative;
-            padding-bottom: 2rem;
+            inset: -2px;
+            border-radius: 24px;
+            padding: 2px;
+            background: linear-gradient(135deg, #7B3FF2 0%, #9333EA 50%, #7B3FF2 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
             opacity: 0;
-            animation: fadeIn 0.6s ease-out forwards;
+            transition: opacity 0.3s ease;
         }
 
-        .thread-event:nth-child(1) { animation-delay: 0.2s; }
-        .thread-event:nth-child(2) { animation-delay: 0.4s; }
-        .thread-event:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateX(-20px); }
-            100% { opacity: 1; transform: translateX(0); }
+        .final-cta-inner:hover::before {
+            opacity: 1;
         }
 
-        .thread-event::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: var(--primary);
-            border-radius: 50%;
-        }
-
-        .thread-event::after {
-            content: '';
-            position: absolute;
-            left: -1.44rem;
-            top: 1.5rem;
-            width: 2px;
-            height: calc(100% - 1rem);
-            background: var(--primary-light);
-        }
-
-        .thread-event:last-child::after {
-            display: none;
-        }
-
-        .thread-time {
-            font-size: 0.75rem;
-            color: var(--gray);
-            margin-bottom: 0.25rem;
-        }
-
-        .thread-content {
-            font-size: 0.875rem;
+        .final-cta-headline {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
             color: var(--ink);
         }
 
-        /* Formula Visualization */
-        .formula-box {
-            background: var(--ink);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            margin: 2rem 0;
-            border: 2px solid var(--primary);
+        .final-cta-highlight {
+            background: linear-gradient(120deg, transparent 0%, rgba(123, 63, 242, 0.1) 10%, rgba(123, 63, 242, 0.1) 90%, transparent 100%);
+            padding: 0 8px;
+            border-radius: 4px;
         }
 
-        .formula {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .formula-explanation {
-            font-size: 1rem;
-            opacity: 0.9;
+        .final-cta-future {
+            font-size: 1.375rem;
             line-height: 1.6;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-style: italic;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Market Opportunity */
-        .market-opportunity {
-            background: var(--gradient);
-            color: white;
-            border-radius: 24px;
-            padding: 4rem;
-            margin: 4rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .market-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .market-stat {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Strategic Moats */
-        .strategic-moats {
-            margin: 4rem 0;
-        }
-
-        .moats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .moat-item {
-            background: var(--light-gray);
-            padding: 2rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .moat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .moat-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .moat-item h4 {
+        .final-cta-vision {
             font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--ink);
-            font-weight: 600;
+            line-height: 1.8;
+            color: #374151;
+            margin: 2rem auto;
+            max-width: 700px;
         }
 
-        .moat-reason {
+        .final-cta-closing {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            letter-spacing: -0.01em;
+        }
+
+        .final-cta-contact {
             font-size: 0.875rem;
-            color: var(--gray);
-            margin: 0;
-        }
-
-        /* Vision Metrics */
-        .vision-metrics {
-            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
-            border-radius: 16px;
-            padding: 3rem;
-            margin: 3rem 0;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
             margin-top: 2rem;
         }
 
-        .metric-item {
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-label {
-            font-size: 0.875rem;
+        .final-cta-contact a {
             color: var(--gray);
-        }
-
-        /* Vision Statement */
-        .vision-statement {
-            text-align: center;
-            margin: 5rem 0;
-            padding: 4rem 2rem;
-            background: var(--gradient);
-            color: white;
-            border-radius: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* CTA */
-        .cta-section {
-            background: var(--gradient);
-            color: white;
-            padding: 4rem 2rem;
-            border-radius: 24px;
-            text-align: center;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-        }
-
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2rem;
-            border-radius: 100px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .button.secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
+        .final-cta-contact a:hover {
+            color: var(--primary);
         }
 
         /* Typography */
@@ -1413,11 +738,10 @@
             font-weight: 800;
             margin: 4rem 0 2rem;
             color: var(--ink);
-            text-align: center;
         }
 
         h3 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
             margin: 2.5rem 0 1rem;
             color: var(--ink);
@@ -1441,76 +765,9 @@
             margin-right: auto;
         }
 
-        .lead strong {
-            color: var(--ink);
-            font-weight: 600;
-        }
-
         .highlight {
             background: linear-gradient(120deg, transparent 0%, var(--primary-light) 10%, var(--primary-light) 90%, transparent 100%);
             padding: 0 4px;
-        }
-
-        /* Testimonial */
-        .testimonial {
-            background: white;
-            border: 2px solid var(--primary);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin: 3rem 0;
-            position: relative;
-        }
-
-        .testimonial::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            font-size: 5rem;
-            color: var(--primary-light);
-            font-family: Georgia, serif;
-        }
-
-        .testimonial-text {
-            font-size: 1.25rem;
-            line-height: 1.8;
-            font-style: italic;
-            margin-bottom: 1rem;
-            color: var(--ink);
-        }
-
-        .testimonial-author {
-            text-align: right;
-            color: var(--gray);
-            font-size: 0.875rem;
-        }
-
-        /* Pain Grid */
-        .pain-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .pain-item {
-            background: var(--light-gray);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--error);
-        }
-
-        .pain-item h4 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--ink);
-            font-weight: 600;
-        }
-
-        .pain-item p {
-            font-size: 0.875rem;
-            color: var(--gray);
-            margin-bottom: 0;
         }
 
         /* Citation */
@@ -1521,232 +778,25 @@
             margin-top: 0.5rem;
         }
 
-        /* Improved Typography for Better Readability */
-        .pain-item p {
-            font-size: 1rem;
-            color: #4a4a4a;
-            margin-bottom: 0;
-            line-height: 1.5;
-        }
-
-        .persona-pain {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .era p {
-            font-size: 1rem;
-            color: #4a4a4a;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        .moat-reason {
-            font-size: 1rem;
-            color: #4a4a4a;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* Mobile Menu Styles */
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            color: var(--ink);
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu-button:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background: var(--white);
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-            padding: 6rem 2rem 2rem;
-            transition: right 0.3s ease;
-            z-index: 999;
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-nav-link,
-        .mobile-nav-cta {
-            display: block;
-            padding: 1rem 0;
-            text-decoration: none;
-            color: var(--ink);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .mobile-nav-link:hover {
-            color: var(--primary);
-        }
-
-        .mobile-nav-cta {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 100px;
-            text-align: center;
-            margin-top: 1.5rem;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .mobile-nav-cta:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
-            visibility: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 998;
-            opacity: 0;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .mobile-menu-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .personas-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .insight-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .connection-flow {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .connection-arrow {
-                transform: rotate(90deg);
-                margin: 1rem 0;
-            }
-            
-            @keyframes pulse-arrow {
-                0%, 100% { transform: rotate(90deg) translateY(0); opacity: 0.5; }
-                50% { transform: rotate(90deg) translateY(5px); opacity: 1; }
-            }
-            
-            .market-stats-grid {
-                grid-template-columns: repeat(2, 1fr);
             }
             
             .cost-grid {
                 grid-template-columns: 1fr;
             }
             
-            .pain-grid {
+            .era-container {
                 grid-template-columns: 1fr;
             }
             
-            .before-after {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-button {
-                display: block;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-            
-            .transformation-arrow {
-                transform: rotate(90deg);
-                margin: 1rem 0;
-            }
-            
-            @keyframes slide {
-                0%, 100% { transform: rotate(90deg) translateY(0); }
-                50% { transform: rotate(90deg) translateY(10px); }
-            }
-            
-            .thread-container {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .thread-connector {
-                width: 2px;
-                height: 60px;
-                margin: 1rem auto;
-                flex: none;
-            }
-            
-            .thread-connector::after {
-                top: auto;
-                bottom: -8px;
-                right: -4px;
-                left: -4px;
-                border-left: 5px solid transparent;
-                border-right: 5px solid transparent;
-                border-top: 10px solid var(--primary);
-            }
-            
-            .thread-flow {
-                animation: flow-vertical 2s ease-in-out infinite;
-            }
-            
-            @keyframes flow-vertical {
-                0% { transform: translateY(-100%); }
-                100% { transform: translateY(100%); }
-            }
-
-            .why-now-grid,
-            .era-container,
-            .moats-grid,
-            .metrics-grid {
+            .transformation-cards {
                 grid-template-columns: 1fr;
-            }
-
-            .timeline-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .timeline-arrow {
-                transform: rotate(90deg);
             }
         }
     </style>
-    <meta name="tagline" content="Threading human intelligence">
 </head>
 <body>
     <!-- Navigation -->
@@ -1770,7 +820,7 @@
                 </div>
                 <div>
                     <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
-                    <div id="nav-tagline" style="font-size: 0.875rem; color: var(--primary);">Threading human intelligence</div>
+                    <div style="font-size: 0.875rem; color: var(--primary);">Threading human intelligence</div>
                 </div>
             </a>
             <div class="nav-links">
@@ -1783,101 +833,35 @@
                     </svg>
                 </a>
             </div>
-            
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Toggle mobile menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 12h18M3 6h18M3 18h18"/>
-                </svg>
-            </button>
-            
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="/#features" class="mobile-nav-link">How It Works</a>
-                <a href="/blog" class="mobile-nav-link">Blog</a>
-                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="mobile-nav-cta">
-                    Add to Chrome
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </div>
         </div>
     </nav>
-    
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <header class="header">
         <div class="container">
-            <h1>Our North Star: Building the Cognitive Infrastructure<br>for 1 Billion Knowledge Workers</h1>
-            <p class="subtitle">A vision for where every thought connects, every insight compounds, and collective intelligence emerges naturally</p>
+            <h1>The Knowledge Layer for 1 Billion Connected Minds</h1>
+            <p class="subtitle">Where scattered insights become compounding intelligence</p>
         </div>
     </header>
 
     <main class="content">
         <div class="container">
-            <!-- Opening with emotional hook from previous version -->
+            <!-- Opening with emotional hook -->
             <div class="opening-scene">
-                <h2>This happens every single day:</h2>
-                <div class="time-counter">23 minutes</div>
-                <div class="time-label">Average time to reconstruct your thinking after switching tasks</div>
-                <p style="font-size: 1.125rem; color: var(--gray); max-width: 600px; margin: 0 auto;">
-                    You had it all figured out. The connections were clear. Then you closed your browser, 
-                    switched to Slack, opened a document... and it's gone.
-                </p>
-            </div>
-
-            <p class="lead">
-                It's 4:47 PM. You finally see how everything connects—the customer feedback, the technical 
-                constraints, the market opportunity. <strong>For the first time in weeks, it all makes sense.</strong> 
-                Then your calendar notification pops up. Meeting in 13 minutes. You bookmark frantically, 
-                take a screenshot, paste links into a doc. But you already know: when you come back, 
-                you'll have information but not understanding. The connections will be gone.
-                <br><br>
-                <strong>This is the problem we're solving.</strong>
-            </p>
-
-            <!-- Market Impact -->
-            <div class="market-impact">
-                <div class="impact-number">$127 Billion</div>
-                <div class="impact-label">Lost to context switching globally every year</div>
-                <div class="impact-comparison">That's bigger than the entire SaaS market</div>
-                <div class="citation">Source: RescueTime & APA studies on cognitive load, 2024</div>
-            </div>
-
-            <h2>The Digital Maze We've Built</h2>
-
-            <!-- App Growth Timeline -->
-            <div class="app-growth-timeline">
-                <h4 style="text-align: center; margin-bottom: 1.5rem; opacity: 0.9;">The Exponential Problem</h4>
-                <div class="timeline-container">
-                    <div class="timeline-point">
-                        <div class="timeline-year">2014</div>
-                        <div class="timeline-number">5</div>
-                        <div class="timeline-label">apps/week</div>
-                    </div>
-                    <div class="timeline-arrow">→</div>
-                    <div class="timeline-point">
-                        <div class="timeline-year">2019</div>
-                        <div class="timeline-number">29</div>
-                        <div class="timeline-label">apps/week</div>
-                    </div>
-                    <div class="timeline-arrow">→</div>
-                    <div class="timeline-point">
-                        <div class="timeline-year">2025</div>
-                        <div class="timeline-number">87</div>
-                        <div class="timeline-label">apps/week</div>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 1rem; font-size: 0.875rem; opacity: 0.8;">
-                    Source: Okta Businesses at Work Report
+                <p class="lead">
+                    It's 4:47 PM. You finally see how everything connects—the customer feedback, the technical 
+                    constraints, the market opportunity. For the first time in weeks, it all makes sense. 
+                    Then your calendar notification pops up. Meeting in 13 minutes. You bookmark frantically, 
+                    take a screenshot, paste links into a doc. But you already know: when you come back, 
+                    you'll have information but not understanding. The connections will be gone.
                 </p>
             </div>
 
             <!-- App Ecosystem Visualization -->
             <div class="app-ecosystem">
-                <h3 class="ecosystem-title">Your Thoughts, Scattered Across 87 Apps</h3>
+                <h2 style="color: white; text-align: center; margin: 0 0 1rem 0;">Every App Is Another Silo</h2>
+                <p style="text-align: center; color: rgba(255, 255, 255, 0.85); font-size: 1.125rem; margin-bottom: 3rem;">
+                    The average knowledge worker loses 40% of their insights to the spaces between tools
+                </p>
                 <div class="app-cloud">
                     <div class="app-bubble">
                         <span class="app-icon">💬</span>
@@ -1939,42 +923,39 @@
                         <span class="app-icon">📱</span>
                         <span class="app-name">Discord</span>
                     </div>
-                    
-                    <!-- Disconnection lines showing no connections -->
-                    <div class="disconnect-line" style="top: 15%; left: 20%; width: 25%; transform: rotate(25deg);"></div>
-                    <div class="disconnect-line" style="top: 35%; left: 40%; width: 20%; transform: rotate(-15deg);"></div>
-                    <div class="disconnect-line" style="top: 55%; left: 15%; width: 30%; transform: rotate(45deg);"></div>
-                    <div class="disconnect-line" style="top: 25%; right: 25%; width: 22%; transform: rotate(-35deg);"></div>
-                    <div class="disconnect-line" style="bottom: 35%; right: 30%; width: 18%; transform: rotate(20deg);"></div>
-                    <div class="disconnect-line" style="bottom: 20%; left: 35%; width: 26%; transform: rotate(-25deg);"></div>
                 </div>
-                <p style="text-align: center; margin-top: 2rem; font-size: 1.125rem; opacity: 0.9; position: relative; z-index: 1;">
-                    Each app is an island. Each switch is a context collapse. Each day is starting over.
+                <p style="text-align: center; margin-top: 3rem; font-size: 1.375rem; color: white; font-weight: 300; position: relative; z-index: 1; line-height: 1.6;">
+                    That brilliant connection you made? Lost in a Slack thread.<br>
+                    The pattern you spotted? Buried in tab 47.<br>
+                    Your teammate's breakthrough? Hidden in their Notion.
                 </p>
             </div>
 
             <h2>The Real Cost We Never Talk About</h2>
 
-            <div class="pain-grid">
-                <div class="pain-item">
-                    <h4>Morning Discovery → Afternoon Amnesia</h4>
-                    <p>9 AM insight becomes 2 PM confusion. "I know I found something important..."</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Team Silos → Duplicated Effort</h4>
-                    <p>Your colleague solved this last week. You're solving it again today.</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Information Saved → Understanding Lost</h4>
-                    <p>1,000 bookmarks. 100 documents. 0 connections between them.</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Tools Multiply → Context Fragments</h4>
-                    <p>Browser → Slack → Notion → Google Docs. Each switch loses more context.</p>
-                </div>
-            </div>
+            <h3>The Pattern Recognition Paradox</h3>
+            <p>
+                We're finding more patterns than ever before - across customer data, market trends, user behavior. 
+                But those patterns vanish the moment we switch contexts. A 2023 Stanford study found 73% of 
+                breakthrough insights happen during cross-functional work, yet 89% are lost within 48 hours.
+            </p>
 
-            <!-- Maria's story from previous version -->
+            <h3>The Collaboration Theater</h3>
+            <p>
+                We have more ways to share than ever - Slack, Teams, Notion, Miro. But sharing isn't connecting. 
+                MIT research shows teams using 5+ collaboration tools actually synthesize 60% less effectively 
+                than those using analog methods. We're performing collaboration, not achieving it.
+            </p>
+
+            <h3>The Compound Interest of Forgotten Insights</h3>
+            <p>
+                Every lost connection between ideas represents exponential value destruction. When Maria can't 
+                remember her morning breakthrough, she doesn't just lose one insight - she loses every future 
+                insight that would have built on it. McKinsey estimates the average enterprise recreates the 
+                same solution 2.8 times.
+            </p>
+
+            <!-- Maria's story -->
             <div class="story-box tension">
                 <p>
                     <strong>Tuesday, 11:34 AM:</strong> Maria discovers a pattern in customer complaints that 
@@ -1982,48 +963,10 @@
                     documents, and a Slack thread that ties it all together. She can see it—the solution 
                     that's been evading the team for months.
                 </p>
-
-                <!-- Maria's Screen Visualization -->
-                <div class="marias-screen">
-                    <div class="browser-header">
-                        <div class="browser-dots">
-                            <div class="browser-dot red"></div>
-                            <div class="browser-dot yellow"></div>
-                            <div class="browser-dot green"></div>
-                        </div>
-                    </div>
-                    <div class="tab-bar">
-                        <div class="tab active">Customer cancelled - pricing too complex</div>
-                        <div class="tab">Competitor pricing analysis</div>
-                        <div class="tab">Support ticket: "Can't understand tiers"</div>
-                        <div class="tab">Blog: Psychology of pricing</div>
-                        <div class="tab">Internal doc: Q3 churn report</div>
-                        <div class="tab">Slack: #product-feedback</div>
-                        <div class="tab">Customer interview notes</div>
-                        <div class="tab">Pricing simplification ideas</div>
-                        <div class="tab">+7 more tabs...</div>
-                    </div>
-                    <div>
-                        <div class="discovery-item">
-                            💡 Pattern found: 73% of churned customers mentioned "confusing pricing" in exit interviews
-                        </div>
-                        <div class="discovery-item">
-                            🔗 Connection: Competitors with simpler tiers have 2.3x better retention
-                        </div>
-                        <div class="discovery-item">
-                            ✨ Solution emerging: Three-tier model with clear value propositions could reduce churn by 40%
-                        </div>
-                    </div>
-                </div>
-
                 <p>
                     <strong>Tuesday, 2:15 PM:</strong> After lunch and two "quick" meetings, Maria returns 
                     to her desk. The tabs are there. The documents are there. But the revelation? Gone. 
                     She spends the next hour trying to remember what she'd discovered. She can't.
-                </p>
-                <p>
-                    <strong>Two weeks later:</strong> The pricing problem persists. The team schedules another 
-                    brainstorming session. They're starting from scratch. Again.
                 </p>
                 <p style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
                     <strong>Two quarters later:</strong> $2.3M in preventable churn. The solution Maria found 
@@ -2060,339 +1003,231 @@
                 </div>
             </div>
 
-            <!-- Philosophical Bridge -->
-            <div class="philosophical-box">
-                <div class="philosophical-text">
-                    <p>We've normalized digital amnesia.</p>
-                    <p>Your mind doesn't work in sessions. It doesn't think in tabs.</p>
-                    <p>So why do we accept tools that forget?</p>
-                </div>
-            </div>
+            <p style="text-align: center; font-size: 1.5rem; margin: 3rem 0; font-weight: 300;">
+                We built tools that remember everything but connect nothing.<br>
+                Your breakthrough at 9 AM shouldn't disappear by 2 PM.<br>
+                Your team's collective intelligence shouldn't reset with every new project.<br>
+                Your mind creates meaning through connection - but our tools create isolation.
+            </p>
 
-            <h2>The Problem Is Everywhere in San Francisco</h2>
+            <p style="text-align: center; font-size: 1.25rem; color: var(--primary); font-weight: 600;">
+                The $2.7 trillion question isn't about productivity. It's about potential.
+            </p>
 
-            <div class="day-in-life">
-                <div class="day-header">
-                    <h2 style="color: white;">Four People. One Company. Same Frustration.</h2>
-                    <p style="color: rgba(255, 255, 255, 0.85); font-size: 1.125rem;">Real knowledge workers we've interviewed, drowning in their own tools</p>
-                </div>
+            <h2>The $85,000 Question Nobody's Asking</h2>
+            <p style="text-align: center; color: var(--gray); font-style: italic;">
+                Four brilliant minds. One pricing problem. Zero connections.
+            </p>
+
+            <!-- Knowledge Archipelago -->
+            <div class="personas-section">
+                <h3 style="color: white; text-align: center; margin-bottom: 2rem;">
+                    The Knowledge Archipelago
+                </h3>
+                <p style="text-align: center; color: rgba(255, 255, 255, 0.9); margin-bottom: 3rem;">
+                    We've created knowledge archipelagos - islands of brilliance with no bridges between them. 
+                    Each person holds critical intelligence, but our tools ensure they'll never connect the dots.
+                </p>
 
                 <div class="personas-grid">
-                    <div class="persona-story" data-person="sarah">
-                        <div class="connection-indicator">🔗</div>
-                        <div class="persona-header">
-                            <div class="persona-avatar">👩‍💼</div>
-                            <div class="persona-info">
-                                <h4>Sarah Chen</h4>
-                                <div class="persona-title">Product Manager at Series B Startup</div>
-                            </div>
-                        </div>
-                        <div class="persona-pain">
-                            "I live in Granola for meeting notes, Linear for tasks, Notion for specs. 
-                            But when I need to connect why we built something to what customers said 
-                            three months ago? I'm lost. I know it's there somewhere..."
-                        </div>
-                        <div class="tools-used">
-                            <span class="tool-tag">Granola</span>
-                            <span class="tool-tag">Linear</span>
-                            <span class="tool-tag">Notion</span>
-                            <span class="tool-tag">Figma</span>
-                        </div>
+                    <div class="persona-card">
+                        <div class="persona-name">Sarah sees the symptom:</div>
+                        <div class="persona-insight">"73% of churned customers cite pricing confusion in exit interviews"</div>
                     </div>
-
-                    <div class="persona-story" data-person="marcus">
-                        <div class="connection-indicator">🔗</div>
-                        <div class="persona-header">
-                            <div class="persona-avatar">👨‍💻</div>
-                            <div class="persona-info">
-                                <h4>Marcus Thompson</h4>
-                                <div class="persona-title">Engineering Lead at Scale-up</div>
-                            </div>
-                        </div>
-                        <div class="persona-pain">
-                            "My browser has 50 tabs of research. My Claude conversations have brilliant 
-                            solutions. But connecting those to our architecture decisions in Confluence? 
-                            Impossible. We're solving the same problems over and over."
-                        </div>
-                        <div class="tools-used">
-                            <span class="tool-tag">GitHub</span>
-                            <span class="tool-tag">Claude</span>
-                            <span class="tool-tag">Confluence</span>
-                            <span class="tool-tag">Slack</span>
-                        </div>
+                    <div class="persona-card">
+                        <div class="persona-name">Marcus has the solution:</div>
+                        <div class="persona-insight">"Our new billing architecture could reduce complexity by 80%"</div>
                     </div>
-
-                    <div class="persona-story" data-person="maya">
-                        <div class="connection-indicator">🔗</div>
-                        <div class="persona-header">
-                            <div class="persona-avatar">👩‍🎨</div>
-                            <div class="persona-info">
-                                <h4>Maya Patel</h4>
-                                <div class="persona-title">Head of Design at AI Company</div>
-                            </div>
-                        </div>
-                        <div class="persona-pain">
-                            "User research in Dovetail, designs in Figma, strategy in Miro. Every 
-                            design review, I'm reconstructing the story of why we made these choices. 
-                            The context is scattered across 20 different places."
-                        </div>
-                        <div class="tools-used">
-                            <span class="tool-tag">Figma</span>
-                            <span class="tool-tag">Miro</span>
-                            <span class="tool-tag">Dovetail</span>
-                            <span class="tool-tag">Loom</span>
-                        </div>
+                    <div class="persona-card">
+                        <div class="persona-name">Maya knows why it matters:</div>
+                        <div class="persona-insight">"Users spend 12 seconds on pricing before bouncing - we have one chance"</div>
                     </div>
-
-                    <div class="persona-story" data-person="james">
-                        <div class="connection-indicator">🔗</div>
-                        <div class="persona-header">
-                            <div class="persona-avatar">👨‍💼</div>
-                            <div class="persona-info">
-                                <h4>James Liu</h4>
-                                <div class="persona-title">Sales Director at SaaS Unicorn</div>
-                            </div>
-                        </div>
-                        <div class="persona-pain">
-                            "Customer insights in Gong, notes in Salesforce, strategy in Notion. 
-                            When the CEO asks why we lost that enterprise deal, I spend hours 
-                            piecing together conversations from three different systems."
-                        </div>
-                        <div class="tools-used">
-                            <span class="tool-tag">Gong</span>
-                            <span class="tool-tag">Salesforce</span>
-                            <span class="tool-tag">Notion</span>
-                            <span class="tool-tag">Zoom</span>
-                        </div>
+                    <div class="persona-card">
+                        <div class="persona-name">James understands the stakes:</div>
+                        <div class="persona-insight">"We lose $2.1M quarterly from pricing friction alone"</div>
                     </div>
                 </div>
 
-                <div class="connection-discovery">
-                    <h3 class="connection-title">🤯 The Invisible Pattern</h3>
-                    <div class="insight-grid">
-                        <div class="insight-item">
-                            <strong>What Sarah knows:</strong>
-                            <span>"Customers are confused by our pricing complexity"</span>
-                        </div>
-                        <div class="insight-item">
-                            <strong>What Marcus discovered:</strong>
-                            <span>"We could simplify the billing logic with this architecture"</span>
-                        </div>
-                        <div class="insight-item">
-                            <strong>What Maya found:</strong>
-                            <span>"Users skip the pricing page—it's too overwhelming"</span>
-                        </div>
-                        <div class="insight-item">
-                            <strong>What James sees:</strong>
-                            <span>"We lose 40% of enterprise deals at pricing discussion"</span>
-                        </div>
-                    </div>
-                    <p>
-                        They each hold a piece of the puzzle. But today's tools keep these insights trapped in silos. 
-                        They'll rediscover the same problems in meetings, wasting weeks on solutions they already have.
-                    </p>
-                </div>
-
-                <p style="text-align: center; margin-top: 3rem; font-size: 1.25rem; color: rgba(255, 255, 255, 0.95); position: relative; z-index: 1;">
-                    <strong>The Pattern:</strong> Brilliant people. Powerful tools. Zero connections. 
-                    <br>Every insight dies in isolation. Every breakthrough stays siloed.
+                <h3 style="color: white; text-align: center; margin: 3rem 0 1rem;">
+                    The Collective Intelligence Paradox
+                </h3>
+                <p style="text-align: center; color: rgba(255, 255, 255, 0.95); font-size: 1.25rem;">
+                    Together, they have everything needed to solve a $8.4M annual problem.<br>
+                    Separately, they have nothing but fragments.
                 </p>
             </div>
 
-            <!-- Why Now Section -->
-            <div class="why-now-section">
-                <h2 style="color: white; text-align: center; margin-bottom: 1rem;">Why This Can't Wait</h2>
-                <p style="text-align: center; color: rgba(255, 255, 255, 0.9); font-size: 1.125rem; max-width: 700px; margin: 0 auto 2rem;">
-                    We've hit the breaking point where the cost of switching exceeds the value of specialized tools
-                </p>
-                
-                <div class="why-now-grid">
-                    <div class="why-now-item">
-                        <div class="why-now-icon">📈</div>
-                        <h4>Tool Velocity</h4>
-                        <p>New AI tools launch daily. Each promises to solve everything. Each creates another silo.</p>
-                    </div>
-                    <div class="why-now-item">
-                        <div class="why-now-icon">💸</div>
-                        <h4>Economic Pressure</h4>
-                        <p>Companies can't afford 575 hours/year of lost productivity per employee anymore.</p>
-                    </div>
-                    <div class="why-now-item">
-                        <div class="why-now-icon">🧠</div>
-                        <h4>AI Renaissance</h4>
-                        <p>LLMs can finally understand context. But they're trapped in chat windows.</p>
-                    </div>
-                </div>
-            </div>
+            <p style="text-align: center; font-size: 1.25rem; margin: 3rem 0;">
+                This isn't a tools problem. It's an architecture problem.<br>
+                We built systems that optimize for individual productivity but destroy collective intelligence.<br>
+                Every app is optimized for capture. None are designed for synthesis.
+            </p>
 
-            <!-- Historical Context -->
+            <p style="text-align: center; font-size: 1.5rem; color: var(--primary); font-weight: 600;">
+                The real tragedy? Your team already has every answer. They just can't see it.
+            </p>
+
+            <h2>The Architecture of Intelligence Is Evolving</h2>
+
             <div class="historical-timeline">
-                <h2>The Three Eras of Knowledge Work</h2>
                 <div class="era-container">
                     <div class="era">
                         <div class="era-number">1</div>
-                        <div class="era-icon">📄</div>
-                        <h4>Physical Documents</h4>
-                        <p>Everything on paper. Slow but connected. Your desk was your context.</p>
+                        <div class="era-icon">🗄️</div>
+                        <h4>Era 1: The Filing Cabinet</h4>
+                        <p>(1950-1990) Knowledge lived in physical space. Slow to search, but context was preserved. Your desk WAS your brain's external memory.</p>
                     </div>
                     <div class="era">
                         <div class="era-number">2</div>
-                        <div class="era-icon">💻</div>
-                        <h4>Digital Documents</h4>
-                        <p>Everything digitized. Fast but fragmented. Your context scattered across apps.</p>
+                        <div class="era-icon">💾</div>
+                        <h4>Era 2: The Database</h4>
+                        <p>(1990-2025) Knowledge became digital. Infinitely searchable, but context shattered across applications. We gained speed but lost synthesis.</p>
                     </div>
                     <div class="era">
                         <div class="era-number">3</div>
                         <div class="era-icon">🧵</div>
-                        <h4>Persistent Context</h4>
-                        <p>Everything connected. Fast AND coherent. Your context follows you everywhere.</p>
+                        <h4>Era 3: The Knowledge Layer</h4>
+                        <p>(2025-) Knowledge becomes ambient. Context persists across every surface. Your insights follow you, connect automatically, and compound over time.</p>
                     </div>
                 </div>
-                <p style="text-align: center; margin-top: 2rem; font-style: italic; color: var(--gray);">
-                    We're at the same inflection point as MS-DOS → Windows, or browsers → mobile. 
-                    The winners of Era 3 will define the next decade of work.
-                </p>
             </div>
 
+            <p style="text-align: center; font-size: 1.25rem; margin: 3rem 0;">
+                We're building the infrastructure for Era 3. Not another app in your stack - 
+                the connective tissue between everything you already use.
+            </p>
+
+            <h2>The Third Era Isn't About New Tools. It's About New Physics.</h2>
+
+            <p>
+                In Era 2, we accepted that context dies when you close a tab. That insights vanish when you 
+                switch apps. That your team's collective intelligence resets with every project.
+            </p>
+
+            <p>
+                But what if those weren't laws of nature? What if they were just bad architecture?
+            </p>
+
+            <!-- Improved Transformation Section -->
             <div class="transformation-section">
-                <h3 class="transformation-title">What If Context Never Disappeared?</h3>
+                <h3>The Shift From Scarcity to Abundance</h3>
                 
-                <div class="before-after">
-                    <div class="before">
-                        <h4>Today's Reality</h4>
-                        <p>• Close tabs = lose connections</p>
-                        <p>• Switch tasks = restart thinking</p>
-                        <p>• Save information = forget context</p>
-                        <p>• Team knowledge = individual silos</p>
-                        <p>• Past insights = lost forever</p>
+                <div class="transformation-cards">
+                    <div class="transformation-card transformation-card-before">
+                        <div class="transformation-card-badge">Current State</div>
+                        <div class="transformation-card-header">
+                            <div class="transformation-card-icon">📊</div>
+                            <h4>Today's Reality</h4>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✕</div>
+                            <div class="transformation-feature-text">
+                                <strong>Lost connections:</strong> Every closed tab erases understanding
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✕</div>
+                            <div class="transformation-feature-text">
+                                <strong>Mental resets:</strong> Context switching destroys flow state
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✕</div>
+                            <div class="transformation-feature-text">
+                                <strong>Empty archives:</strong> Saved links without living context
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✕</div>
+                            <div class="transformation-feature-text">
+                                <strong>Knowledge silos:</strong> Teams working in isolation
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✕</div>
+                            <div class="transformation-feature-text">
+                                <strong>Vanishing insights:</strong> Breakthroughs lost to time
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="transformation-arrow">→</div>
-                    
-                    <div class="after">
-                        <h4>Tomorrow's Possibility</h4>
-                        <p>• Close tabs = preserve understanding</p>
-                        <p>• Switch tasks = resume exactly</p>
-                        <p>• Save information = keep connections</p>
-                        <p>• Team knowledge = shared insights</p>
-                        <p>• Past insights = compound forward</p>
+
+                    <div class="transformation-card transformation-card-after">
+                        <div class="transformation-card-badge">With Folklore</div>
+                        <div class="transformation-card-header">
+                            <div class="transformation-card-icon">✨</div>
+                            <h4>Tomorrow's Possibility</h4>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✓</div>
+                            <div class="transformation-feature-text">
+                                <strong>Persistent understanding:</strong> Context survives every transition
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✓</div>
+                            <div class="transformation-feature-text">
+                                <strong>Seamless continuity:</strong> Pick up exactly where you left off
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✓</div>
+                            <div class="transformation-feature-text">
+                                <strong>Living knowledge:</strong> Information maintains its connections
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✓</div>
+                            <div class="transformation-feature-text">
+                                <strong>Collective intelligence:</strong> Team insights automatically connect
+                            </div>
+                        </div>
+                        <div class="transformation-feature">
+                            <div class="transformation-feature-icon">✓</div>
+                            <div class="transformation-feature-text">
+                                <strong>Compounding wisdom:</strong> Past discoveries fuel future breakthroughs
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="testimonial">
-                <p class="testimonial-text">
-                    "During our early testing, I finally experienced what it's like to have my research 
-                    persist across sessions. Instead of spending 30 minutes trying to remember where I 
-                    left off, I just... continued. It surfaced a customer insight from two months ago that 
-                    perfectly solved today's problem. That connection would have been lost forever with my 
-                    current tools. This is what the future of work should feel like."
-                </p>
-                <div class="testimonial-author">
-                    — Early beta tester, Product Manager at a SaaS startup
-                </div>
-            </div>
+            <p style="font-size: 1.25rem; margin: 3rem 0;">
+                This isn't a feature request. It's a fundamental reimagining of how knowledge persists, 
+                connects, and compounds. When context becomes permanent, when connections become automatic, 
+                when insights build on insights across time and teams - that's when we unlock the collective 
+                intelligence we've been leaving on the table.
+            </p>
 
-            <div class="magic-moment">
-                <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">The Magic of Threading</h2>
+            <div class="knowledge-layer-section">
+                <h2 style="margin-top: 0;">The Knowledge Layer: How Context Becomes Persistent</h2>
                 
-                <div class="connection-flow">
-                    <div class="connection-node">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💡</div>
-                        <div style="font-weight: 600; margin-bottom: 0.25rem;">Customer Insight</div>
-                        <div style="font-size: 0.75rem; color: var(--gray);">"We need better collaboration"</div>
-                    </div>
-                    
-                    <div class="connection-arrow">→</div>
-                    
-                    <div class="connection-node">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧵</div>
-                        <div style="font-weight: 600; margin-bottom: 0.25rem;">FolkLore Threads</div>
-                        <div style="font-size: 0.75rem; color: var(--gray);">Connects everything</div>
-                    </div>
-                    
-                    <div class="connection-arrow">→</div>
-                    
-                    <div class="connection-node">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
-                        <div style="font-weight: 600; margin-bottom: 0.25rem;">Team Innovation</div>
-                        <div style="font-size: 0.75rem; color: var(--gray);">Ships in days, not months</div>
-                    </div>
-                </div>
-
-                <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto;">
-                    When Sarah's customer insight automatically connects to Marcus's technical research, 
-                    which surfaces in Maya's design review, which informs James's sales strategy — 
-                    <strong>that's when 1+1+1+1 = 100.</strong>
+                <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto 2rem;">
+                    Every insight you capture doesn't just get saved - it creates a thread. These threads 
+                    automatically connect across time, across tools, across teams. Think of it as your 
+                    organization's neural network, where every new connection strengthens the whole.
                 </p>
 
-                <div class="formula-box" style="margin-top: 2rem;">
-                    <div class="formula">Value = 2^n</div>
-                    <div class="formula-explanation">
-                        Where n is every future connection. Each new thread exponentially increases collective intelligence.
-                    </div>
-                </div>
-            </div>
+                <h3>How Connected Intelligence Works</h3>
+                <p>
+                    <strong>Capture:</strong> Your research lives where you find it<br>
+                    <strong>Connect:</strong> AI discovers relationships you'd miss<br>
+                    <strong>Compound:</strong> Every insight builds on what came before
+                </p>
 
-            <h2>How Threading Works</h2>
-
-            <div class="threading-demo">
-                <div class="thread-container">
-                    <div class="thread-point">
-                        <div class="thread-icon">🌐</div>
-                        <div class="thread-label">Browser Research</div>
-                    </div>
-                    
-                    <div class="thread-connector">
-                        <div class="thread-flow"></div>
-                    </div>
-                    
-                    <div class="thread-point">
-                        <div class="thread-icon">💬</div>
-                        <div class="thread-label">Team Discussions</div>
-                    </div>
-                    
-                    <div class="thread-connector">
-                        <div class="thread-flow"></div>
-                    </div>
-                    
-                    <div class="thread-point">
-                        <div class="thread-icon">🎯</div>
-                        <div class="thread-label">Connected Insights</div>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 2rem; color: var(--gray);">
-                    Every thought leaves a thread. Every thread connects. Every connection compounds.
+                <p style="font-style: italic; color: var(--gray); margin-top: 2rem;">
+                    This isn't about moving your data to another silo. It's about creating a living map 
+                    of your collective intelligence.
                 </p>
             </div>
 
-            <!-- Threading Example -->
-            <div class="threading-example">
-                <h3 style="text-align: center; margin-bottom: 1.5rem;">The Vision: How Insights Could Flow</h3>
-                <div class="thread-timeline">
-                    <div class="thread-event">
-                        <div class="thread-time">Imagine Week 1: Tuesday 11:34 AM</div>
-                        <div class="thread-content">Maria highlights "pricing complexity" in customer feedback</div>
-                    </div>
-                    <div class="thread-event">
-                        <div class="thread-time">Imagine Week 3: Thursday 3:22 PM</div>
-                        <div class="thread-content">Tom researches pricing models. Maria's insight surfaces automatically.</div>
-                    </div>
-                    <div class="thread-event">
-                        <div class="thread-time">Imagine Week 3: Thursday 3:47 PM</div>
-                        <div class="thread-content">Tom builds on Maria's discovery. Solution emerges. No redundant work.</div>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 1.5rem; color: var(--gray); font-style: italic;">
-                    This is the future we're building: Intelligence flowing naturally, no meetings needed.
-                </p>
-            </div>
+            <h2>The Network Effect of Knowledge</h2>
+            <p style="text-align: center; font-size: 1.25rem;">
+                When Maria's customer insight automatically surfaces in Tom's architecture review, 
+                which informs Maya's design decisions, which shapes James's sales strategy - 
+                that's when <span class="highlight">1+1+1+1 = 100</span>.
+            </p>
 
             <h2>The Dawn of Connected Context</h2>
-
-            <p style="text-align: center; font-size: 1.25rem; margin-bottom: 3rem;">
-                Imagine if work could actually be like this:
-            </p>
 
             <div class="story-box">
                 <p>
@@ -2417,365 +1252,133 @@
                 <span class="highlight">connections matter more than storage</span>.
             </p>
 
-            <!-- What We're Building Section -->
-            <div style="background: linear-gradient(135deg, rgba(123, 63, 242, 0.08) 0%, rgba(147, 51, 234, 0.05) 100%); border-radius: 24px; padding: 3rem; margin: 4rem 0; text-align: center;">
-                <h2 style="margin-bottom: 1.5rem; color: var(--primary);">What We're Building</h2>
-                <p style="font-size: 1.25rem; line-height: 1.8; max-width: 700px; margin: 0 auto;">
-                    FolkLore is creating the cognitive infrastructure to make this vision real. We're starting 
-                    with a Chrome extension that captures and connects your web research. But that's just the 
-                    beginning. We're building toward a future where every tool you use, every thought you have, 
-                    every insight your team discovers—all connected, all accessible, all compounding.
-                </p>
-                <p style="margin-top: 1.5rem; font-size: 1.125rem; color: var(--gray);">
-                    It's ambitious. It's necessary. And we need builders like you to make it happen.
-                </p>
-            </div>
+            <h2>What We're Building</h2>
 
-            <!-- Strategic Moats -->
-            <div class="strategic-moats">
-                <h2>Why Big Tech Can't Build This</h2>
-                <div class="moats-grid">
-                    <div class="moat-item">
-                        <div class="moat-icon">🔍</div>
-                        <h4>Google</h4>
-                        <p class="moat-reason">Needs you searching repeatedly. Connected context kills search revenue.</p>
-                    </div>
-                    <div class="moat-item">
-                        <div class="moat-icon">🏢</div>
-                        <h4>Microsoft</h4>
-                        <p class="moat-reason">Needs you in meetings. Persistent context eliminates half of them.</p>
-                    </div>
-                    <div class="moat-item">
-                        <div class="moat-icon">📝</div>
-                        <h4>Notion</h4>
-                        <p class="moat-reason">Admits their walled garden. Threading breaks walls they profit from.</p>
-                    </div>
-                </div>
-                <p style="text-align: center; margin-top: 2rem; font-style: italic; color: var(--gray);">
-                    Their business models depend on the very fragmentation we're solving.
-                </p>
-            </div>
-
-            <div class="market-opportunity">
-                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 2rem;">The Inevitable Future</h2>
-                
-                <div class="market-stats-grid">
-                    <div class="market-stat">
-                        <div class="stat-value">1.25B</div>
-                        <div style="font-size: 0.875rem; opacity: 0.9;">Knowledge workers globally</div>
-                    </div>
-                    <div class="market-stat">
-                        <div class="stat-value">87</div>
-                        <div style="font-size: 0.875rem; opacity: 0.9;">Apps per worker</div>
-                    </div>
-                    <div class="market-stat">
-                        <div class="stat-value">23min</div>
-                        <div style="font-size: 0.875rem; opacity: 0.9;">Lost per context switch</div>
-                    </div>
-                    <div class="market-stat">
-                        <div class="stat-value">10x</div>
-                        <div style="font-size: 0.875rem; opacity: 0.9;">Intelligence multiplier</div>
-                    </div>
-                </div>
-
-                <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto; position: relative; z-index: 1;">
-                    Just as TCP/IP became the protocol for the internet, FolkLore becomes the 
-                    protocol for human intelligence. Every app will connect. Every thought will 
-                    thread. Every team will think as one.
-                </p>
-                <div class="citation" style="text-align: center; color: rgba(255, 255, 255, 0.7); margin-top: 1rem;">
-                    Source: Gartner, "Future of Knowledge Work", 2024
-                </div>
-            </div>
-
-            <!-- Vision Metrics -->
-            <div class="vision-metrics">
-                <h2>The Future We're Building</h2>
-                <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">
-                    Based on our research and early prototypes, here's what becomes possible:
-                </p>
-                <div class="metrics-grid">
-                    <div class="metric-item">
-                        <div class="metric-value">3x</div>
-                        <div class="metric-label">Faster decision-making</div>
-                    </div>
-                    <div class="metric-item">
-                        <div class="metric-value">67%</div>
-                        <div class="metric-label">Less duplicate work</div>
-                    </div>
-                    <div class="metric-item">
-                        <div class="metric-value">1B</div>
-                        <div class="metric-label">Minds to connect</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="vision-statement">
-                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">This Is Our North Star</h2>
-                <p style="font-size: 1.25rem; color: rgba(255, 255, 255, 0.95); max-width: 700px; margin: 0 auto; position: relative; z-index: 1;">
-                    We're not building another productivity app. We're building the cognitive 
-                    infrastructure that will power how humanity thinks, creates, and collaborates 
-                    for the next century. When a billion knowledge workers can thread their 
-                    thoughts across every tool, every team, every moment — that's when human 
-                    intelligence takes its next evolutionary leap.
-                </p>
-            </div>
-
-            <div class="cta-section">
-                <h2 style="color: white; margin-bottom: 1rem;">Join Us in Building the Future</h2>
-                <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.25rem; margin-bottom: 2rem;">
-                    We're just getting started. Our Chrome extension is the first step toward this vision. 
-                    Be part of shaping how a billion knowledge workers will think tomorrow.
-                </p>
-                <div class="button-group">
-                    <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="button">
-                        Try Our Early Extension
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                    <a href="mailto:team@folkloreai.com" class="button secondary">
-                        Partner With Us
-                    </a>
-                </div>
-                <p style="margin-top: 2rem; font-size: 0.875rem; opacity: 0.9; position: relative; z-index: 1;">
-                    Join pioneering teams already exploring what's possible
-                </p>
-            </div>
-
-            <p style="text-align: center; color: var(--gray); margin-top: 4rem; font-style: italic; font-size: 1.125rem;">
-                "In five years, working without cognitive threading will feel like working without the internet. 
-                <br>We're building that inevitable future, starting today."
+            <p style="font-size: 1.25rem; text-align: center;">
+                <em>FolkLore is the connective tissue for the internet's collective intelligence.</em>
             </p>
+
+            <h3>Today: A Chrome Extension</h3>
+            <p>
+                Capture insights wherever you find them. Watch as they automatically connect to your team's 
+                growing knowledge graph. No more lost breakthroughs, no more repeated discoveries.
+            </p>
+
+            <h3>Tomorrow: The Knowledge Layer</h3>
+            <p>
+                A persistent intelligence that follows you across every tool, every context, every collaboration. 
+                Your thoughts don't just get saved - they evolve, connect, and compound with your team's 
+                collective understanding.
+            </p>
+
+            <h3>The Paradigm Shift</h3>
+            <p>
+                Current tools optimize for individual productivity within silos. We're optimizing for collective 
+                intelligence across boundaries. While others build better filing cabinets, we're building the 
+                neural pathways between them.
+            </p>
+
+            <p style="font-size: 1.25rem; margin: 3rem 0;">
+                We can build this because we're not protecting existing business models - we're creating the 
+                infrastructure for how knowledge work should have always worked.
+            </p>
+
+            <p style="text-align: center; font-size: 1.375rem; font-weight: 600; color: var(--primary);">
+                It's ambitious. It's necessary. And it starts with you.
+            </p>
+
+            <p style="text-align: center; margin: 2rem 0; color: var(--gray);">
+                Building something in this space? Let's talk: <a href="mailto:partners@folkloreai.com" style="color: var(--primary); text-decoration: underline;">partners@folkloreai.com</a>
+            </p>
+
+            <h2>The Strategic Imperative</h2>
+
+            <p>
+                We're at an inflection point. The cost of fragmented intelligence now exceeds the value of 
+                specialized tools. Every organization faces the same choice: continue accepting that 40% of 
+                discoveries will be recreated, that breakthrough insights will die in channel threads, that 
+                collective intelligence resets with every project - or build the infrastructure that makes 
+                knowledge truly persistent.
+            </p>
+
+            <p>
+                The winners in the next decade won't be those with the best individual tools. They'll be those 
+                who can synthesize insights across boundaries, who can turn their organization's collective 
+                discoveries into compounding intelligence.
+            </p>
+
+            <h3>Why Now</h3>
+
+            <p>Three forces are converging:</p>
+
+            <p>
+                <strong>First,</strong> AI can finally understand context, not just keywords. It can recognize 
+                that your customer complaint about "confusing pricing" connects to your engineer's architectural 
+                proposal and your designer's user flow critique.
+            </p>
+
+            <p>
+                <strong>Second,</strong> the economic pressure is unsustainable. McKinsey's $2.7 trillion figure 
+                isn't abstract - it's your team rediscovering solutions, your deals lost to coordination failures, 
+                your innovations delayed by institutional amnesia.
+            </p>
+
+            <p>
+                <strong>Third,</strong> a generation that grew up with networked thinking is rejecting tools that 
+                silo their intelligence. They intuitively understand that value comes from connection, not collection.
+            </p>
+
+            <h2>Building the Knowledge Layer</h2>
+
+            <p>
+                This isn't another app to add to your stack. It's the missing layer that makes your stack 
+                actually work together. Just as TCP/IP enabled computers to share data, the knowledge layer 
+                enables minds to share understanding.
+            </p>
+
+            <p>
+                We're starting with a Chrome extension because that's where modern knowledge work happens - 
+                in the browser, across tabs, between contexts. But we're building toward a future where:
+            </p>
+
+            <ul style="font-size: 1.125rem; line-height: 1.8; margin: 1.5rem 0 1.5rem 2rem;">
+                <li>Your morning research automatically informs your afternoon decisions</li>
+                <li>Your team's collective intelligence grows with every interaction</li>
+                <li>Past insights compound into future breakthroughs</li>
+                <li>Knowledge persists, connects, and evolves without conscious effort</li>
+            </ul>
+
+
+
+            <!-- Final CTA - Refined Version -->
+            <div class="final-cta-wrapper">
+                <div class="final-cta-inner">
+                    <h2 class="final-cta-headline">
+                        The <span class="final-cta-highlight">Knowledge Layer</span> for<br>
+                        1 Billion Connected Minds
+                    </h2>
+                    
+                    <p class="final-cta-future">
+                        In five years, working without persistent context will feel like working without the internet.
+                    </p>
+
+                    <p class="final-cta-vision">
+                        We're building the context infrastructure 
+                        that will define how we all create, connect and compound our ideas 
+                        in coming years.
+                    </p>
+
+                    <p class="final-cta-closing">
+                        The future of work isn't just about better tools.<br>
+                        It's about connected intelligence.
+                    </p>
+
+                    <p class="final-cta-contact">
+                        <a href="mailto:partners@folkloreai.com">partners@folkloreai.com</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </main>
-
-    <script>
-        // Animate counter on scroll
-        const observerOptions = {
-            threshold: 0.5
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.classList.contains('time-counter')) {
-                    animateCounter(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        function animateCounter(element) {
-            const target = 23;
-            let current = 0;
-            const increment = target / 50;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current) + ' minutes';
-            }, 30);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const counter = document.querySelector('.time-counter');
-            observer.observe(counter);
-
-            // Fade in elements
-            const fadeElements = document.querySelectorAll('.pain-grid, .transformation-section, .cost-visualization, .magic-moment, .testimonial, .day-in-life, .app-ecosystem, .threading-demo, .why-now-section, .historical-timeline, .strategic-moats, .vision-metrics, .philosophical-box, .market-impact, .app-growth-timeline, .connection-discovery, .threading-example');
-            fadeElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s ease-out';
-            });
-
-            const fadeObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            fadeElements.forEach(el => fadeObserver.observe(el));
-
-            // Animate market stats
-            const marketSection = document.querySelector('.market-opportunity');
-            if (marketSection) {
-                const marketObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const statValues = entry.target.querySelectorAll('.stat-value');
-                            statValues.forEach((stat, index) => {
-                                setTimeout(() => {
-                                    stat.style.animation = 'scaleIn 0.6s ease-out forwards';
-                                }, index * 100);
-                            });
-                        }
-                    });
-                }, { threshold: 0.5 });
-                
-                marketObserver.observe(marketSection);
-            }
-
-            // Smooth scroll for connection nodes
-            const nodes = document.querySelectorAll('.connection-node');
-            nodes.forEach((node, index) => {
-                node.addEventListener('click', () => {
-                    node.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        node.style.transform = '';
-                    }, 200);
-                });
-            });
-
-            // Animate personas on hover and show connections
-            const personas = document.querySelectorAll('.persona-story');
-            personas.forEach(persona => {
-                persona.addEventListener('mouseenter', () => {
-                    const tools = persona.querySelectorAll('.tool-tag');
-                    tools.forEach((tool, index) => {
-                        setTimeout(() => {
-                            tool.style.transform = 'scale(1.1)';
-                            setTimeout(() => {
-                                tool.style.transform = 'scale(1)';
-                            }, 200);
-                        }, index * 50);
-                    });
-
-                    // Show connections between personas
-                    const personName = persona.dataset.person;
-                    personas.forEach(otherPersona => {
-                        if (otherPersona !== persona) {
-                            otherPersona.style.opacity = '0.7';
-                        }
-                    });
-                });
-
-                persona.addEventListener('mouseleave', () => {
-                    personas.forEach(p => {
-                        p.style.opacity = '1';
-                    });
-                });
-            });
-
-            // App bubble interactions
-            const appBubbles = document.querySelectorAll('.app-bubble');
-            appBubbles.forEach(bubble => {
-                bubble.addEventListener('mouseenter', () => {
-                    // Create ripple effect
-                    const ripple = document.createElement('div');
-                    ripple.style.position = 'absolute';
-                    ripple.style.width = '100%';
-                    ripple.style.height = '100%';
-                    ripple.style.borderRadius = '16px';
-                    ripple.style.background = 'rgba(123, 63, 242, 0.2)';
-                    ripple.style.animation = 'ripple 0.6s ease-out';
-                    ripple.style.pointerEvents = 'none';
-                    ripple.style.top = '0';
-                    ripple.style.left = '0';
-                    bubble.appendChild(ripple);
-                    
-                    setTimeout(() => ripple.remove(), 600);
-                });
-            });
-
-            // Animate impact number
-            const impactNumber = document.querySelector('.impact-number');
-            if (impactNumber) {
-                const impactObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            animateValue(impactNumber, 0, 127, 2000, ' Billion');
-                        }
-                    });
-                }, { threshold: 0.5 });
-                
-                impactObserver.observe(impactNumber);
-            }
-
-            // Animate value function
-            function animateValue(element, start, end, duration, suffix = '') {
-                const startTime = performance.now();
-                const animate = (currentTime) => {
-                    const elapsed = currentTime - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const current = Math.floor(progress * (end - start) + start);
-                    element.textContent = '$' + current + suffix;
-                    
-                    if (progress < 1) {
-                        requestAnimationFrame(animate);
-                    }
-                };
-                requestAnimationFrame(animate);
-            }
-        });
-
-        // Add scaleIn and ripple animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes scaleIn {
-                0% { transform: scale(0.5); opacity: 0; }
-                100% { transform: scale(1); opacity: 1; }
-            }
-            
-            @keyframes ripple {
-                0% { transform: scale(0); opacity: 1; }
-                100% { transform: scale(2); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        }
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Toggle menu on button click
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-
-        // Close menu on overlay click
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-        // Close menu when clicking on links
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Close menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                closeMobileMenu();
-            }
-        });
-    </script>
-<script>
-// Update navigation tagline from meta tag
-document.addEventListener('DOMContentLoaded', function() {
-    const taglineMeta = document.querySelector('meta[name="tagline"]');
-    const navTagline = document.getElementById('nav-tagline');
-    
-    if (taglineMeta && taglineMeta.content && navTagline) {
-        navTagline.textContent = taglineMeta.content;
-    }
-});
-</script>
 </body>
 </html>

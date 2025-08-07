@@ -225,9 +225,29 @@
         .hero-subtitle {
             font-size: 1.375rem;
             color: var(--smoke);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-weight: 400;
             line-height: 1.5;
+        }
+
+        .hero-trust {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--smoke);
+        }
+
+        .trust-item svg {
+            flex-shrink: 0;
         }
 
         .hero-benefits {
@@ -497,38 +517,60 @@
             color: var(--whisper);
         }
 
-        .problem-grid {
+        .solution-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
-        .problem-card {
+        .solution-card {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
 
-        .problem-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        .solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(123, 63, 242, 0.15);
+        }
+
+        .problem-side, .solution-side {
+            padding: 2rem;
+        }
+
+        .problem-side {
+            background: var(--dawn);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .solution-side {
+            background: white;
+        }
+
+        .problem-icon, .solution-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: inline-block;
         }
 
         .problem-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            color: var(--smoke);
         }
 
-        .problem-card h3 {
+        .solution-icon {
+            color: var(--primary);
+        }
+
+        .solution-card h3 {
             font-size: 1.25rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             color: var(--ink);
         }
 
-        .problem-card p {
+        .solution-card p {
             color: var(--smoke);
             font-size: 0.95rem;
             line-height: 1.5;
@@ -1476,7 +1518,7 @@
 
         /* CTA Section */
         .cta-section {
-            padding: 8rem 0;
+            padding: 2.5rem 0;
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             text-align: center;
@@ -1485,33 +1527,36 @@
         }
 
         .cta-content {
-            max-width: 700px;
+            max-width: 1100px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            padding: 0 2rem;
         }
 
         .cta-title {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
             font-weight: 700;
             letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .cta-subtitle {
-            font-size: 1.375rem;
+            font-size: clamp(1rem, 1.5vw, 1.125rem);
             opacity: 0.9;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             font-weight: 300;
+            display: block;
         }
 
         .cta-button {
             background: white;
             color: var(--primary);
-            padding: 1.25rem 2.5rem;
+            padding: 1rem 2rem;
             border-radius: 100px;
             text-decoration: none;
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 600;
             transition: all 0.3s ease;
             display: inline-flex;
@@ -1522,6 +1567,12 @@
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-note {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: var(--whisper);
         }
 
         /* Footer */
@@ -1677,6 +1728,12 @@
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(123, 63, 242, 0.4);
+        }
+        
+        @media (max-width: 1100px) {
+            .cta-title, .cta-subtitle {
+                display: block;
+            }
         }
         
         @media (max-width: 768px) {
@@ -1963,6 +2020,27 @@
                     Your research spans dozens of tabs. Your thinking jumps between articles. Your insights scatter across sessions. FolkLore threads them all together – so no brilliant connection is ever lost.
                 </p>
                 
+                <div class="hero-trust">
+                    <div class="trust-item">
+                        <svg width="16" height="16" fill="var(--primary)" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span>10,000+ knowledge workers</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" fill="#FFD700" viewBox="0 0 24 24">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                        </svg>
+                        <span>4.8/5 rating</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg width="16" height="16" fill="var(--primary)" viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                        </svg>
+                        <span>Privacy-first</span>
+                    </div>
+                </div>
+                
                 <ul class="hero-benefits">
                     <li>
                         <span class="benefit-icon">✓</span>
@@ -2046,110 +2124,69 @@
         </div>
     </section>
 
-    <!-- Problem Section -->
+    <!-- Problem/Solution Section -->
     <section class="problem-section">
         <div class="section-container">
             <div class="section-header">
-                <div class="section-label">The Hidden Problem</div>
-                <h2 class="section-title">Your browser history is an archive of forgotten brilliance</h2>
+                <h2 class="section-title">Every brilliant insight is lost when you close the tab</h2>
                 <p class="section-description">
-                    Every day, knowledge workers lose dozens of insights. Not because they're careless, but because our tools weren't built for how minds actually work.
+                    FolkLore transforms your scattered research into connected intelligence.
                 </p>
             </div>
             
-            <div class="tab-archive" id="tabArchive">
-                <!-- Lost tabs will be dynamically added here -->
-            </div>
-            
-            <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
-                <p style="font-size: 1.5rem; color: var(--ink); font-weight: 300; line-height: 1.6;">
-                    Each lost tab isn't just a webpage.<br>
-                    It's a thread of thought, severed.<br>
-                    A connection that will never be made.<br>
-                    A pattern that will remain hidden.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Philosophy Section - NEW -->
-    <section class="philosophy-section">
-        <div class="philosophy-content">
-            <h2 class="philosophy-headline">
-                The internet should be an extension of your mind,<br>
-                not a library you visit
-            </h2>
-            <p class="philosophy-text">
-                Every day, you have brilliant insights while reading. Moments of clarity. Connections between ideas. Then you close the tab, and they vanish forever. Your mind doesn't work in sessions. Neither should your research.
-            </p>
-            <h3 class="core-question">
-                What if you never lost a thought again?
-            </h3>
-        </div>
-    </section>
-
-    <!-- What is Folklore Section - NEW -->
-    <section class="what-is-section">
-        <div class="section-container">
-            <div class="what-is-header">
-                <h2 class="what-is-headline">What if every webpage remembered your research?</h2>
-                <p class="what-is-subheadline">That's exactly what Folklore does.</p>
-            </div>
-            
-            <div class="what-is-grid">
-                <div class="what-is-block">
-                    <h3>Your Thoughts Persist</h3>
-                    <p>Every highlight, note, and connection you make stays exactly where you put it. Forever.</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="problem-side">
+                        <div class="problem-icon">❌</div>
+                        <h3>Lost Forever</h3>
+                        <p>That perfect quote vanishes when you close the tab</p>
+                    </div>
+                    <div class="solution-side">
+                        <div class="solution-icon">✓</div>
+                        <h3>Persistent Annotations</h3>
+                        <p>Your highlights live on every page, forever</p>
+                    </div>
                 </div>
                 
-                <div class="what-is-block">
-                    <h3>Across Every Website</h3>
-                    <p>From academic papers to blog posts, your research lives on every page you visit.</p>
+                <div class="solution-card">
+                    <div class="problem-side">
+                        <div class="problem-icon">🔀</div>
+                        <h3>Scattered Research</h3>
+                        <p>Ideas spread across 50 tabs with no connection</p>
+                    </div>
+                    <div class="solution-side">
+                        <div class="solution-icon">🔗</div>
+                        <h3>Connected Knowledge</h3>
+                        <p>AI threads related insights across all your research</p>
+                    </div>
                 </div>
                 
-                <div class="what-is-block">
-                    <h3>Growing Over Time</h3>
-                    <p>Return months later. Build on your past insights. Watch your understanding compound.</p>
+                <div class="solution-card">
+                    <div class="problem-side">
+                        <div class="problem-icon">🔄</div>
+                        <h3>Starting Over</h3>
+                        <p>Every session resets your thinking to zero</p>
+                    </div>
+                    <div class="solution-side">
+                        <div class="solution-icon">📈</div>
+                        <h3>Continuous Thinking</h3>
+                        <p>Pick up exactly where your mind left off</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works Section - UPDATED -->
-    <section class="how-it-works-section" id="features">
-        <div class="section-container">
-            <div class="section-header">
-                <div class="section-label">How FolkLore Works</div>
-                <h2 class="section-title">Research naturally. Your thoughts stay forever.</h2>
-            </div>
-            
-            <div class="how-it-works-steps">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Research Naturally</h3>
-                    <p>Browse any website, read any article, just like always</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Your Thoughts Stay</h3>
-                    <p>Highlight key insights. They live on that page forever.</p>
-                </div>
-                
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Return and Build</h3>
-                    <p>Come back anytime. Your past research is waiting.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Magic Moment Section - NEW -->
-    <section class="magic-moment-section">
+    <section class="magic-moment-section" id="features">
         <div class="magic-moment-container">
             <div class="magic-moment-header">
-                <h2 class="magic-moment-title">See what happens when you return to your old research</h2>
+                <div class="section-label">SEE IT IN ACTION</div>
+                <h2 class="magic-moment-title">Watch your research come alive</h2>
+                <p class="section-description">
+                    Return to any webpage months later. Your thinking is right there, waiting to continue.
+                </p>
             </div>
             
             <div class="magic-demo">
@@ -2203,156 +2240,39 @@
             </div>
             
             <div class="demo-controls">
-                <button class="demo-button" onclick="runMagicDemo()">See the Magic</button>
+                <button class="demo-button" onclick="runMagicDemo()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Watch the Magic
+                </button>
             </div>
             
             <!-- Three Powerful Modes -->
             <div class="three-modes-section">
-                <div class="three-modes-header">
-                    <h3 class="three-modes-title">Three Powerful Modes</h3>
-                </div>
-                
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">📝</div>
                         <h3>Annotate</h3>
-                        <p>Capture insights as they emerge. Highlight any text, add your thoughts, and watch as patterns reveal themselves.</p>
+                        <p>Highlight any text and add notes. They stay on that page forever.</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">💡</div>
-                        <h3>Insights</h3>
-                        <p>Let AI illuminate connections you missed. Surface themes, extract patterns, and build understanding.</p>
+                        <h3>AI Insights</h3>
+                        <p>Surface patterns and connections across all your research automatically.</p>
                     </div>
                     
                     <div class="feature-card">
                         <div class="feature-icon">💭</div>
                         <h3>Brainstorm</h3>
-                        <p>Converse with AI personas that adapt to your thinking style. Explore ideas through dialogue.</p>
+                        <p>Chat with AI that understands your research context and thinking style.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Temporal Section (keeping existing) -->
-    <section class="temporal-section">
-        <div class="section-container">
-            <div class="temporal-header">
-                <div class="section-label">Knowledge That Compounds</div>
-                <h2 class="section-title">No thought left behind</h2>
-                <p class="section-description">
-                    Your knowledge grows stronger over time. Every annotation builds on the last, creating a living tapestry of insights that evolves with you.
-                </p>
-            </div>
-            
-            <div class="temporal-flow">
-                <!-- Past Phase -->
-                <div class="temporal-phase">
-                    <div class="phase-icon past-icon">📚</div>
-                    <h3 class="phase-title">Build on the Past</h3>
-                    <p class="phase-description">
-                        Mid-thought three weeks ago, you had to stop. Today, open that session and continue the exact thought you were having. Your AI remembers where your mind was going.
-                    </p>
-                    <div class="phase-example">
-                        <div class="example-label">LAST MONTH</div>
-                        <div class="example-content">
-                            You researched a competitor's product launch. Deep dive into their technology choices, user experience, go-to-market strategy. 50+ websites annotated about their approach and philosophy.
-                        </div>
-                    </div>
-                    <div class="phase-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <!-- Present Phase -->
-                <div class="temporal-phase">
-                    <div class="phase-icon present-icon">🔗</div>
-                    <h3 class="phase-title">Thread the Present</h3>
-                    <p class="phase-description">
-                        Your thoughts don't restart. They continue. Today's thinking builds directly on yesterday's half-formed ideas. Your AI holds the thread while you sleep.
-                    </p>
-                    <div class="phase-example">
-                        <div class="example-label">TODAY</div>
-                        <div class="example-content">
-                            Analyzing that same competitor's moves in a different market. Open your old product research - surprise: 20+ annotations about their decision-making patterns, company culture, strategic priorities. Your narrow research accidentally captured broader intelligence. Building on unexpected foundations.
-                        </div>
-                    </div>
-                    <div class="phase-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                </div>
-                
-                <!-- Future Phase -->
-                <div class="temporal-phase">
-                    <div class="phase-icon future-icon">🚀</div>
-                    <h3 class="phase-title">Shape the Future</h3>
-                    <p class="phase-description">
-                        Your future breakthroughs are being built by continuing thoughts you started months ago. Each session is a chapter in your ongoing thinking.
-                    </p>
-                    <div class="phase-example">
-                        <div class="example-label">NEXT MONTH</div>
-                        <div class="example-content">
-                            Executive asks for industry-wide analysis. You open BOTH sessions: original product research + recent market analysis + new findings. Pattern emerges: you can predict their next move because you understand HOW they think, not just WHAT they did. You see the bigger play before anyone else.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Knowledge Graph Visualization -->
-            <div class="knowledge-graph-visual">
-                <div class="graph-stages">
-                    <div class="graph-stage">
-                        <div class="graph-dots">
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                        </div>
-                        <div class="graph-label">Month 1</div>
-                    </div>
-                    <div class="graph-stage">
-                        <div class="graph-dots">
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                        </div>
-                        <div class="graph-label">Month 3</div>
-                    </div>
-                    <div class="graph-stage">
-                        <div class="graph-dots">
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                            <div class="dot active"></div>
-                        </div>
-                        <div class="graph-label">Month 6</div>
-                    </div>
-                </div>
-                <div class="compounding-message">
-                    <p>Your thinking gets richer with every session, turning scattered tabs into connected understanding</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Testimonial Section -->
     <section class="testimonial-section">
@@ -2418,16 +2338,17 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="cta-content">
-            <h2 class="cta-title">Your next breakthrough is waiting in the threads</h2>
+            <h2 class="cta-title">Never lose a brilliant insight again</h2>
             <p class="cta-subtitle">
-                Join thousands threading their scattered thoughts into brilliant connections.
+                Join 10,000+ knowledge workers building connected intelligence
             </p>
             <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="cta-button">
-                Start Threading Your Thoughts
+                Add to Chrome - It's Free
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
             </a>
+            <p class="cta-note">Takes 30 seconds • No credit card required</p>
         </div>
     </section>
 

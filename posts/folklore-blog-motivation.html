@@ -14,29 +14,50 @@
 
         :root {
             --primary: #7B3FF2;
-            --primary-dark: #5B2FD2;
-            --primary-light: #E9D5FF;
-            --accent: #9333EA;
+            --primary-dark: #6B2FE2;
+            --secondary: #9333EA;
+            --accent: #06b6d4;
+            --light-purple: #F3E8FF;
+            --purple-glow: rgba(123, 63, 242, 0.2);
             --ink: #0a0a0a;
-            --gray: #64748b;
-            --light-gray: #f8fafc;
-            --white: #ffffff;
+            --smoke: #64748b;
+            --whisper: #94a3b8;
+            --paper: #FFFFFF;
+            --dawn: #FAFBFC;
             --gradient: linear-gradient(135deg, #7B3FF2 0%, #9333EA 100%);
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--white);
+            background: var(--paper);
             color: var(--ink);
             line-height: 1.6;
         }
 
         /* Header */
         .header {
-            background: var(--light-gray);
+            background: linear-gradient(to bottom, var(--dawn), var(--paper));
             padding: 7rem 0 4rem;
             text-align: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--light-purple) 0%, transparent 70%);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(180deg); }
         }
 
         .container {
@@ -51,6 +72,18 @@
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--ink);
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.375rem;
+            color: var(--smoke);
+            font-weight: 400;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
         }
 
         .author-info {
@@ -58,9 +91,11 @@
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            color: var(--gray);
+            color: var(--smoke);
             font-size: 1rem;
             margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* Content */
@@ -75,13 +110,6 @@
             color: var(--ink);
         }
 
-        h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 2.5rem 0 1rem;
-            color: var(--ink);
-        }
-
         p {
             font-size: 1.125rem;
             line-height: 1.8;
@@ -90,269 +118,1174 @@
         }
 
         .highlight {
-            background: linear-gradient(120deg, transparent 0%, var(--primary-light) 10%, var(--primary-light) 90%, transparent 100%);
+            background: linear-gradient(120deg, transparent 0%, var(--light-purple) 10%, var(--light-purple) 90%, transparent 100%);
             padding: 0 4px;
         }
 
-        /* Research Timeline */
-        .research-timeline {
-            background: var(--light-gray);
-            padding: 2rem;
-            border-radius: 12px;
-            margin: 2rem 0;
-        }
-
-        .timeline-entry {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .timeline-entry:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .timeline-date {
-            font-size: 0.875rem;
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-task {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-details {
-            font-size: 0.9rem;
-            color: var(--gray);
-        }
-
-        /* Browser Tab Visual */
-        .browser-tabs {
-            background: #f5f5f5;
-            border-radius: 8px 8px 0 0;
-            padding: 0.5rem;
-            display: flex;
-            gap: 0.25rem;
-            overflow-x: auto;
-            margin-bottom: 1rem;
-        }
-
-        .browser-tab {
-            background: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px 6px 0 0;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            color: var(--gray);
-            border: 1px solid #e0e0e0;
-        }
-
-        .browser-tab.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        /* Annotation Example */
-        .web-annotation {
-            background: white;
-            border: 2px solid var(--primary-light);
-            border-radius: 12px;
-            padding: 2rem;
+        /* Session Flow Diagram - Conveyor Belt Animation */
+        .session-flow {
+            background: linear-gradient(135deg, var(--dawn) 0%, rgba(123, 63, 242, 0.03) 100%);
+            border-radius: 20px;
+            padding: 2rem 1rem;
             margin: 2rem 0;
             position: relative;
+            overflow: hidden;
+            min-height: 280px;
         }
 
-        .website-header {
+        .journey-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Conveyor Belt Container */
+        .conveyor-container {
+            position: relative;
+            height: 180px;
+            width: 100%;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e0e0e0;
+            justify-content: center;
+            perspective: 1000px;
         }
 
-        .website-header .url {
-            font-size: 0.875rem;
-            color: var(--gray);
+        .conveyor-track {
+            position: absolute;
+            display: flex;
+            gap: 2rem;
+            animation: conveyorSlide 12s linear infinite;
+            width: fit-content;
         }
 
-        .website-content {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 1rem;
+        @keyframes conveyorSlide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
-        .annotation {
-            background: yellow;
-            padding: 2px 4px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .annotation-notes {
-            background: #fffbeb;
-            border: 1px solid #fbbf24;
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 6px;
-            font-size: 0.875rem;
-        }
-
-        .note-entry {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #fed7aa;
-        }
-
-        .note-entry:last-child {
-            border-bottom: none;
-        }
-
-        .note-date {
-            font-weight: 600;
-            color: #92400e;
-            margin-right: 0.5rem;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
-            border: 2px solid var(--primary-light);
+        /* Journey Blocks */
+        .journey-block {
+            background: var(--paper);
+            border-radius: 16px;
             padding: 1.5rem;
-            border-radius: 12px;
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
+            opacity: 0.7;
+            transform: scale(0.85);
         }
 
-        .stat-number {
+        .journey-block.center {
+            opacity: 1;
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(123, 63, 242, 0.2);
+            background: linear-gradient(135deg, var(--paper) 0%, rgba(123, 63, 242, 0.03) 100%);
+        }
+
+        .block-icon {
             font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--primary);
-            margin: 0;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--gray);
-            margin-top: 0.25rem;
-        }
-
-        /* Use Cases */
-        .use-cases {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .use-case {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .use-case:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .use-case-icon {
-            font-size: 2rem;
             margin-bottom: 0.75rem;
         }
 
-        .use-case-title {
-            font-weight: 600;
+        .block-title {
+            font-weight: 700;
+            font-size: 1rem;
             margin-bottom: 0.5rem;
             color: var(--ink);
         }
 
-        .use-case-desc {
-            font-size: 0.875rem;
-            color: var(--gray);
+        .block-detail {
+            font-size: 0.75rem;
+            color: var(--smoke);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        /* Insight Box */
-        .insight-box {
+        .journey-block.center .block-detail {
+            opacity: 1;
+        }
+
+        /* Special styling for fork block */
+        .journey-block.fork-block {
+            position: relative;
+        }
+
+        .fork-split {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+        }
+
+        .journey-block.fork-block.center .fork-split {
+            display: flex;
+            gap: 1rem;
+            animation: forkAppear 0.5s ease;
+        }
+
+        @keyframes forkAppear {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .fork-option {
+            padding: 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            flex: 1;
+        }
+
+        .fork-rebuild {
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+            color: var(--smoke);
+        }
+
+        .fork-folklore {
             background: var(--gradient);
             color: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            margin: 3rem 0;
-            text-align: center;
+            box-shadow: 0 4px 12px rgba(123, 63, 242, 0.3);
         }
 
-        .insight-box h3 {
+        /* Animated elements within blocks */
+        .mini-tabs {
+            display: flex;
+            gap: 2px;
+            margin-top: 0.5rem;
+        }
+
+        .mini-tab {
+            width: 20px;
+            height: 3px;
+            background: var(--primary);
+            opacity: 0;
+            animation: tabGrow 0.3s ease forwards;
+        }
+
+        .journey-block.center .mini-tab:nth-child(1) { animation-delay: 0.1s; }
+        .journey-block.center .mini-tab:nth-child(2) { animation-delay: 0.2s; }
+        .journey-block.center .mini-tab:nth-child(3) { animation-delay: 0.3s; }
+        .journey-block.center .mini-tab:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes tabGrow {
+            to { opacity: 1; transform: scaleX(1); }
+        }
+
+        /* Highlight animation for capture */
+        .highlight-dots {
+            display: flex;
+            gap: 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .highlight-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fbbf24;
+            opacity: 0;
+            animation: dotPop 0.4s ease forwards;
+        }
+
+        .journey-block.center .highlight-dot:nth-child(1) { animation-delay: 0.1s; }
+        .journey-block.center .highlight-dot:nth-child(2) { animation-delay: 0.2s; }
+        .journey-block.center .highlight-dot:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes dotPop {
+            0% { opacity: 0; transform: scale(0); }
+            50% { transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Calendar for return */
+        .mini-calendar {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-top: 0.25rem;
+        }
+
+        /* Center spotlight effect */
+        .center-spotlight {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(ellipse at center, rgba(123, 63, 242, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Hover to pause */
+        .session-flow:hover .conveyor-track {
+            animation-play-state: paused;
+        }
+
+        /* Progress line */
+        .journey-progress-line {
+            position: absolute;
+            bottom: 10px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--whisper);
+            opacity: 0.3;
+        }
+
+        .progress-indicator {
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px rgba(123, 63, 242, 0.5);
+        }
+
+        /* Evidence Box */
+        .evidence-box {
+            background: var(--paper);
+            border: 2px solid var(--light-purple);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .evidence-box::before {
+            content: '📊';
+            position: absolute;
+            top: -1rem;
+            left: 2rem;
+            background: var(--paper);
+            padding: 0 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .evidence-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .evidence-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .evidence-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .evidence-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .evidence-source {
+            font-size: 0.75rem;
+            color: var(--whisper);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Contexts Carousel */
+        .contexts-carousel-container {
+            position: relative;
+            overflow: hidden;
+            margin: 2rem -2rem;
+            padding: 1rem 0;
+            background: linear-gradient(90deg, var(--paper) 0%, transparent 5%, transparent 95%, var(--paper) 100%);
+        }
+
+        .contexts-carousel {
+            display: flex;
+            gap: 1.5rem;
+            animation: scrollCarousel 30s linear infinite;
+            width: fit-content;
+            padding: 0 2rem;
+        }
+
+        @keyframes scrollCarousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .contexts-carousel:hover {
+            animation-play-state: paused;
+        }
+
+        .context-card {
+            background: var(--paper);
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+            min-width: 280px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .context-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .context-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 24px rgba(123, 63, 242, 0.15);
+        }
+
+        .context-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .context-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            filter: grayscale(0.2);
+        }
+
+        .context-card:hover .context-icon {
+            filter: grayscale(0);
+            transform: scale(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .context-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+        }
+
+        .context-desc {
+            font-size: 0.9rem;
+            color: var(--smoke);
+            line-height: 1.5;
+        }
+
+        /* Before/After Visual Comparison */
+        .comparison-container {
+            background: linear-gradient(135deg, var(--dawn) 0%, rgba(123, 63, 242, 0.02) 100%);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .comparison-side {
+            position: relative;
+        }
+
+        .comparison-label {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .before-label {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: #991b1b;
+        }
+
+        .after-label {
+            background: var(--gradient);
             color: white;
+        }
+
+        /* Mini Browser Mockups */
+        .mini-browser {
+            background: var(--ink);
+            border-radius: 12px;
+            padding: 0.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .browser-top {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .browser-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .browser-dot:nth-child(1) { background: #ef4444; }
+        .browser-dot:nth-child(2) { background: #f59e0b; }
+        .browser-dot:nth-child(3) { background: #10b981; }
+
+        .browser-tabs-chaos {
+            display: flex;
+            gap: 2px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+            height: 24px;
+        }
+
+        .chaos-tab {
+            background: var(--dawn);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px 4px 0 0;
+            font-size: 0.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60px;
+            opacity: 0;
+            animation: tabChaos 0.5s ease forwards;
+        }
+
+        .chaos-tab:nth-child(1) { animation-delay: 0.2s; }
+        .chaos-tab:nth-child(2) { animation-delay: 0.4s; }
+        .chaos-tab:nth-child(3) { animation-delay: 0.6s; }
+        .chaos-tab:nth-child(4) { animation-delay: 0.8s; }
+        .chaos-tab:nth-child(5) { animation-delay: 1s; }
+        .chaos-tab:nth-child(6) { animation-delay: 1.2s; }
+
+        @keyframes tabChaos {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .browser-content-mini {
+            background: var(--paper);
+            border-radius: 0 0 8px 8px;
+            padding: 1rem;
+            min-height: 100px;
+        }
+
+        /* Screenshots Folder */
+        .folder-chaos {
+            background: var(--paper);
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .folder-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .file-list {
+            font-size: 0.75rem;
+            color: var(--smoke);
+        }
+
+        .file-item {
+            padding: 0.25rem 0;
+            opacity: 0;
+            animation: fileAppear 0.3s ease forwards;
+        }
+
+        .file-item:nth-child(1) { animation-delay: 0.5s; }
+        .file-item:nth-child(2) { animation-delay: 0.7s; }
+        .file-item:nth-child(3) { animation-delay: 0.9s; }
+        .file-item:nth-child(4) { animation-delay: 1.1s; }
+
+        @keyframes fileAppear {
+            0% { opacity: 0; transform: translateX(-10px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Apps Icons Chaos */
+        .apps-chaos {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--paper);
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            opacity: 0;
+            animation: appBounce 0.5s ease forwards;
+        }
+
+        .app-icon:nth-child(1) { animation-delay: 0.2s; }
+        .app-icon:nth-child(2) { animation-delay: 0.4s; }
+        .app-icon:nth-child(3) { animation-delay: 0.6s; }
+        .app-icon:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes appBounce {
+            0% { opacity: 0; transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* FolkLore Solution Side */
+        .folklore-browser {
+            background: var(--ink);
+            border-radius: 12px;
+            padding: 0.5rem;
+            box-shadow: 0 4px 20px rgba(123, 63, 242, 0.2);
+            position: relative;
+        }
+
+        .folklore-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: var(--gradient);
+            border-radius: 12px;
+            opacity: 0.2;
+            z-index: -1;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.02); }
+        }
+
+        .folklore-content {
+            background: var(--paper);
+            border-radius: 0 0 8px 8px;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .inline-highlight {
+            background: rgba(255, 220, 0, 0.3);
+            padding: 0.125rem 0.25rem;
+            border-radius: 2px;
+            position: relative;
+            animation: highlightGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes highlightGlow {
+            0%, 100% { box-shadow: 0 0 0 rgba(255, 220, 0, 0); }
+            50% { box-shadow: 0 0 10px rgba(255, 220, 0, 0.5); }
+        }
+
+        .folklore-note {
+            background: #fef3c7;
+            border-left: 3px solid #f59e0b;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            animation: noteSlide 1s ease forwards;
+            animation-delay: 1.5s;
+            opacity: 0;
+        }
+
+        @keyframes noteSlide {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .connection-line {
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: var(--primary);
+            opacity: 0.3;
+            animation: lineGrow 1s ease forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes lineGrow {
+            0% { height: 0; }
+            100% { height: 30px; }
+        }
+
+        /* Divider */
+        .vs-divider {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 80%;
+            background: linear-gradient(180deg, transparent 0%, var(--whisper) 50%, transparent 100%);
+            opacity: 0.3;
+        }
+
+        .vs-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--paper);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.875rem;
+        }
+
+        /* Browser Memory Experience */
+        .browser-memory-container {
+            position: relative;
+            margin: 3rem 0;
+        }
+
+        /* Time Progression */
+        .time-progression {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .time-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .time-emoji {
+            font-size: 1.5rem;
+            animation: timePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes timePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .time-line {
+            height: 4px;
+            background: var(--whisper);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-progress {
+            height: 100%;
+            background: var(--gradient);
+            width: 0;
+            animation: timeAdvance 12s linear infinite;
+            border-radius: 2px;
+        }
+
+        @keyframes timeAdvance {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .time-markers {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--smoke);
+        }
+
+        /* Animated Browser */
+        .browser-memory {
+            background: #3a3a3a;
+            border-radius: 12px;
+            padding: 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .browser-memory.animated::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient);
+            border-radius: 16px;
+            opacity: 0.3;
+            z-index: -1;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        .browser-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: #2d2d2d;
+        }
+
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-dot:nth-child(1) { background: #ef4444; }
+        .browser-dot:nth-child(2) { background: #f59e0b; }
+        .browser-dot:nth-child(3) { background: #10b981; }
+
+        .folklore-indicator {
+            margin-left: auto;
+            background: var(--gradient);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            animation: folklorePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes folklorePulse {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        /* Browser Tabs */
+        .browser-tabs {
+            display: flex;
+            gap: 2px;
+            background: #3a3a3a;
+            padding: 0 0.5rem;
+            align-items: flex-end;
+        }
+        
+        .browser-tab {
+            background: #525252;
+            color: #999;
+            padding: 0.4rem 1rem;
+            border-radius: 6px 6px 0 0;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            opacity: 0.7;
+        }
+        
+        .browser-tab.active {
+            background: white;
+            color: #111;
+            font-weight: 500;
+            opacity: 1;
+        }
+        
+        .browser-content-animated {
+            background: white;
+            padding: 2rem;
+            min-height: 400px;
+            position: relative;
+        }
+
+        .url-bar {
+            background: var(--dawn);
+            padding: 0.5rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 0.875rem;
+            color: var(--smoke);
+        }
+
+        /* Content Showcase */
+        .content-showcase {
+            padding: 1.5rem;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .showcase-page {
+            display: none;
+            animation: contentFade 0.5s ease;
+        }
+
+        .showcase-page.active {
+            display: block;
+        }
+        
+        .showcase-page h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        
+        .original-content {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Connection Discovery Phase */
+        .connection-discovery {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .pattern-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .pattern-header h3 {
+            margin: 0;
+            color: #0369a1;
+        }
+        
+        .pattern-icon {
             font-size: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .connected-insights {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .insight-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid #0ea5e9;
+        }
+        
+        .insight-item .source {
+            font-weight: 600;
+            color: #0369a1;
+            margin-right: 0.5rem;
+        }
+        
+        .connection-line {
+            width: 2px;
+            height: 20px;
+            background: #0ea5e9;
+            margin-left: 2rem;
+        }
+        
+        .synthesis {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .synthesis-icon {
+            font-size: 1.5rem;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes contentFade {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .showcase-item h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--ink);
+        }
+
+        .original-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
             margin-bottom: 1rem;
         }
 
-        .insight-box p {
-            color: rgba(255, 255, 255, 0.9);
+        .price-highlight, .spec-highlight {
+            background: rgba(123, 63, 242, 0.1);
+            padding: 0.125rem 0.25rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        /* FolkLore Annotations */
+        .folklore-annotation {
+            background: #fffbeb;
+            border: 2px solid #fbbf24;
+            border-radius: 8px;
+            padding: 1rem 1rem 1rem 2.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(251, 191, 36, 0.15);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .annotation-pin {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.5rem;
             font-size: 1.25rem;
+        }
+
+        .annotation-text {
+            font-style: italic;
+            color: #92400e;
             margin: 0;
+        }
+
+        .annotation-meta {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: #b45309;
+        }
+
+        /* Change Alerts */
+        .change-alert, .price-drop-alert {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            opacity: 0;
+        }
+
+        .price-drop-alert {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border-color: #a7f3d0;
+        }
+
+        /* Insight Connections */
+        .insight-connection {
+            margin-top: 1.5rem;
+            position: relative;
+            opacity: 0;
+        }
+
+        .connection-thread {
+            display: none;
+        }
+
+        .new-insight {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Fade In Animations */
+        .fade-in-1 {
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .fade-in-2 {
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: 2s;
+        }
+
+        .fade-in-3 {
+            animation: fadeInUp 0.5s ease forwards;
+            animation-delay: 3s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Search by Idea */
+        .search-by-idea {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .search-prompt {
+            background: var(--dawn);
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-example {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        .search-results {
+            padding-left: 1rem;
+            font-size: 0.875rem;
+            color: var(--smoke);
+        }
+
+        /* Memory Features */
+        .memory-features {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .feature-pill {
+            background: var(--dawn);
+            border: 1px solid var(--light-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-pill:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
         }
 
         /* CTA Section */
         .cta-section {
             background: var(--gradient);
             color: white;
-            padding: 3rem 2rem;
-            border-radius: 16px;
+            padding: 3rem;
+            border-radius: 20px;
             text-align: center;
-            margin: 4rem 0;
+            margin: 3rem 0;
             position: relative;
             overflow: hidden;
         }
 
-        .cta-section h2 {
-            color: white;
-            margin-bottom: 1rem;
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .cta-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
             position: relative;
             z-index: 1;
         }
 
-        .cta-section p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.25rem;
+        .cta-subtitle {
+            font-size: 1.125rem;
+            opacity: 0.9;
             margin-bottom: 2rem;
             position: relative;
             z-index: 1;
         }
 
-        .button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
+        .cta-button {
             background: white;
             color: var(--primary);
             padding: 1rem 2rem;
             border-radius: 100px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
+            display: inline-block;
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
         }
 
-        .button:hover {
+        .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         /* Navigation */
@@ -432,116 +1365,60 @@
             box-shadow: 0 4px 12px rgba(123, 63, 242, 0.3);
         }
 
-        /* Mobile Menu Styles */
-        .mobile-menu-button {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            color: var(--ink);
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu-button:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background: var(--white);
-            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-            padding: 6rem 2rem 2rem;
-            transition: right 0.3s ease;
-            z-index: 999;
-            
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-nav-link,
-        .mobile-nav-cta {
-            display: block;
-            padding: 1rem 0;
-            text-decoration: none;
-            color: var(--ink);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .mobile-nav-link:hover {
-            color: var(--primary);
-        }
-
-        .mobile-nav-cta {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 100px;
-            text-align: center;
-            margin-top: 1.5rem;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .mobile-nav-cta:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
-            visibility: hidden;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 998;
-            opacity: 0;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .mobile-menu-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-
+        /* Mobile responsiveness */
         @media (max-width: 768px) {
-            .nav-links {
+            .flow-diagram {
+                flex-direction: column;
+            }
+            
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+
+            .contexts-carousel-container {
+                margin: 2rem -1rem;
+            }
+
+            .contexts-carousel {
+                animation-duration: 20s;
+                padding: 0 1rem;
+            }
+
+            .context-card {
+                min-width: 240px;
+                padding: 1.25rem;
+            }
+
+            .context-icon {
+                font-size: 2rem;
+            }
+
+            .context-title {
+                font-size: 0.95rem;
+            }
+
+            .context-desc {
+                font-size: 0.85rem;
+            }
+
+            .comparison-wrapper {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .vs-divider {
                 display: none;
             }
 
-            .mobile-menu-button {
-                display: block;
+            .vs-badge {
+                display: none;
             }
 
-            .mobile-menu {
-                display: block;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .use-cases {
-                grid-template-columns: 1fr;
+            .comparison-container {
+                padding: 2rem 1rem;
             }
         }
     </style>
-    <meta name="tagline" content="Your thoughts deserve to persist">
 </head>
 <body>
     <!-- Navigation -->
@@ -565,7 +1442,7 @@
                 </div>
                 <div>
                     <div style="font-weight: 600; font-size: 1.25rem;">FolkLore AI</div>
-                    <div id="nav-tagline" style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
+                    <div style="font-size: 0.875rem; color: var(--primary);">Threads for your thoughts</div>
                 </div>
             </a>
             <div class="nav-links">
@@ -578,39 +1455,15 @@
                     </svg>
                 </a>
             </div>
-            
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Toggle mobile menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 12h18M3 6h18M3 18h18"/>
-                </svg>
-            </button>
-            
-            <!-- Mobile Menu -->
-            <div class="mobile-menu" id="mobileMenu">
-                <a href="/#features" class="mobile-nav-link">How It Works</a>
-                <a href="/blog" class="mobile-nav-link">Blog</a>
-                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="mobile-nav-cta">
-                    Add to Chrome
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
-            </div>
         </div>
     </nav>
-    
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <header class="header">
         <div class="container">
             <h1>The Day I Realized We've Been Using the Internet Wrong</h1>
-            <p style="font-size: 1.25rem; color: var(--gray); margin-top: -0.5rem; font-weight: 500;">
-                Why your best insights from web research vanish—and what to do about it
-            </p>
+            <p class="subtitle">Your browser shouldn't forget what you learned.</p>
             <div class="author-info">
-                <span>July 22, 2025</span>
+                <span>August 8, 2025</span>
                 <span>•</span>
                 <span>5 min read</span>
             </div>
@@ -619,279 +1472,690 @@
 
     <main class="content">
         <div class="container">
-            <p style="font-size: 1.25rem; line-height: 1.8; margin-bottom: 2rem;">
-                I was preparing our quarterly competitive analysis. Twenty-three tabs open across competitor sites. Notion, Airtable, Linear, Monday—I was deep in their pricing pages, feature lists, customer testimonials.
-            </p>
-
+            <!-- Section 1: The moment we all know -->
+            <h2>The Moment We All Know</h2>
+            
             <p>
-                I found it. The perfect pricing model on a competitor's site. <span class="highlight">Three tiers, usage-based, with a genius approach to enterprise pricing.</span> I highlighted key sections. Made mental notes. Took screenshots.
+                You go deep: 23 tabs, a dozen pages that <strong>almost</strong> connect, a few quotes that click. You close the laptop feeling smart. Two weeks later you're back—and it's like none of it happened. The links exist somewhere, but the <em>reason</em> they mattered is gone.
             </p>
 
-            <p>
-                Three weeks later, board meeting prep. "Which competitor had that innovative pricing model you mentioned?"
-            </p>
+            <div class="session-flow">
+                <h3 class="journey-title">Your Research Journey</h3>
+                
+                <div class="conveyor-container">
+                    <div class="center-spotlight"></div>
+                    
+                    <div class="conveyor-track" id="conveyorTrack">
+                        <!-- First set of blocks -->
+                        <div class="journey-block" data-step="research">
+                            <div class="block-icon">📚</div>
+                            <div class="block-title">Research</div>
+                            <div class="block-detail">23 tabs open</div>
+                            <div class="mini-tabs">
+                                <div class="mini-tab"></div>
+                                <div class="mini-tab"></div>
+                                <div class="mini-tab"></div>
+                                <div class="mini-tab"></div>
+                            </div>
+                        </div>
 
-            <p>
-                I spent 47 minutes searching. Browser history showed 312 sites visited that day. The screenshots? Unlabeled in a folder with 200+ others. My insights about why their model was genius? Gone.
-            </p>
+                        <div class="journey-block" data-step="capture">
+                            <div class="block-icon">✍️</div>
+                            <div class="block-title">Capture</div>
+                            <div class="block-detail">Highlight & note</div>
+                            <div class="highlight-dots">
+                                <div class="highlight-dot"></div>
+                                <div class="highlight-dot"></div>
+                                <div class="highlight-dot"></div>
+                            </div>
+                        </div>
 
-            <div class="browser-tabs">
-                <div class="browser-tab">Linear - Pricing</div>
-                <div class="browser-tab">Notion - Pricing & Plans</div>
-                <div class="browser-tab active">Airtable - Plans</div>
-                <div class="browser-tab">Monday.com - Pricing</div>
-                <div class="browser-tab">Asana - Compare</div>
-                <div class="browser-tab">ClickUp - Pricing</div>
-                <div class="browser-tab">Jira - Plans</div>
-                <div class="browser-tab">Basecamp - Pricing</div>
-            </div>
+                        <div class="journey-block" data-step="close">
+                            <div class="block-icon">💻</div>
+                            <div class="block-title">Close</div>
+                            <div class="block-detail">Session ends</div>
+                        </div>
 
-            <h2>Everyone Has This Problem</h2>
+                        <div class="journey-block" data-step="return">
+                            <div class="block-icon">📅</div>
+                            <div class="block-title">Return</div>
+                            <div class="block-detail">Days later</div>
+                            <div class="mini-calendar">14</div>
+                        </div>
 
-            <div class="use-cases">
-                <div class="use-case">
-                    <div class="use-case-icon">🛍️</div>
-                    <div class="use-case-title">Shopping Research</div>
-                    <div class="use-case-desc">Comparing laptops across 8 sites. Two weeks later: "Which one had the better warranty?"</div>
-                </div>
-                <div class="use-case">
-                    <div class="use-case-icon">📊</div>
-                    <div class="use-case-title">Market Analysis</div>
-                    <div class="use-case-desc">Researching industry trends across 50+ sources. Next quarter: Starting from scratch.</div>
-                </div>
-                <div class="use-case">
-                    <div class="use-case-icon">✈️</div>
-                    <div class="use-case-title">Travel Planning</div>
-                    <div class="use-case-desc">Comparing hotels and flights. A week later: "Which hotel had the free cancellation?"</div>
-                </div>
-                <div class="use-case">
-                    <div class="use-case-icon">🏠</div>
-                    <div class="use-case-title">Real Estate</div>
-                    <div class="use-case-desc">Viewing listings across sites. Later: "Which house had the updated kitchen?"</div>
-                </div>
-                <div class="use-case">
-                    <div class="use-case-icon">💼</div>
-                    <div class="use-case-title">Investment Research</div>
-                    <div class="use-case-desc">Analyzing companies across reports. Months later: Re-reading everything.</div>
-                </div>
-                <div class="use-case">
-                    <div class="use-case-icon">🎓</div>
-                    <div class="use-case-title">Course Comparison</div>
-                    <div class="use-case-desc">Evaluating online courses. Decision time: Can't remember pros and cons.</div>
-                </div>
-            </div>
+                        <div class="journey-block fork-block" data-step="fork">
+                            <div class="block-icon">🔀</div>
+                            <div class="block-title">Choose Path</div>
+                            <div class="block-detail">Critical moment</div>
+                            <div class="fork-split">
+                                <div class="fork-option fork-rebuild">
+                                    <div>😩 Rebuild</div>
+                                </div>
+                                <div class="fork-option fork-folklore">
+                                    <div>✨ Resume</div>
+                                </div>
+                            </div>
+                        </div>
 
-            <p>
-                According to Microsoft Research, <strong>knowledge workers spend 76% of their time searching for or recreating information they've already found.</strong>
-            </p>
+                        <!-- Duplicate set for infinite loop -->
+                        <div class="journey-block" data-step="research">
+                            <div class="block-icon">📚</div>
+                            <div class="block-title">Research</div>
+                            <div class="block-detail">23 tabs open</div>
+                            <div class="mini-tabs">
+                                <div class="mini-tab"></div>
+                                <div class="mini-tab"></div>
+                                <div class="mini-tab"></div>
+                                <div class="mini-tab"></div>
+                            </div>
+                        </div>
 
-            <h2>The Pattern We All Follow</h2>
+                        <div class="journey-block" data-step="capture">
+                            <div class="block-icon">✍️</div>
+                            <div class="block-title">Capture</div>
+                            <div class="block-detail">Highlight & note</div>
+                            <div class="highlight-dots">
+                                <div class="highlight-dot"></div>
+                                <div class="highlight-dot"></div>
+                                <div class="highlight-dot"></div>
+                            </div>
+                        </div>
 
-            <div class="research-timeline">
-                <h3 style="margin-bottom: 1rem;">Every. Single. Time.</h3>
-                <div class="timeline-entry">
-                    <div class="timeline-date">Monday Morning</div>
-                    <div class="timeline-task">Deep competitive research</div>
-                    <div class="timeline-details">Visit 20+ competitor sites. Notice patterns. Make connections. Feel productive.</div>
-                </div>
-                <div class="timeline-entry">
-                    <div class="timeline-date">Tuesday</div>
-                    <div class="timeline-task">Team asks for specific insight</div>
-                    <div class="timeline-details">"You mentioned something about their onboarding flow..." Um, which competitor was that?</div>
-                </div>
-                <div class="timeline-entry">
-                    <div class="timeline-date">Wednesday</div>
-                    <div class="timeline-task">Try to reconstruct</div>
-                    <div class="timeline-details">Check history. Check screenshots. Check Slack. Check notes. Find nothing useful.</div>
-                </div>
-                <div class="timeline-entry">
-                    <div class="timeline-date">Friday</div>
-                    <div class="timeline-task">Start over</div>
-                    <div class="timeline-details">Re-visit all the sites. Re-discover the same insights. Waste 3 hours.</div>
-                </div>
-                <div class="timeline-entry">
-                    <div class="timeline-date">Two Weeks Later</div>
-                    <div class="timeline-task">Realize the truth</div>
-                    <div class="timeline-details">You're visiting the exact same pages you researched before. Making the same observations. Again.</div>
-                </div>
-            </div>
+                        <div class="journey-block" data-step="close">
+                            <div class="block-icon">💻</div>
+                            <div class="block-title">Close</div>
+                            <div class="block-detail">Session ends</div>
+                        </div>
 
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">312</div>
-                    <div class="stat-label">Sites visited in one research session</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">76%</div>
-                    <div class="stat-label">Time spent re-finding information</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">3.5hrs</div>
-                    <div class="stat-label">Average time wasted per week</div>
-                </div>
-            </div>
+                        <div class="journey-block" data-step="return">
+                            <div class="block-icon">📅</div>
+                            <div class="block-title">Return</div>
+                            <div class="block-detail">Days later</div>
+                            <div class="mini-calendar">14</div>
+                        </div>
 
-            <h2>Why Current Methods Fail</h2>
-
-            <p>
-                <strong>Bookmarks:</strong> "Competitor Research" folder with 847 links. No context about why you saved them.<br>
-                <strong>Screenshots:</strong> Desktop folder with 200+ images named "Screenshot 2024-11-15 at 2.34.17 PM"<br>
-                <strong>Note-taking apps:</strong> Copy-pasting loses the visual context, the exact location, the surrounding information<br>
-                <strong>Spreadsheets:</strong> Great for data, useless for visual insights, UX patterns, or design decisions
-            </p>
-
-            <p>
-                The problem isn't organization. <span class="highlight">The problem is that your insights are separated from their source.</span>
-            </p>
-
-            <h2>What If Web Pages Remembered Your Research?</h2>
-
-            <p>
-                Imagine returning to any website and finding your thoughts exactly where you left them. Your highlights still there. Your notes in context. Your insights building over time.
-            </p>
-
-            <div class="web-annotation">
-                <div class="website-header">
-                    <span style="font-size: 1.125rem;">🌐</span>
-                    <span class="url">competitor.com/pricing</span>
-                </div>
-                <div class="website-content">
-                    "Our <span class="annotation">Enterprise plan starts at $299/month</span> and includes unlimited users, advanced analytics, and <span class="annotation">dedicated customer success</span> manager..."
-                </div>
-                <div class="annotation-notes">
-                    <div class="note-entry">
-                        <span class="note-date">Nov 15:</span> Interesting - they're going upmarket with dedicated CSM
+                        <div class="journey-block fork-block" data-step="fork">
+                            <div class="block-icon">🔀</div>
+                            <div class="block-title">Choose Path</div>
+                            <div class="block-detail">Critical moment</div>
+                            <div class="fork-split">
+                                <div class="fork-option fork-rebuild">
+                                    <div>😩 Rebuild</div>
+                                </div>
+                                <div class="fork-option fork-folklore">
+                                    <div>✨ Resume</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="note-entry">
-                        <span class="note-date">Dec 3:</span> They raised enterprise to $399 - testing price sensitivity?
-                    </div>
-                    <div class="note-entry">
-                        <span class="note-date">Dec 20:</span> New feature added to enterprise only - segmenting more aggressively
+
+                    <div class="journey-progress-line">
+                        <div class="progress-indicator"></div>
                     </div>
                 </div>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
-                    Each visit builds on the last. Your competitive intelligence compounds.
+
+                <p style="text-align: center; color: var(--smoke); font-size: 0.875rem; margin-top: 1.5rem; position: relative; z-index: 1;">
+                    Most research isn't one-and-done; returning is the hard part. <br>
+                    <span style="font-size: 0.75rem; opacity: 0.7;">Hover to pause the journey</span>
                 </p>
             </div>
 
-            <h2>The Compound Effect of Persistent Research</h2>
-
+            <!-- Section 2: The pattern and why it persists -->
+            <h2>The Pattern That Traps Us All</h2>
+            
             <p>
-                When your web research persists, something magical happens. You stop starting over. You start building.
+                Most browsing isn't discovery; it's <strong>revisiting</strong>—coming back to pages you've already seen to keep working. Browser history, tabs, and bookmarks are fine for <em>where</em> you were, but not for <em>what you learned</em>, so you rebuild context again and again. People even keep huge tab piles as "reminders," which taxes attention and makes closing anything feel risky.
             </p>
 
-            <p>
-                <strong>First visit:</strong> "Interesting pricing model"<br>
-                <strong>Second visit:</strong> "They changed it - price increase. Testing the market?"<br>
-                <strong>Third visit:</strong> "Added enterprise tier. Moving upmarket like we predicted"<br>
-                <strong>Fourth visit:</strong> "Removed freemium. Bold move. Check their conversion in 3 months"
-            </p>
-
-            <p>
-                Your research becomes a living document. Your insights compound. Your understanding deepens.
-            </p>
-
-            <div class="insight-box">
-                <h3>Your browser should be your research partner</h3>
-                <p>Not just a window to information, but a memory of your discoveries</p>
+            <div class="evidence-box">
+                <h3 class="evidence-title">What Research Shows</h3>
+                <ul class="evidence-list">
+                    <li>Revisits are a large share of browsing; history/bookmarks don't match how people return</li>
+                    <li>Tabs are used as reminders; overload adds cognitive cost</li>
+                </ul>
+                <p class="evidence-source">Sources: Tauscher & Greenberg 1997; Adar, Teevan, Dumais 2009; CHI'21 CMU</p>
             </div>
 
-            <h2>Real Impact for Real Work</h2>
-
+            <!-- Section 3: Four everyday cases -->
+            <h2>Where This Bites You Every Day</h2>
+            
             <p>
-                <strong>Product Managers:</strong> Track competitor features over time. See what's changed. Build better roadmaps.<br>
-                <strong>Marketers:</strong> Remember which campaigns inspired you. Build on previous research.<br>
-                <strong>Sales Teams:</strong> Keep competitive battlecards updated with real insights from actual sites.<br>
-                <strong>Investors:</strong> Track company changes over quarters. See patterns others miss.<br>
-                <strong>Shoppers:</strong> Compare products effectively. Remember why you preferred one option.<br>
-                <strong>Everyone:</strong> Stop losing your best insights to the digital void.
+                <strong>Product research.</strong> Features blur across pages; a quote you loved loses its source.
+                <strong>Marketing research.</strong> Screenshots float without timestamps or context.
+                <strong>Travel planning.</strong> Shortlists get rebuilt every time you revisit.
+                <strong>Shopping decisions.</strong> You forget <em>why</em> Option B beat Option A last week.
             </p>
 
+            <div class="contexts-carousel-container">
+                <div class="contexts-carousel">
+                    <!-- First set of cards -->
+                    <div class="context-card">
+                        <div class="context-icon">💻</div>
+                        <h3 class="context-title">Product research</h3>
+                        <p class="context-desc">Specs and notes scatter; insight loses source.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">📈</div>
+                        <h3 class="context-title">Marketing research</h3>
+                        <p class="context-desc">Screens capture pixels, not timing or provenance.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">🏝️</div>
+                        <h3 class="context-title">Travel planning</h3>
+                        <p class="context-desc">Lists reset; you re-compare the same places.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">🛒</div>
+                        <h3 class="context-title">Shopping decisions</h3>
+                        <p class="context-desc">Decision reasons vanish between sessions.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">📚</div>
+                        <h3 class="context-title">Academic Research</h3>
+                        <p class="context-desc">Perfect citation buried in yesterday's 47 closed tabs.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">🍳</div>
+                        <h3 class="context-title">Recipe Hunting</h3>
+                        <p class="context-desc">That amazing recipe? Good luck finding which food blog had it.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">💼</div>
+                        <h3 class="context-title">Job Research</h3>
+                        <p class="context-desc">Which company had great culture? Your notes are scattered everywhere.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">📊</div>
+                        <h3 class="context-title">Investment DD</h3>
+                        <p class="context-desc">Your analysis spread across screenshots, notes, and forgotten tabs.</p>
+                    </div>
+                    
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="context-card">
+                        <div class="context-icon">💻</div>
+                        <h3 class="context-title">Product research</h3>
+                        <p class="context-desc">Specs and notes scatter; insight loses source.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">📈</div>
+                        <h3 class="context-title">Marketing research</h3>
+                        <p class="context-desc">Screens capture pixels, not timing or provenance.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">🏝️</div>
+                        <h3 class="context-title">Travel planning</h3>
+                        <p class="context-desc">Lists reset; you re-compare the same places.</p>
+                    </div>
+                    <div class="context-card">
+                        <div class="context-icon">🛒</div>
+                        <h3 class="context-title">Shopping decisions</h3>
+                        <p class="context-desc">Decision reasons vanish between sessions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Why usual tools fail -->
+            <h2>Why Your Current Tools Fail You</h2>
+            
             <p>
-                Last week, I returned to that competitor's pricing page. All my highlights were there. My notes about their enterprise strategy. My observation about their pricing psychology.
+                History tells you <em>where you were</em>, not <em>what mattered</em>. Bookmarks, screenshots, notes, and spreadsheets break the connection between insight and source. You end up with fragments in different places, so the next session starts with reconstruction, not progress. This is exactly where people stall—especially as choices and information increase.
             </p>
 
+            <div class="comparison-container">
+                <div class="comparison-wrapper">
+                    <!-- Before Side - Chaos -->
+                    <div class="comparison-side">
+                        <div class="comparison-label before-label">😵 Before - The Daily Struggle</div>
+                        
+                        <!-- Mini Browser with Too Many Tabs -->
+                        <div class="mini-browser">
+                            <div class="browser-top">
+                                <div class="browser-dot"></div>
+                                <div class="browser-dot"></div>
+                                <div class="browser-dot"></div>
+                            </div>
+                            <div class="browser-tabs-chaos">
+                                <div class="chaos-tab">Amazon</div>
+                                <div class="chaos-tab">Review 1</div>
+                                <div class="chaos-tab">Review 2</div>
+                                <div class="chaos-tab">Compare</div>
+                                <div class="chaos-tab">Reddit</div>
+                                <div class="chaos-tab">YouTube</div>
+                            </div>
+                            <div class="browser-content-mini">
+                                <div style="font-size: 0.75rem; color: var(--smoke);">
+                                    18 tabs open as "reminders"<br>
+                                    <span style="color: #ef4444;">❌ Memory usage: Critical</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Screenshots Folder Chaos -->
+                        <div class="folder-chaos">
+                            <div class="folder-header">
+                                📁 Screenshots Folder
+                            </div>
+                            <div class="file-list">
+                                <div class="file-item">📸 Screenshot 2024-11-15 at 2.34.17 PM.png</div>
+                                <div class="file-item">📸 Screenshot 2024-11-15 at 2.35.42 PM.png</div>
+                                <div class="file-item">📸 Screenshot 2024-11-15 at 2.37.09 PM.png</div>
+                                <div class="file-item">📸 ... 197 more files</div>
+                            </div>
+                        </div>
+
+                        <!-- Scattered Apps -->
+                        <div class="apps-chaos">
+                            <div class="app-icon" title="Notion">📝</div>
+                            <div class="app-icon" title="Google Sheets">📊</div>
+                            <div class="app-icon" title="Apple Notes">📱</div>
+                            <div class="app-icon" title="Bookmarks">🔖</div>
+                        </div>
+                    </div>
+
+                    <!-- VS Divider -->
+                    <div class="vs-divider"></div>
+                    <div class="vs-badge">VS</div>
+
+                    <!-- After Side - FolkLore Solution -->
+                    <div class="comparison-side">
+                        <div class="comparison-label after-label">✨ After - With FolkLore</div>
+                        
+                        <!-- FolkLore Browser -->
+                        <div class="folklore-browser">
+                            <div class="folklore-glow"></div>
+                            <div class="browser-top">
+                                <div class="browser-dot"></div>
+                                <div class="browser-dot"></div>
+                                <div class="browser-dot"></div>
+                            </div>
+                            <div class="folklore-content">
+                                <div style="font-size: 0.75rem; color: var(--ink);">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                        <span style="color: var(--primary); font-weight: 600;">✨ FolkLore Active</span>
+                                    </div>
+                                    Research on <span class="inline-highlight">key features</span> saved<br>
+                                    Your <span class="inline-highlight">insights</span> persist in place
+                                </div>
+                                <div class="folklore-note">
+                                    💡 "This model has the best battery life"
+                                    <div style="font-size: 0.65rem; margin-top: 0.25rem; opacity: 0.7;">Added 2 weeks ago • Still here</div>
+                                </div>
+                                <div class="connection-line" style="top: 20px; right: 20px;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Connected Knowledge -->
+                        <div style="background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%); border: 2px solid var(--light-purple); border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem;">
+                            <div style="font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem;">🔗 Everything Connected</div>
+                            <div style="font-size: 0.75rem; color: var(--smoke);">
+                                ✅ Highlights stay on pages<br>
+                                ✅ Notes tied to sources<br>
+                                ✅ Changes tracked automatically<br>
+                                ✅ Pick up where you left off
+                            </div>
+                        </div>
+
+                        <!-- Single Source -->
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem;">🧠</div>
+                            <div style="font-size: 0.875rem; font-weight: 600; color: var(--primary);">One Brain, One Place</div>
+                            <div style="font-size: 0.75rem; color: var(--smoke);">Your research lives where you found it</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Imagine the browser that remembers -->
+            <h2>Imagine: The Browser That Remembers</h2>
+            
             <p>
-                But more importantly, I could see how their strategy had evolved. My three-month-old annotation next to today's observation. <strong>That's when patterns become visible.</strong>
+                Open a page months later and your highlights and notes are right there—anchored to the exact passages, plus a gentle nudge about what changed since last time. That simple shift—preserving context <em>in place</em>—is what turns revisits into momentum instead of a reset. And when you can also search by idea ("that pricing pattern across tools") rather than exact keywords, you find things faster.
             </p>
 
-            <h2>The Internet Has No Memory—But Yours Should</h2>
+            <div class="browser-memory-container">
+                <!-- Time Progression Indicator -->
+                <div class="time-progression">
+                    <div class="time-label" id="timeLabel">
+                        <span class="time-emoji">📝</span>
+                        <span class="time-text">First Visit</span>
+                    </div>
+                    <div class="time-line">
+                        <div class="time-progress"></div>
+                    </div>
+                    <div class="time-markers">
+                        <span>Today</span>
+                        <span>1 Week</span>
+                        <span>1 Month</span>
+                        <span>3 Months</span>
+                    </div>
+                </div>
 
-            <p>
-                We've accepted that closing a tab means losing our thoughts. That research is temporary. That insights are disposable.
-            </p>
+                <!-- Animated Browser -->
+                <div class="browser-memory animated">
+                    <div class="browser-header">
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="browser-dot"></div>
+                        <div class="folklore-indicator">
+                            <span>✨ FolkLore Active</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Browser Tabs -->
+                    <div class="browser-tabs">
+                        <div class="browser-tab active" data-tab="competitor-a">
+                            Competitor A - Pricing
+                        </div>
+                        <div class="browser-tab" data-tab="competitor-b">
+                            Competitor B - Enterprise
+                        </div>
+                        <div class="browser-tab" data-tab="industry-report">
+                            Industry Report 2024
+                        </div>
+                    </div>
+                    
+                    <div class="browser-content-animated">
+                        <!-- URL Bar -->
+                        <div class="url-bar">
+                            <span class="url-text" id="urlText">competitor-a.com/pricing</span>
+                        </div>
 
-            <p>
-                But what if every website remembered your research? What if your browser was actually built for knowledge work, not just consumption?
-            </p>
+                        <!-- Content Area with Multi-Page Examples -->
+                        <div class="content-showcase" id="contentShowcase">
+                            <!-- Page 1: Competitor A Pricing -->
+                            <div class="showcase-page active" data-page="competitor-a">
+                                <h4>Competitor A - Pricing Page</h4>
+                                <p class="original-content">
+                                    Enterprise tier starts at <span class="price-highlight">$299/month</span>. 
+                                    <strong>Minimum 5 seats required.</strong> Includes API access, SSO, dedicated support...
+                                </p>
+                                
+                                <div class="folklore-annotation" id="note-a">
+                                    <div class="annotation-pin">📌</div>
+                                    <div class="annotation-content">
+                                        <p class="annotation-text">"5-seat minimum for enterprise. Watch this upgrade cliff."</p>
+                                        <div class="annotation-meta">
+                                            <span class="saved-date">Your note • 2 weeks ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+                            <!-- Page 2: Competitor B Enterprise -->
+                            <div class="showcase-page" data-page="competitor-b">
+                                <h4>Competitor B - Enterprise Features</h4>
+                                <p class="original-content">
+                                    New enterprise requirements: <strong>5-seat minimum purchase</strong>. 
+                                    Previously 10 seats. Effective January 2024...
+                                </p>
+                                
+                                <div class="folklore-annotation" id="note-b">
+                                    <div class="annotation-pin">📌</div>
+                                    <div class="annotation-content">
+                                        <p class="annotation-text">"Also pushing 5-seat minimum now. Market coordination?"</p>
+                                        <div class="annotation-meta">
+                                            <span class="saved-date">Your note • 1 week ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Page 3: Industry Report -->
+                            <div class="showcase-page" data-page="industry-report">
+                                <h4>SaaS Industry Report 2024</h4>
+                                <p class="original-content">
+                                    Market analysis: Average SMB has <strong>4.2 employees</strong> using collaboration tools. 
+                                    Most are forced to upgrade at 5-seat thresholds...
+                                </p>
+                                
+                                <div class="folklore-annotation" id="note-c">
+                                    <div class="annotation-pin">📌</div>
+                                    <div class="annotation-content">
+                                        <p class="annotation-text">"SMBs average 4.2 seats - the 5-seat cliff is intentional!"</p>
+                                        <div class="annotation-meta">
+                                            <span class="saved-date">Your note • Today</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Cross-Page Connection Discovery -->
+                            <div class="connection-discovery" id="connectionPhase" style="display: none;">
+                                <div class="pattern-header">
+                                    <span class="pattern-icon">🔗</span>
+                                    <h3>Pattern Detected Across 3 Pages</h3>
+                                </div>
+                                
+                                <div class="connected-insights">
+                                    <div class="insight-item">
+                                        <span class="source">Competitor A:</span> "5-seat minimum"
+                                    </div>
+                                    <div class="connection-line"></div>
+                                    <div class="insight-item">
+                                        <span class="source">Competitor B:</span> "Also 5-seat minimum"
+                                    </div>
+                                    <div class="connection-line"></div>
+                                    <div class="insight-item">
+                                        <span class="source">Industry Report:</span> "SMBs average 4.2 seats"
+                                    </div>
+                                </div>
+                                
+                                <div class="synthesis">
+                                    <span class="synthesis-icon">💡</span>
+                                    <strong>Synthesis:</strong> Market is coordinating to force SMBs into enterprise tiers at exactly the point where most need to add their 5th user.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="memory-features">
+                    <div class="feature-pill">
+                        <span>🧠</span> Remembers Everything
+                    </div>
+                    <div class="feature-pill">
+                        <span>🔗</span> Connects Insights
+                    </div>
+                    <div class="feature-pill">
+                        <span>⚡</span> Instant Recall
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: The payoff -->
+            <h2>The Payoff</h2>
+            
             <p>
-                <strong>What if you never lost an insight again?</strong>
+                No more tab piles as to-dos. No more scavenger hunts through screenshots. Your research compounds—each pass sharper than the last. The internet forgets. <strong>Your browser doesn't have to.</strong>
             </p>
 
             <div class="cta-section">
-                <h2>Start Building Cumulative Intelligence</h2>
-                <p>
-                    Turn your browser into a research powerhouse
-                </p>
-                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="button">
-                    Give Your Browser Memory
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+                <h3 class="cta-title">Never lose a brilliant insight again</h3>
+                <p class="cta-subtitle">Add FolkLore to Chrome — it takes ~30 seconds.</p>
+                <a href="https://chromewebstore.google.com/detail/folklore-ai/dhhdghiloajikefeigbjckfiogpdpmen" class="cta-button">
+                    Add to Chrome - It's Free
                 </a>
-                <p style="font-size: 0.875rem; opacity: 0.8; margin-top: 1rem;">
-                    30 seconds to install • Works on any website • Free for personal use
-                </p>
             </div>
 
-            <p style="text-align: center; color: var(--gray); font-style: italic; margin-top: 3rem;">
+            <p style="text-align: center; color: var(--smoke); font-style: italic; margin-top: 3rem;">
                 Next: The Shoebox Problem—why your brain treats browser tabs like a messy closet, and why that's actually evolution trying to help you.
             </p>
         </div>
     </main>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta');
 
-        function toggleMobileMenu() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        // Conveyor belt center detection
+        function updateCenterBlock() {
+            const container = document.querySelector('.conveyor-container');
+            const blocks = document.querySelectorAll('.journey-block');
+            const containerRect = container.getBoundingClientRect();
+            const containerCenter = containerRect.left + containerRect.width / 2;
+
+            blocks.forEach(block => {
+                const blockRect = block.getBoundingClientRect();
+                const blockCenter = blockRect.left + blockRect.width / 2;
+                const distance = Math.abs(containerCenter - blockCenter);
+
+                if (distance < 100) { // Within 100px of center
+                    block.classList.add('center');
+                } else {
+                    block.classList.remove('center');
+                }
+            });
         }
 
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+        // Update center block continuously
+        function startConveyorTracking() {
+            setInterval(updateCenterBlock, 50); // Check every 50ms for smooth tracking
         }
 
-        mobileMenuButton.addEventListener('click', toggleMobileMenu);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
+        // Start tracking when page loads
+        startConveyorTracking();
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.context-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+            observer.observe(el);
         });
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                closeMobileMenu();
+        // Multi-page animation with connection discovery
+        const pages = ['competitor-a', 'competitor-b', 'industry-report'];
+        const urlTexts = {
+            'competitor-a': 'competitor-a.com/pricing',
+            'competitor-b': 'competitor-b.com/enterprise',
+            'industry-report': 'industryreport.com/saas-2024'
+        };
+        let currentPage = 0;
+        let showingConnections = false;
+        
+        function switchTab(pageId) {
+            // Update tabs
+            document.querySelectorAll('.browser-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${pageId}"]`).classList.add('active');
+            
+            // Update content
+            document.querySelectorAll('.showcase-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+            
+            // Update URL
+            const urlText = document.getElementById('urlText');
+            if (urlText && urlTexts[pageId]) {
+                urlText.textContent = urlTexts[pageId];
             }
-        });
+            
+            // Show annotation after a delay
+            const currentPageEl = document.querySelector(`[data-page="${pageId}"]`);
+            const annotation = currentPageEl.querySelector('.folklore-annotation');
+            if (annotation) {
+                setTimeout(() => {
+                    annotation.style.opacity = '1';
+                    annotation.style.animation = 'fadeInSlide 0.6s ease forwards';
+                }, 1000);
+            }
+        }
+        
+        function showConnectionDiscovery() {
+            // Hide all pages
+            document.querySelectorAll('.showcase-page').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show connection discovery
+            const connectionPhase = document.getElementById('connectionPhase');
+            if (connectionPhase) {
+                connectionPhase.style.display = 'block';
+                connectionPhase.style.animation = 'fadeIn 1s ease forwards';
+            }
+            
+            // Update URL to show search
+            const urlText = document.getElementById('urlText');
+            if (urlText) {
+                urlText.textContent = 'folklore.ai/search?q=5-seat patterns';
+            }
+        }
+        
+        function cyclePages() {
+            if (!showingConnections) {
+                if (currentPage < pages.length) {
+                    switchTab(pages[currentPage]);
+                    currentPage++;
+                    
+                    // After showing all pages, show connections
+                    if (currentPage >= pages.length) {
+                        setTimeout(() => {
+                            showingConnections = true;
+                            showConnectionDiscovery();
+                            
+                            // Reset after showing connections for 8 seconds
+                            setTimeout(() => {
+                                showingConnections = false;
+                                currentPage = 0;
+                                // Hide connection phase
+                                const connectionPhase = document.getElementById('connectionPhase');
+                                if (connectionPhase) {
+                                    connectionPhase.style.display = 'none';
+                                }
+                                // Show pages again
+                                document.querySelectorAll('.showcase-page').forEach(page => {
+                                    page.style.display = 'none';
+                                });
+                            }, 8000);
+                        }, 3000);
+                    }
+                }
+            }
+        }
+        
+        // Start animation cycle
+        setTimeout(() => {
+            setInterval(cyclePages, 4000);
+        }, 1000);
+
+        // Update time label to show knowledge building
+        const timeStages = [
+            { label: 'First Visit', emoji: '📝' },
+            { label: 'Return (1 Week)', emoji: '🔍' },
+            { label: 'Building (1 Month)', emoji: '🔗' },
+            { label: 'Synthesizing (3 Months)', emoji: '💡' }
+        ];
+        let currentTimeIndex = 0;
+        
+        function updateTimeLabel() {
+            const timeText = document.querySelector('.time-text');
+            const timeEmoji = document.querySelector('.time-emoji');
+            if (timeText && timeEmoji) {
+                currentTimeIndex = (currentTimeIndex + 1) % timeStages.length;
+                timeText.textContent = timeStages[currentTimeIndex].label;
+                timeEmoji.textContent = timeStages[currentTimeIndex].emoji;
+            }
+        }
+        
+        // Sync time label with progress bar (every 3 seconds)
+        setInterval(updateTimeLabel, 3000);
     </script>
-<script>
-// Update navigation tagline from meta tag
-document.addEventListener('DOMContentLoaded', function() {
-    const taglineMeta = document.querySelector('meta[name="tagline"]');
-    const navTagline = document.getElementById('nav-tagline');
-    
-    if (taglineMeta && taglineMeta.content && navTagline) {
-        navTagline.textContent = taglineMeta.content;
-    }
-});
-</script>
 </body>
 </html>

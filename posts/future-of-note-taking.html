@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Threading Knowledge: The Past, Present, and Future of Human Understanding | FolkLore AI</title>
     <meta name="description" content="From clay tablets to AI-powered systems, explore how humanity's relationship with knowledge is evolving toward a more connected, calmer future.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -33,6 +35,10 @@
             background: var(--white);
             color: var(--ink);
             line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         /* Navigation */
@@ -314,83 +320,251 @@
         .app-universe {
             position: relative;
             height: 400px;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes slow-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @-webkit-keyframes slow-rotate {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
         }
 
         .orbit {
             position: absolute;
             border: 1px dashed rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            animation: rotate 60s linear infinite;
         }
 
         .orbit:nth-child(1) {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
 
         .orbit:nth-child(2) {
-            width: 300px;
-            height: 300px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-duration: 80s;
-            animation-direction: reverse;
-        }
-
-        .orbit:nth-child(3) {
             width: 400px;
             height: 400px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            animation-duration: 100s;
+        }
+
+        .orbit:nth-child(3) {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         @keyframes rotate {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
+        
+        @-webkit-keyframes rotate {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        
 
         .app-node {
             position: absolute;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            font-size: 0.875rem;
+            border-radius: 10px;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.75rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             transition: all 0.3s ease;
             cursor: pointer;
-            animation: float-app 20s ease-in-out infinite;
+            will-change: transform;
+            perspective: 1000px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .app-node.generic-app {
+            background: rgba(255, 255, 255, 0.05);
+            border-style: dashed;
+            opacity: 0.6;
         }
 
-        @keyframes float-app {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes float-3d {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) translateZ(0) scale(1); 
+            }
+            20% { 
+                transform: translateY(-5px) translateX(2px) translateZ(20px) scale(1.05); 
+            }
+            40% { 
+                transform: translateY(-8px) translateX(-1px) translateZ(-10px) scale(0.95); 
+            }
+            60% { 
+                transform: translateY(-3px) translateX(1px) translateZ(15px) scale(1.03); 
+            }
+            80% { 
+                transform: translateY(-6px) translateX(-2px) translateZ(-5px) scale(0.98); 
+            }
         }
+        
+        @keyframes float-3d-alt {
+            0%, 100% { 
+                transform: translateY(0) translateX(0) translateZ(0) scale(1); 
+            }
+            20% { 
+                transform: translateY(-4px) translateX(-2px) translateZ(-15px) scale(0.95); 
+            }
+            40% { 
+                transform: translateY(-7px) translateX(1px) translateZ(25px) scale(1.08); 
+            }
+            60% { 
+                transform: translateY(-2px) translateX(-1px) translateZ(-8px) scale(0.97); 
+            }
+            80% { 
+                transform: translateY(-5px) translateX(2px) translateZ(10px) scale(1.02); 
+            }
+        }
+        
+        @keyframes depth-pulse {
+            0%, 100% { 
+                transform: scale(1) translateZ(0); 
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+            50% { 
+                transform: scale(1.1) translateZ(30px); 
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+        }
+        
+        @keyframes depth-pulse-alt {
+            0%, 100% { 
+                transform: scale(1) translateZ(0); 
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+            50% { 
+                transform: scale(0.92) translateZ(-20px); 
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            }
+        }
+        
 
         .app-node:hover {
             background: rgba(123, 63, 242, 0.3);
-            transform: scale(1.1);
             z-index: 10;
+            box-shadow: 0 10px 30px rgba(123, 63, 242, 0.4);
+            transform: scale(1.1);
+            animation-play-state: paused !important;
         }
 
-        /* Position apps randomly */
-        .app-node:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
-        .app-node:nth-child(2) { top: 10%; right: 20%; animation-delay: 2s; }
-        .app-node:nth-child(3) { top: 35%; left: 5%; animation-delay: 1s; }
-        .app-node:nth-child(4) { top: 40%; right: 10%; animation-delay: 3s; }
-        .app-node:nth-child(5) { bottom: 30%; left: 20%; animation-delay: 1.5s; }
-        .app-node:nth-child(6) { bottom: 20%; right: 25%; animation-delay: 2.5s; }
-        .app-node:nth-child(7) { top: 50%; left: 45%; animation-delay: 0.5s; }
-        .app-node:nth-child(8) { bottom: 40%; right: 40%; animation-delay: 3.5s; }
+        /* Position apps directly on orbital circles with 3D animations */
+        /* Notion - Inner orbit, top */
+        .app-node:nth-child(4) { 
+            top: calc(50% - 150px);
+            left: calc(50% - 40px);
+            opacity: 0.95;
+            animation: 
+                float-3d 12s ease-in-out infinite,
+                depth-pulse 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+        
+        /* Obsidian - Outer orbit, bottom left (225 degrees) */
+        .app-node:nth-child(5) { 
+            top: calc(50% + 177px);
+            left: calc(50% - 177px);
+            opacity: 0.85;
+            animation: 
+                float-3d-alt 15s ease-in-out infinite,
+                depth-pulse-alt 9s ease-in-out infinite;
+            animation-delay: 2s, 1s;
+            transform-style: preserve-3d;
+        }
+        
+        /* Slack - Middle orbit, top left */
+        .app-node:nth-child(6) { 
+            top: calc(50% - 141px);
+            left: calc(50% - 141px);
+            opacity: 0.9;
+            animation: 
+                float-3d 14s ease-in-out infinite,
+                depth-pulse 10s ease-in-out infinite;
+            animation-delay: 1s, 2.5s;
+            transform-style: preserve-3d;
+        }
+        
+        /* Email - Inner orbit, right */
+        .app-node:nth-child(7) { 
+            top: calc(50% - 30px);
+            left: calc(50% + 100px);
+            opacity: 0.92;
+            animation: 
+                float-3d-alt 13s ease-in-out infinite,
+                depth-pulse-alt 7s ease-in-out infinite;
+            animation-delay: 1.5s, 0.5s;
+            transform-style: preserve-3d;
+        }
+        
+        /* Roam - Inner orbit, bottom */
+        .app-node:nth-child(8) { 
+            top: calc(50% + 100px);
+            left: calc(50% - 40px);
+            opacity: 1;
+            animation: 
+                float-3d 11s ease-in-out infinite,
+                depth-pulse 9s ease-in-out infinite;
+            animation-delay: 3s, 1.5s;
+            transform-style: preserve-3d;
+        }
+        
+        /* Generic ... - Outer orbit, left */
+        .app-node:nth-child(9) { 
+            top: calc(50% - 30px);
+            left: calc(50% - 250px);
+            opacity: 0.8;
+            animation: 
+                float-3d-alt 16s ease-in-out infinite,
+                depth-pulse-alt 11s ease-in-out infinite;
+            animation-delay: 2.5s, 3s;
+            transform-style: preserve-3d;
+        }
+        
+        /* Generic App - Outer orbit, bottom right */
+        .app-node:nth-child(10) { 
+            bottom: calc(50% - 177px);
+            right: calc(50% - 177px);
+            opacity: 0.75;
+            animation: 
+                float-3d 17s ease-in-out infinite,
+                depth-pulse-alt 12s ease-in-out infinite;
+            animation-delay: 0.5s, 2s;
+            transform-style: preserve-3d;
+        }
+        
+        /* Generic Tool - Outer orbit, top right */
+        .app-node:nth-child(11) { 
+            top: calc(50% - 177px);
+            right: calc(50% - 177px);
+            opacity: 0.8;
+            animation: 
+                float-3d-alt 15s ease-in-out infinite,
+                depth-pulse 10s ease-in-out infinite;
+            animation-delay: 3.5s, 0s;
+            transform-style: preserve-3d;
+        }
 
         .chaos-stat {
             position: absolute;
@@ -408,64 +582,387 @@
             margin-bottom: 0.5rem;
         }
 
-        /* Future Section - Calm Threading */
+        /* Future Section - FolkLore Hub */
         .future-calm {
-            background: linear-gradient(135deg, rgba(123, 63, 242, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(123, 63, 242, 0.03) 0%, rgba(6, 182, 212, 0.03) 100%);
             border-radius: 24px;
             padding: 4rem;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
 
-        .thread-visualization {
+        .folklore-hub-visualization {
             position: relative;
-            height: 300px;
-            margin: 2rem 0;
-        }
-
-        .knowledge-node {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background: white;
-            border: 2px solid var(--primary-light);
-            border-radius: 50%;
+            height: 400px;
+            margin: 2rem auto;
+            max-width: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 4px 16px rgba(123, 63, 242, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            z-index: 2;
         }
 
-        .knowledge-node:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 24px rgba(123, 63, 242, 0.3);
-        }
-
-        .thread {
+        /* FolkLore Logo Center */
+        .folklore-center {
             position: absolute;
-            height: 2px;
-            background: var(--primary);
-            opacity: 0.3;
-            transform-origin: center;
-            z-index: 1;
-            animation: pulse-thread 3s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
         }
 
-        @keyframes pulse-thread {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+        .folklore-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(123, 63, 242, 0.4);
+            animation: float-center 6s ease-in-out infinite;
         }
 
-        /* Central positioning */
-        .knowledge-node:nth-child(1) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-        .knowledge-node:nth-child(2) { top: 20%; left: 30%; }
-        .knowledge-node:nth-child(3) { top: 20%; right: 30%; }
-        .knowledge-node:nth-child(4) { bottom: 20%; left: 25%; }
-        .knowledge-node:nth-child(5) { bottom: 20%; right: 25%; }
+        .folklore-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 140px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(123, 63, 242, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse-glow 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float-center {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% { 
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        /* Context Nodes */
+        .context-node {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: white;
+            border: 2px solid var(--primary-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .context-node .node-icon {
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+        }
+
+        .context-node .node-label {
+            font-size: 0.65rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Different Shapes */
+        .circle-shape {
+            border-radius: 50%;
+        }
+
+        .square-shape {
+            border-radius: 12px;
+        }
+
+        .hexagon-shape {
+            border-radius: 20px;
+            transform: rotate(0deg);
+        }
+
+        /* Position nodes around center */
+        .context-node[data-position="top"] {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .context-node[data-position="top-right"] {
+            top: 15%;
+            right: 15%;
+        }
+
+        .context-node[data-position="right"] {
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        .context-node[data-position="bottom-right"] {
+            bottom: 15%;
+            right: 15%;
+        }
+
+        .context-node[data-position="bottom"] {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .context-node[data-position="bottom-left"] {
+            bottom: 15%;
+            left: 15%;
+        }
+
+        .context-node[data-position="left"] {
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        .context-node[data-position="top-left"] {
+            top: 15%;
+            left: 15%;
+        }
+
+        /* Hover effects */
+        .context-node:hover {
+            transform: scale(1.1) translateX(var(--tx, 0)) translateY(var(--ty, 0));
+            box-shadow: 0 8px 24px rgba(123, 63, 242, 0.3);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, white 0%, rgba(123, 63, 242, 0.05) 100%);
+        }
+
+        .context-node[data-position="top"]:hover { --tx: -50%; --ty: -5px; }
+        .context-node[data-position="right"]:hover { --tx: 5px; --ty: -50%; }
+        .context-node[data-position="bottom"]:hover { --tx: -50%; --ty: 5px; }
+        .context-node[data-position="left"]:hover { --tx: -5px; --ty: -50%; }
+
+        /* Particles */
+        .particle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.9) 0%, rgba(123, 63, 242, 0.8) 100%);
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.8), 0 0 20px rgba(123, 63, 242, 0.4);
+        }
+
+        /* Particle animations based on data-from attribute - slower 10s duration */
+        .particle[data-from="top"] { animation: particle-flow-top 10s ease-in-out infinite; }
+        .particle[data-from="top-right"] { animation: particle-flow-top-right 10s ease-in-out infinite; }
+        .particle[data-from="right"] { animation: particle-flow-right 10s ease-in-out infinite; }
+        .particle[data-from="bottom-right"] { animation: particle-flow-bottom-right 10s ease-in-out infinite; }
+        .particle[data-from="bottom"] { animation: particle-flow-bottom 10s ease-in-out infinite; }
+        .particle[data-from="bottom-left"] { animation: particle-flow-bottom-left 10s ease-in-out infinite; }
+        .particle[data-from="left"] { animation: particle-flow-left 10s ease-in-out infinite; }
+        .particle[data-from="top-left"] { animation: particle-flow-top-left 10s ease-in-out infinite; }
+
+        /* Particle animations from each position to center */
+        @keyframes particle-flow-top {
+            0% { 
+                top: 0; 
+                left: 50%; 
+                opacity: 0; 
+                transform: translateX(-50%) scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% { 
+                top: 50%; 
+                left: 50%; 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+        }
+
+        @keyframes particle-flow-top-right {
+            0% { 
+                top: 15%; 
+                right: 15%; 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% { 
+                top: 50%; 
+                right: 50%; 
+                opacity: 0; 
+                transform: translate(50%, -50%) scale(0.3);
+            }
+        }
+
+        @keyframes particle-flow-right {
+            0% { 
+                top: 50%; 
+                right: 0; 
+                opacity: 0; 
+                transform: translateY(-50%) scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: translate(50%, -50%) scale(1);
+            }
+            100% { 
+                top: 50%; 
+                right: 50%; 
+                opacity: 0; 
+                transform: translate(50%, -50%) scale(0.3);
+            }
+        }
+
+        @keyframes particle-flow-bottom-right {
+            0% { 
+                bottom: 15%; 
+                right: 15%; 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% { 
+                bottom: 50%; 
+                right: 50%; 
+                opacity: 0; 
+                transform: translate(50%, 50%) scale(0.3);
+            }
+        }
+
+        @keyframes particle-flow-bottom {
+            0% { 
+                bottom: 0; 
+                left: 50%; 
+                opacity: 0; 
+                transform: translateX(-50%) scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: translate(-50%, 50%) scale(1);
+            }
+            100% { 
+                bottom: 50%; 
+                left: 50%; 
+                opacity: 0; 
+                transform: translate(-50%, 50%) scale(0.3);
+            }
+        }
+
+        @keyframes particle-flow-bottom-left {
+            0% { 
+                bottom: 15%; 
+                left: 15%; 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% { 
+                bottom: 50%; 
+                left: 50%; 
+                opacity: 0; 
+                transform: translate(-50%, 50%) scale(0.3);
+            }
+        }
+
+        @keyframes particle-flow-left {
+            0% { 
+                top: 50%; 
+                left: 0; 
+                opacity: 0; 
+                transform: translateY(-50%) scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: translateY(-50%) scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% { 
+                top: 50%; 
+                left: 50%; 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+        }
+
+        @keyframes particle-flow-top-left {
+            0% { 
+                top: 15%; 
+                left: 15%; 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            15% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            85% { 
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% { 
+                top: 50%; 
+                left: 50%; 
+                opacity: 0; 
+                transform: translate(-50%, -50%) scale(0.3);
+            }
+        }
+
 
         /* Research Block */
         .research-block {
@@ -742,7 +1239,132 @@
             opacity: 1;
         }
 
+        /* iPhone specific fixes */
+        @media (max-width: 414px) {
+            .app-universe {
+                height: 300px;
+                width: 300px;
+                margin: 0 auto;
+            }
+
+            .orbit:nth-child(1) { 
+                width: 150px; 
+                height: 150px; 
+            }
+            .orbit:nth-child(2) { 
+                width: 200px; 
+                height: 200px; 
+            }
+            .orbit:nth-child(3) { 
+                width: 250px; 
+                height: 250px; 
+            }
+
+            .folklore-hub-visualization {
+                height: 320px;
+                overflow: visible;
+            }
+
+            .context-node {
+                width: 60px;
+                height: 60px;
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .context-node .node-icon {
+                font-size: 1.2rem;
+            }
+
+            .context-node .node-label {
+                font-size: 0.5rem;
+            }
+
+            /* Prevent horizontal scroll */
+            .content {
+                overflow-x: hidden;
+            }
+
+            .present-chaos {
+                overflow: hidden;
+            }
+        }
+
+        /* Mobile Responsive for FolkLore Hub */
         @media (max-width: 768px) {
+            .folklore-hub-visualization {
+                height: 350px;
+                padding: 1rem;
+            }
+
+            .folklore-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .folklore-glow {
+                width: 100px;
+                height: 100px;
+            }
+
+            .context-node {
+                width: 50px;
+                height: 50px;
+            }
+
+            .context-node .node-icon {
+                font-size: 1.2rem;
+            }
+
+            .context-node .node-label {
+                font-size: 0.55rem;
+            }
+
+            /* Adjust positions for mobile */
+            .context-node[data-position="top"] {
+                top: 10px;
+            }
+
+            .context-node[data-position="top-right"] {
+                top: 20%;
+                right: 20%;
+            }
+
+            .context-node[data-position="right"] {
+                right: 10px;
+            }
+
+            .context-node[data-position="bottom-right"] {
+                bottom: 20%;
+                right: 20%;
+            }
+
+            .context-node[data-position="bottom"] {
+                bottom: 10px;
+            }
+
+            .context-node[data-position="bottom-left"] {
+                bottom: 20%;
+                left: 20%;
+            }
+
+            .context-node[data-position="left"] {
+                left: 10px;
+            }
+
+            .context-node[data-position="top-left"] {
+                top: 20%;
+                left: 20%;
+            }
+
+            .particle {
+                width: 3px;
+                height: 3px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
             .nav-links {
                 display: none;
             }
@@ -755,8 +1377,186 @@
                 display: block;
             }
             
+            /* Header adjustments */
+            .hero h1 {
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+                line-height: 1.2;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            /* Content padding */
+            .container {
+                padding: 0 1rem;
+            }
+
+            .content {
+                padding: 2rem 0;
+            }
+
+            /* Timeline sections */
+            .timeline-section {
+                margin-bottom: 3rem;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-description {
+                font-size: 0.9rem;
+            }
+
+            /* Past section */
             .past-stats {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .clay-tablet {
+                width: 150px;
+                height: 100px;
+                font-size: 1rem;
+            }
+
+            /* Present section - App chaos */
+            .present-chaos {
+                padding: 2rem 1rem;
+            }
+
+            .app-universe {
+                height: 350px;
+                width: 350px;
+            }
+
+            .orbit:nth-child(1) { 
+                width: 180px; 
+                height: 180px; 
+            }
+            .orbit:nth-child(2) { 
+                width: 250px; 
+                height: 250px; 
+            }
+            .orbit:nth-child(3) { 
+                width: 320px; 
+                height: 320px; 
+            }
+
+            .app-node {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            /* Adjust app positions for mobile */
+            .app-node:nth-child(4) { top: -10px; left: 50%; }
+            .app-node:nth-child(5) { top: 30px; right: 20px; }
+            .app-node:nth-child(6) { right: -10px; top: 50%; }
+            .app-node:nth-child(7) { bottom: 30px; right: 30px; }
+            .app-node:nth-child(8) { bottom: -10px; left: 50%; }
+            .app-node:nth-child(9) { bottom: 40px; left: 20px; }
+            .app-node:nth-child(10) { left: -10px; top: 50%; }
+            .app-node:nth-child(11) { top: 40px; left: 30px; }
+
+            /* Future section - already handled above */
+            .future-calm {
+                padding: 2rem 1rem;
+            }
+
+            /* Research blocks */
+            .research-block {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .research-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .research-icon {
+                margin-right: 0;
+                margin-bottom: 0.5rem;
+            }
+
+            .research-title {
+                font-size: 1.1rem;
+            }
+
+            .research-content {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .research-citation {
+                font-size: 0.8rem;
+            }
+
+            /* Evolution grid */
+            .evolution-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .evolution-card {
+                padding: 1.5rem;
+            }
+
+            /* Quotes */
+            .opening-quote {
+                padding: 2rem 1rem;
+            }
+
+            .quote-text {
+                font-size: 1.2rem;
+            }
+
+            /* CTA section */
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Ensure all touch targets are at least 44x44px for iOS */
+            a, button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+
+            /* Typography */
+            p {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            .lead {
+                font-size: 1.1rem;
             }
             
             .evolution-grid {
@@ -765,6 +1565,97 @@
             
             .app-universe {
                 height: 300px;
+                animation: slow-rotate 480s linear infinite;
+                -webkit-animation: slow-rotate 480s linear infinite;
+            }
+            
+            .orbit:nth-child(1) {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .orbit:nth-child(2) {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .orbit:nth-child(3) {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .app-node {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.65rem;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                gap: 0.3rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            }
+            
+            /* Adjust positions for mobile */
+            .app-node:nth-child(4) { 
+                top: calc(50% - 60px);
+                left: calc(50% - 30px);
+                animation: 
+                    float-3d 15s ease-in-out infinite,
+                    depth-pulse 10s ease-in-out infinite;
+            }
+            
+            .app-node:nth-child(5) { 
+                top: calc(50% + 100px);
+                left: calc(50% - 100px);
+                animation: 
+                    float-3d-alt 18s ease-in-out infinite,
+                    depth-pulse-alt 12s ease-in-out infinite;
+            }
+            
+            .app-node:nth-child(6) { 
+                top: calc(50% - 85px);
+                left: calc(50% - 85px);
+                animation: 
+                    float-3d 16s ease-in-out infinite,
+                    depth-pulse 11s ease-in-out infinite;
+            }
+            
+            .app-node:nth-child(7) { 
+                top: calc(50% - 20px);
+                left: calc(50% + 60px);
+                animation: 
+                    float-3d-alt 14s ease-in-out infinite,
+                    depth-pulse-alt 9s ease-in-out infinite;
+            }
+            
+            .app-node:nth-child(8) { 
+                top: calc(50% + 60px);
+                left: calc(50% - 30px);
+                animation: 
+                    float-3d 13s ease-in-out infinite,
+                    depth-pulse 10s ease-in-out infinite;
+            }
+            
+            .app-node:nth-child(9) { 
+                top: calc(50% - 20px);
+                left: calc(50% - 140px);
+                animation: 
+                    float-3d-alt 17s ease-in-out infinite,
+                    depth-pulse-alt 13s ease-in-out infinite;
+            }
+            
+            .app-node:nth-child(10) { 
+                top: calc(50% + 100px);
+                left: calc(50% + 100px);
+                animation: 
+                    float-3d 19s ease-in-out infinite,
+                    depth-pulse-alt 14s ease-in-out infinite;
+            }
+            
+            .app-node:nth-child(11) { 
+                top: calc(50% - 100px);
+                left: calc(50% + 100px);
+                animation: 
+                    float-3d-alt 16s ease-in-out infinite,
+                    depth-pulse 11s ease-in-out infinite;
             }
             
             .section-title {
@@ -933,17 +1824,16 @@
                         
                         <div class="app-node">📝 Notion</div>
                         <div class="app-node">🧠 Obsidian</div>
-                        <div class="app-node">📚 Readwise</div>
                         <div class="app-node">💬 Slack</div>
                         <div class="app-node">📧 Email</div>
-                        <div class="app-node">🗂️ Google Drive</div>
-                        <div class="app-node">🐦 Twitter</div>
                         <div class="app-node">📑 Roam</div>
+                        <div class="app-node generic-app">◾ ...</div>
+                        <div class="app-node generic-app">◻ App</div>
+                        <div class="app-node generic-app">● Tool</div>
                     </div>
                     <div class="chaos-stat">
-                        <div class="chaos-number">47 TB</div>
-                        <div style="font-size: 1rem; opacity: 0.8;">
-                            Average knowledge worker's annual data creation
+                        <div style="font-size: 1.2rem; opacity: 0.9; color: var(--warning);">
+                            Fragmented context created across apps
                         </div>
                     </div>
                 </div>
@@ -999,25 +1889,94 @@
                 </div>
 
                 <div class="future-calm">
-                    <div class="thread-visualization">
-                        <div class="knowledge-node">🧠</div>
-                        <div class="knowledge-node">📚</div>
-                        <div class="knowledge-node">💡</div>
-                        <div class="knowledge-node">🔬</div>
-                        <div class="knowledge-node">🎨</div>
+                    <div class="folklore-hub-visualization">
+                        <!-- FolkLore Logo at Center -->
+                        <div class="folklore-center">
+                            <img src="../folklore-logo.png" 
+                                 alt="FolkLore AI" 
+                                 class="folklore-logo">
+                            <div class="folklore-glow"></div>
+                        </div>
                         
-                        <!-- Threads connecting nodes -->
-                        <div class="thread" style="width: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(45deg);"></div>
-                        <div class="thread" style="width: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg);"></div>
-                        <div class="thread" style="width: 180px; top: 35%; left: 30%; transform: rotate(20deg);"></div>
-                        <div class="thread" style="width: 180px; top: 35%; right: 30%; transform: rotate(-20deg);"></div>
-                        <div class="thread" style="width: 160px; bottom: 35%; left: 35%; transform: rotate(-30deg);"></div>
-                        <div class="thread" style="width: 160px; bottom: 35%; right: 35%; transform: rotate(30deg);"></div>
+                        <!-- App/Context Nodes -->
+                        <div class="context-node circle-shape" data-position="top">
+                            <span class="node-icon">📝</span>
+                            <span class="node-label">Notion</span>
+                        </div>
+                        <div class="context-node square-shape" data-position="top-right">
+                            <span class="node-icon">🧠</span>
+                            <span class="node-label">Obsidian</span>
+                        </div>
+                        <div class="context-node hexagon-shape" data-position="right">
+                            <span class="node-icon">💬</span>
+                            <span class="node-label">Slack</span>
+                        </div>
+                        <div class="context-node circle-shape" data-position="bottom-right">
+                            <span class="node-icon">📧</span>
+                            <span class="node-label">Email</span>
+                        </div>
+                        <div class="context-node square-shape" data-position="bottom">
+                            <span class="node-icon">🌐</span>
+                            <span class="node-label">Chrome</span>
+                        </div>
+                        <div class="context-node hexagon-shape" data-position="bottom-left">
+                            <span class="node-icon">📄</span>
+                            <span class="node-label">PDFs</span>
+                        </div>
+                        <div class="context-node circle-shape" data-position="left">
+                            <span class="node-icon">📚</span>
+                            <span class="node-label">Research</span>
+                        </div>
+                        <div class="context-node square-shape" data-position="top-left">
+                            <span class="node-icon">🗓️</span>
+                            <span class="node-label">Meetings</span>
+                        </div>
+                        
+                        <!-- Floating Particles -->
+                        <div class="particle-container">
+                            <!-- 2 particles per app with slower, staggered timing -->
+                            <!-- From top (Notion) -->
+                            <div class="particle" data-from="top"></div>
+                            <div class="particle" data-from="top" style="animation-delay: 5s;"></div>
+                            
+                            <!-- From top-right (Obsidian) -->
+                            <div class="particle" data-from="top-right" style="animation-delay: 1s;"></div>
+                            <div class="particle" data-from="top-right" style="animation-delay: 6s;"></div>
+                            
+                            <!-- From right (Slack) -->
+                            <div class="particle" data-from="right" style="animation-delay: 2s;"></div>
+                            <div class="particle" data-from="right" style="animation-delay: 7s;"></div>
+                            
+                            <!-- From bottom-right (Email) -->
+                            <div class="particle" data-from="bottom-right" style="animation-delay: 3s;"></div>
+                            <div class="particle" data-from="bottom-right" style="animation-delay: 8s;"></div>
+                            
+                            <!-- From bottom (Chrome) -->
+                            <div class="particle" data-from="bottom" style="animation-delay: 4s;"></div>
+                            <div class="particle" data-from="bottom" style="animation-delay: 9s;"></div>
+                            
+                            <!-- From bottom-left (PDFs) -->
+                            <div class="particle" data-from="bottom-left" style="animation-delay: 2.5s;"></div>
+                            <div class="particle" data-from="bottom-left" style="animation-delay: 7.5s;"></div>
+                            
+                            <!-- From left (Research) -->
+                            <div class="particle" data-from="left" style="animation-delay: 1.5s;"></div>
+                            <div class="particle" data-from="left" style="animation-delay: 6.5s;"></div>
+                            
+                            <!-- From top-left (Meetings) -->
+                            <div class="particle" data-from="top-left" style="animation-delay: 3.5s;"></div>
+                            <div class="particle" data-from="top-left" style="animation-delay: 8.5s;"></div>
+                        </div>
                     </div>
                     
-                    <p style="text-align: center; color: var(--gray); margin-top: 2rem;">
-                        Knowledge nodes automatically connect across domains, time, and tools
-                    </p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem; font-size: 1.5rem;">
+                            FolkLore AI - Connected Intelligence
+                        </h3>
+                        <p style="color: var(--gray); font-size: 1.1rem;">
+                            One intelligent layer unifying all your fragmented knowledge
+                        </p>
+                    </div>
                 </div>
 
                 <div class="research-block">
@@ -1153,26 +2112,32 @@
                 observer.observe(el);
             });
 
-            // Add interactivity to knowledge nodes
-            const nodes = document.querySelectorAll('.knowledge-node');
-            nodes.forEach(node => {
+            // Add interactivity to context nodes
+            const contextNodes = document.querySelectorAll('.context-node');
+            contextNodes.forEach(node => {
                 node.addEventListener('click', () => {
                     // Add pulse effect
                     node.style.animation = 'pulse 0.5s ease-out';
                     setTimeout(() => {
                         node.style.animation = '';
                     }, 500);
-                    
-                    // Make threads pulse
-                    const threads = document.querySelectorAll('.thread');
-                    threads.forEach(thread => {
-                        thread.style.opacity = '0.8';
-                        setTimeout(() => {
-                            thread.style.opacity = '0.3';
-                        }, 300);
-                    });
                 });
             });
+
+            // Add interactivity to FolkLore logo
+            const folkloreLogo = document.querySelector('.folklore-logo');
+            if (folkloreLogo) {
+                folkloreLogo.addEventListener('click', () => {
+                    // Trigger all particles at once
+                    const particles = document.querySelectorAll('.particle');
+                    particles.forEach((particle, index) => {
+                        particle.style.animationPlayState = 'paused';
+                        setTimeout(() => {
+                            particle.style.animationPlayState = 'running';
+                        }, index * 100);
+                    });
+                });
+            }
 
             // Add pulse animation
             const style = document.createElement('style');
